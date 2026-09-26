@@ -17,7 +17,7 @@ value = "AC0123456789abcdef0123456789abcdef"
 
 # SID de clé d'API inventé.
 [[examples.match]]
-text = "La cle d'API SKdeadbeefdeadbeefdeadbeefdeadbeef est encore active."
+text = "La clé d'API SKdeadbeefdeadbeefdeadbeefdeadbeef est encore active."
 value = "SKdeadbeefdeadbeefdeadbeefdeadbeef"
 
 # Trop court.

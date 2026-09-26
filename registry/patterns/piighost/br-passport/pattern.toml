@@ -8,7 +8,7 @@ regex = '(?<!\w)[A-Z]{2}\d{6}(?!\w)'
 
 [pattern.description]
 en = "Brazilian passport number. The Policia Federal, which issues it, states that the number is made of two letters, called the series, followed by six digits. No checksum, and the federal police add that the Brazilian booklet has no separate passport book number. Reproduced collisions: this is character for character the shape of CA_PASSPORT and of the eight character form of ES_PASSPORT, so the three labels fire together, and the six digit tail is separately matched by IN_PIN."
-fr = "Numero de passeport bresilien. La Policia Federal, qui le delivre, indique qu'il se compose de deux lettres, appelees serie, suivies de six chiffres. Pas de somme de controle, et la police federale precise que le carnet bresilien ne porte pas de numero de carnet distinct. Collisions reproduites : c'est caractere pour caractere la forme de CA_PASSPORT et de la variante a huit caracteres de ES_PASSPORT, donc les trois labels se declenchent ensemble, et la queue de six chiffres est reconnue separement par IN_PIN."
+fr = "Numéro de passeport brésilien. La Policia Federal, qui le délivre, indique qu'il se compose de deux lettres, appelées série, suivies de six chiffres. Pas de somme de contrôle, et la police fédérale précise que le carnet brésilien ne porte pas de numéro de carnet distinct. Collisions reproduites : c'est caractère pour caractère la forme de CA_PASSPORT et de la variante à huit caractères de ES_PASSPORT, donc les trois labels se déclenchent ensemble, et la queue de six chiffres est reconnue séparément par IN_PIN."
 
 [[examples.match]]
 text = "O passaporte FD000001 foi emitido pela Policia Federal."

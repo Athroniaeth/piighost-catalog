@@ -19,7 +19,7 @@ text = "Elle est enregistrée sous 90.01.01-123.45 depuis."
 value = "90.01.01-123.45"
 
 [[examples.no_match]]
-text = "Le code 85.13.30-033.61 n a pas ce mois"
+text = "Le code 85.13.30-033.61 n'a pas ce mois"
 
 [[examples.no_match]]
 text = "Référence 850730-03361"

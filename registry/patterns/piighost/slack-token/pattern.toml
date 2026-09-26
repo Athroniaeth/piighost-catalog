@@ -17,7 +17,7 @@ value = "xoxb-2345678901-2345678901-AbCdEfGhIjKlMnOpQrStUvWx"
 
 # Jeton applicatif inventé.
 [[examples.match]]
-text = "Le jeton applicatif xapp-1-A01BCDEFGHI-1234567890123-a1b2c3d4a1b2c3d4a1b2c3d4a1b2c3d4a1b2c3d4 a ete revoque."
+text = "Le jeton applicatif xapp-1-A01BCDEFGHI-1234567890123-a1b2c3d4a1b2c3d4a1b2c3d4a1b2c3d4a1b2c3d4 a été révoqué."
 value = "xapp-1-A01BCDEFGHI-1234567890123-a1b2c3d4a1b2c3d4a1b2c3d4a1b2c3d4a1b2c3d4"
 
 # xoxz n'est pas un préfixe Slack.

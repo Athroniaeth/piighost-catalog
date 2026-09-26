@@ -12,7 +12,7 @@ fr = "Adresse Bitcoin dans ses trois encodages vivants : P2PKH hérité commenç
 
 # Adresse P2PKH héritée, tirée de la documentation Bitcoin.
 [[examples.match]]
-text = "Le don est arrive sur 1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2 hier."
+text = "Le don est arrivé sur 1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2 hier."
 value = "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2"
 
 # Vecteur de test du BIP-173.

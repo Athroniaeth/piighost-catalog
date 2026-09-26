@@ -17,7 +17,7 @@ value = "SG.DEFGHIJKLMNOPQRSTUVWXY.FGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijkl"
 
 # Autre clé inventée.
 [[examples.match]]
-text = "La cle SG.LMNOPQRSTUVWXYZ0123456.RSTUVWXYZ0123456789abcdefghijklmnopqrstuvwx traînait dans le depot."
+text = "La clé SG.LMNOPQRSTUVWXYZ0123456.RSTUVWXYZ0123456789abcdefghijklmnopqrstuvwx traînait dans le dépôt."
 value = "SG.LMNOPQRSTUVWXYZ0123456.RSTUVWXYZ0123456789abcdefghijklmnopqrstuvwx"
 
 # Segments trop courts.

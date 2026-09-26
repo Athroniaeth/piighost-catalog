@@ -17,7 +17,7 @@ value = "AA-111-AA"
 
 # Plaque inventée.
 [[examples.match]]
-text = "Le vehicule AB-123-CD est en fourriere."
+text = "Le véhicule AB-123-CD est en fourrière."
 value = "AB-123-CD"
 
 # Deux chiffres : il en faut trois.

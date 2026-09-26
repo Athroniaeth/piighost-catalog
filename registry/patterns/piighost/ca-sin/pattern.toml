@@ -15,7 +15,7 @@ text = "SIN 046 454 286 on the tax slip."
 value = "046 454 286"
 
 [[examples.match]]
-text = "Numero 130-692-544 sur le formulaire."
+text = "Numéro 130-692-544 sur le formulaire."
 value = "130-692-544"
 
 [[examples.no_match]]
