@@ -1,0 +1,64 @@
+{
+  "digest": "227ffba708b528685cdf10b959c26e845d01f3d7983389317613b04594176ace",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "passports",
+    "schema_version": 1,
+    "description": {
+      "en": "Passport numbers for the ten countries the registry covers. Several share a shape, a letter followed by digits being the common design, so the label a value receives depends on which is declared first. The German pattern is deliberately absent: it and the Dutch one match each other's examples exactly, and no ordering satisfies both, so a cross-country group has to pick one. A German passport is still tokenised here, under the Dutch label, which protects the value and misnames it. For German documents use the de configuration, where the pattern stands alone. Use one country's pattern whenever you know the country; this group is for when you do not and a token is worth more than a precise label.",
+      "fr": "Numéros de passeport pour les dix pays que le registre couvre. Plusieurs partagent une forme, une lettre suivie de chiffres étant le dessin courant, donc le label qu'une valeur reçoit dépend de celui qui est déclaré en premier. Le motif allemand est volontairement absent : lui et le néerlandais reconnaissent exactement les exemples l'un de l'autre, et aucun ordre ne satisfait les deux, donc un groupe multi-pays doit en choisir un. Un passeport allemand est tout de même tokenisé ici, sous le label néerlandais, ce qui protège la valeur et la nomme mal. Pour des documents allemands, utilisez la configuration de, où le motif est seul. Utilisez le motif d'un seul pays dès que vous le connaissez ; ce groupe sert quand vous ne le connaissez pas et qu'un jeton vaut mieux qu'un label précis."
+    },
+    "tags": [
+      "international",
+      "government-id",
+      "identity",
+      "legal"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/fr-passport",
+        "commit": "5140479d",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/uk-passport",
+        "commit": "6cedfd97",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/es-passport",
+        "commit": "b293e671",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/it-passport",
+        "commit": "bfc164df",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/nl-passport",
+        "commit": "c5e43787",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/in-passport",
+        "commit": "1a5eaa73",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/us-passport",
+        "commit": "7a428e50",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "digest": "b293e6716562726f149a7a38c59e8c676cad1804ce96fbf80704cdd16746d653",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "es-passport",
+    "schema_version": 1,
+    "label": "ES_PASSPORT",
+    "regex": "(?<!\\w)[A-Z]{2,3}\\d{6}(?!\\w)",
+    "description": {
+      "en": "Spanish passport number, eight or nine characters: two or three letters followed by six digits. Presidio reads it as three letters and six digits, Purview as two or three letters or digits and six digits; the letter led reading is kept because allowing digits in the first positions would turn the pattern into a plain eight or nine digit run. Reproduced noise: the six digit tail is separately matched by IN_PIN, and the eight character form is the same shape as CA_PASSPORT and BR_PASSPORT, so those three labels fire together on a two letter value and only the surrounding language separates them.",
+      "fr": "Numéro de passeport espagnol, huit ou neuf caractères : deux ou trois lettres suivies de six chiffres. Presidio y lit trois lettres et six chiffres, Purview deux ou trois caractères alphanumériques et six chiffres ; la lecture par lettres est retenue car autoriser des chiffres en tête reviendrait à une simple suite de huit ou neuf chiffres. Bruit reproduit : la queue de six chiffres est reconnue séparément par IN_PIN, et la forme à huit caractères est identique à celle de CA_PASSPORT et de BR_PASSPORT, donc ces trois labels se déclenchent ensemble sur une valeur à deux lettres et seule la langue environnante les sépare."
+    },
+    "tags": [
+      "es",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "The Spanish booklet ABC123456 was issued in Madrid.",
+          "value": "ABC123456"
+        },
+        {
+          "text": "Pasaporte XY987654 renovado el ano pasado.",
+          "value": "XY987654"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "ABCD123456"
+        },
+        {
+          "text": "AB12345"
+        },
+        {
+          "text": "abc123456"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "ABC12345",
+      "suffix": "!"
+    }
+  }
+}

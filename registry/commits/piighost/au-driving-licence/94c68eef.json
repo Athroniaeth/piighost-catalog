@@ -1,0 +1,54 @@
+{
+  "digest": "94c68eeff54c1c4a668b53b69e82fd08b797d5999804db353f5301f32e5edbb9",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "au-driving-licence",
+    "schema_version": 1,
+    "label": "AU_DRIVING_LICENCE",
+    "regex": "(?<!\\w)(?:[A-Z]{2}\\d{4}|[A-Z]\\d{5}|\\d{4}[A-Z]{2})(?!\\w)",
+    "description": {
+      "en": "Australian driver licence number. Each state and territory sets its own, and Purview lists seven layouts; only the three that mix letters and digits are covered, two letters then four digits, one letter then five digits, and four digits then two letters. The numeric only layouts, six to ten digits with or without spaces, are left out because they are indistinguishable from any other number and would swamp the label. Even so this shape is short, six characters, so product codes, seat numbers and vehicle plates will match; treat it as a context dependent signal. Reproduced collision: the four digits then two letters form, 1234XY, is matched whole by NL_POSTAL, and the five digit run inside C12345 is separately matched by ES_POSTAL and IT_CAP.",
+      "fr": "Numéro de permis de conduire australien. Chaque État ou territoire définit le sien, et Purview liste sept dispositions ; seules les trois qui mêlent lettres et chiffres sont couvertes : deux lettres puis quatre chiffres, une lettre puis cinq chiffres, et quatre chiffres puis deux lettres. Les dispositions purement numériques, de six à dix chiffres avec ou sans espaces, sont exclues car indistinguables de n'importe quel nombre et noieraient le label. Cette forme reste courte, six caractères, donc des références produit, des numéros de siège et des plaques d'immatriculation se déclencheront ; à traiter comme un signal dépendant du contexte. Collision reproduite : la forme quatre chiffres puis deux lettres, 1234XY, est reconnue en entier par NL_POSTAL, et la suite de cinq chiffres dans C12345 est reconnue séparément par ES_POSTAL et IT_CAP."
+    },
+    "tags": [
+      "au",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "South Australia prints AB1234 on the front of the card.",
+          "value": "AB1234"
+        },
+        {
+          "text": "The licence C12345 was issued in the same series.",
+          "value": "C12345"
+        },
+        {
+          "text": "New South Wales writes 1234XY in that layout.",
+          "value": "1234XY"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "ABC1234"
+        },
+        {
+          "text": "A1234"
+        },
+        {
+          "text": "ab1234"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "AB123",
+      "suffix": "!"
+    }
+  }
+}

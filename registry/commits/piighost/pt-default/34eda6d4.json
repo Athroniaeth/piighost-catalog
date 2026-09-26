@@ -1,0 +1,68 @@
+{
+  "digest": "34eda6d4d4be1c7a5aeb0d431b5245639e55c8d02bbee07b3a758053254dd3aa",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "pt-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Portugal without a model: phone, postal code and the NIF tax number, plus the European IBAN, BIC and VAT number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Portugal sans modèle : téléphone, code postal et le numéro fiscal NIF, plus l'IBAN, le BIC et le numéro de TVA européens, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "eu",
+      "pt"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-pt",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/pt",
+            "commit": "bd45b050"
+          }
+        ]
+      },
+      {
+        "name": "regex-eu",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/eu-extended",
+            "commit": "65ff1752"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "e9f9b4fa"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

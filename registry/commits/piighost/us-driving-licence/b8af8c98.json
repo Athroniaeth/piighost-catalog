@@ -1,0 +1,50 @@
+{
+  "digest": "b8af8c98fc7e18e1fc4169fa545e6df6b6b33dad96f6292db42b50c72b71d9f7",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "us-driving-licence",
+    "schema_version": 1,
+    "label": "US_DRIVING_LICENCE",
+    "regex": "(?<!\\w)(?:[A-Z]\\d{7}|\\d{3} \\d{3} \\d{3})(?!\\w)",
+    "description": {
+      "en": "United States driver licence number. There is no national format, every state issues its own, so this covers only the two common shapes that vendors actually implement: one letter followed by seven digits, the California style that Presidio and the Cloudflare sample CA License A1234567 both carry, and nine digits written as three spaced groups, which is the only state form Purview defines, for New York, and which Purview says does not match when written without the spaces. States that issue plain six to fourteen digit numbers are left out on purpose, since a bare digit run of that length carries no signal. Reproduced collision: the spaced form 123 456 789 is matched whole by CA_SIN and by PL_PHONE.",
+      "fr": "Numéro de permis de conduire des États-Unis. Il n'existe pas de format national, chaque État émet le sien, donc seules les deux formes courantes que les éditeurs implémentent sont couvertes : une lettre suivie de sept chiffres, la forme californienne que portent Presidio et l'exemple Cloudflare CA License A1234567, et neuf chiffres écrits en trois groupes séparés par des espaces, seule forme d'État définie par Purview, pour New York, et que Purview déclare non reconnue sans les espaces. Les États qui émettent de simples suites de six à quatorze chiffres sont volontairement exclus, une telle suite ne portant aucun signal. Collision reproduite : la forme espacée 123 456 789 est reconnue en entier par CA_SIN et par PL_PHONE."
+    },
+    "tags": [
+      "us",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "The California style number A1234567 is printed under the photo.",
+          "value": "A1234567"
+        },
+        {
+          "text": "New York writes the same licence as 123 456 789 with spaces.",
+          "value": "123 456 789"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "A123456"
+        },
+        {
+          "text": "123456789"
+        },
+        {
+          "text": "a1234567"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "123 456 78",
+      "suffix": "!"
+    }
+  }
+}

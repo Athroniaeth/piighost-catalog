@@ -1,0 +1,50 @@
+{
+  "digest": "22c3d83bae8b3774b40fd531277a5c7dbd20224b50ddc94778aa15401df21d68",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "br-passport",
+    "schema_version": 1,
+    "label": "BR_PASSPORT",
+    "regex": "(?<!\\w)[A-Z]{2}\\d{6}(?!\\w)",
+    "description": {
+      "en": "Brazilian passport number. The Policia Federal, which issues it, states that the number is made of two letters, called the series, followed by six digits. No checksum, and the federal police add that the Brazilian booklet has no separate passport book number. Reproduced collisions: this is character for character the shape of CA_PASSPORT and of the eight character form of ES_PASSPORT, so the three labels fire together, and the six digit tail is separately matched by IN_PIN.",
+      "fr": "Numéro de passeport brésilien. La Policia Federal, qui le délivre, indique qu'il se compose de deux lettres, appelées série, suivies de six chiffres. Pas de somme de contrôle, et la police fédérale précise que le carnet brésilien ne porte pas de numéro de carnet distinct. Collisions reproduites : c'est caractère pour caractère la forme de CA_PASSPORT et de la variante à huit caractères de ES_PASSPORT, donc les trois labels se déclenchent ensemble, et la queue de six chiffres est reconnue séparément par IN_PIN."
+    },
+    "tags": [
+      "br",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "O passaporte FD000001 foi emitido pela Policia Federal.",
+          "value": "FD000001"
+        },
+        {
+          "text": "The booklet YY123456 uses the same two letter series.",
+          "value": "YY123456"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "F000001"
+        },
+        {
+          "text": "FD0000012"
+        },
+        {
+          "text": "fd000001"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "FD00000",
+      "suffix": "!"
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "digest": "da8fa4c6148d429e264867404a1e4c993a33664b1ee018d0f36528d86918fb02",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "health",
+    "schema_version": 1,
+    "description": {
+      "en": "Health identifiers across nine countries: the Danish CPR number, the British NHS number, the French social security number, the American prescriber number, the Italian health card, the Australian Medicare number, the Brazilian CNS, the German insurance number and the Swiss AHV number. Health data is the most sensitive category any of these registries carries, and the one where a miss costs the most. The Danish number is declared first because its written form, a validated birth date and a dash, also reads as an NHS number, and the more specific shape should win. The American provider number is absent: it is ten bare digits, exactly the NHS number, and no ordering separates them. It lives in the us-health group instead.",
+      "fr": "Identifiants de santé de neuf pays : le numéro CPR danois, le numéro NHS britannique, le numéro de sécurité sociale français, le numéro de prescripteur américain, la carte sanitaire italienne, le numéro Medicare australien, le CNS brésilien, le numéro d'assuré allemand et le numéro AVS suisse. La santé est la catégorie la plus sensible que portent ces registres, et celle où un oubli coûte le plus cher. Le numéro danois est déclaré en premier parce que sa forme écrite, une date de naissance validée et un tiret, se lit aussi comme un numéro NHS, et la forme la plus spécifique doit l'emporter. Le numéro de fournisseur américain est absent : dix chiffres nus, exactement le numéro NHS, et aucun ordre ne les sépare. Il vit dans le groupe us-health."
+    },
+    "tags": [
+      "international",
+      "health",
+      "healthcare",
+      "government-id"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/dk-cpr",
+        "commit": "f71fac94",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/uk-nhs",
+        "commit": "1dfa5fba",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-nir",
+        "commit": "0b19f679",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/us-dea",
+        "commit": "f09c86fa",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/it-tessera-sanitaria",
+        "commit": "67de62e7",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/au-medicare",
+        "commit": "e995e72b",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/br-cns",
+        "commit": "38ab53fb",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/de-health-insurance",
+        "commit": "229f114b",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/ch-ahv",
+        "commit": "512951ce",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

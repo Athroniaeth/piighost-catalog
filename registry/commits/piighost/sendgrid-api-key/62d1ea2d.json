@@ -1,0 +1,47 @@
+{
+  "digest": "62d1ea2d3abf3fff55ce2d56d3982302e3ada85ac7ebf4cb76847755ad123f61",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "sendgrid-api-key",
+    "schema_version": 1,
+    "label": "SENDGRID_API_KEY",
+    "regex": "\\bSG\\.[A-Za-z0-9_-]{22}\\.[A-Za-z0-9_-]{43}(?![A-Za-z0-9_-])",
+    "description": {
+      "en": "SendGrid API key: the literal SG., a twenty-two character key id, a dot, then a forty-three character secret. The prefix and the two fixed lengths keep noise negligible, and the lowercase form sg. is correctly left alone. No collision at the span level, though a digit run inside a key can trip de-phone on a sub-span.",
+      "fr": "Clé d'API SendGrid : le littéral SG., un identifiant de clé de vingt-deux caractères, un point, puis un secret de quarante-trois caractères. Le préfixe et les deux longueurs fixes rendent le bruit négligeable, et la forme minuscule sg. est correctement ignorée. Aucune collision au niveau du span, mais une suite de chiffres à l'intérieur d'une clé peut déclencher de-phone sur un sous-span."
+    },
+    "tags": [
+      "international",
+      "secrets",
+      "software-dev"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "SENDGRID_API_KEY=SG.DEFGHIJKLMNOPQRSTUVWXY.FGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijkl",
+          "value": "SG.DEFGHIJKLMNOPQRSTUVWXY.FGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijkl"
+        },
+        {
+          "text": "La clé SG.LMNOPQRSTUVWXYZ0123456.RSTUVWXYZ0123456789abcdefghijklmnopqrstuvwx traînait dans le dépôt.",
+          "value": "SG.LMNOPQRSTUVWXYZ0123456.RSTUVWXYZ0123456789abcdefghijklmnopqrstuvwx"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "SG.abc.def"
+        },
+        {
+          "text": "sg.DEFGHIJKLMNOPQRSTUVWXY.FGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijkl"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "SG.",
+      "filler": "A",
+      "suffix": "!"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "digest": "8a80c367ee53a28bf455687b286324ed3ffc74ceb06b5a8a5fa16e868fdd4727",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "crypto",
+    "schema_version": 1,
+    "description": {
+      "en": "Cryptocurrency wallet addresses, Bitcoin and Ethereum. A wallet is a pseudonym rather than a name, but it is stable and public, so one address links every transaction a person made to any message where they wrote it.",
+      "fr": "Adresses de portefeuille de cryptomonnaie, Bitcoin et Ethereum. Un portefeuille est un pseudonyme plutôt qu'un nom, mais il est stable et public, donc une adresse relie toutes les transactions d'une personne à n'importe quel message où elle l'a écrite."
+    },
+    "tags": [
+      "international",
+      "finance",
+      "software-dev"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/btc-address",
+        "commit": "5fe6057a",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/eth-address",
+        "commit": "8b9466f6",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

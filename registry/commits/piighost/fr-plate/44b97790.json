@@ -1,0 +1,46 @@
+{
+  "digest": "44b977904afeba315767da86d89fdf5543238ded97b3651038d6e0e6adb2144e",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-plate",
+    "schema_version": 1,
+    "label": "FR_PLATE",
+    "regex": "(?<![\\w-])[A-HJ-NP-TV-Z]{2}-\\d{3}-[A-HJ-NP-TV-Z]{2}(?![\\w-])",
+    "description": {
+      "en": "French vehicle registration in the SIV format used since 2009, two letters, three digits, two letters, separated by hyphens. The letter class drops I, O and U, which the SIV never issues, and the lookarounds stop a longer hyphenated token from matching a fragment. Noise is very low, the mask is distinctive. Plates issued before 2009 under the FNI are not covered, nor are the W garage and WW temporary series. A registration is personal data in France, because it resolves to a keeper through the SIV. No collision with any existing pattern.",
+      "fr": "Immatriculation française au format SIV en vigueur depuis 2009 : deux lettres, trois chiffres, deux lettres, séparés par des tirets. La classe de lettres écarte I, O et U, que le SIV n'émet jamais, et les gardes autour du motif empêchent un jeton plus long à tirets de laisser reconnaître un fragment. Le bruit est très faible, le masque est distinctif. Les plaques délivrées avant 2009 sous le FNI ne sont pas couvertes, ni les séries W de garage et WW temporaires. Une immatriculation est une donnée personnelle en France, puisqu'elle remonte à un titulaire par le SIV. Aucune collision avec un motif existant."
+    },
+    "tags": [
+      "fr",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "immatriculation AA-111-AA sur la carte grise",
+          "value": "AA-111-AA"
+        },
+        {
+          "text": "Le véhicule AB-123-CD est en fourrière.",
+          "value": "AB-123-CD"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "AA-12-AA"
+        },
+        {
+          "text": "AI-123-AA"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "AA-12-AA ",
+      "suffix": "x"
+    }
+  }
+}

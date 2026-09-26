@@ -1,0 +1,46 @@
+{
+  "digest": "2cf9106953e3fcef569432eff7a6d8467a27411c0a6427a7b6b7a08741e022ab",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "uk-plate",
+    "schema_version": 1,
+    "label": "UK_VRM",
+    "regex": "\\b[A-HJ-PR-Y]{2}(?:0[1-9]|[1-7]\\d)[ -]?[A-HJ-PR-Z]{3}\\b",
+    "description": {
+      "en": "United Kingdom vehicle registration mark in the current format used since 2001: two area letters, a two digit age identifier, then three letters, the space between them optional. The letter classes drop the letters the DVLA does not use in those positions. The prefix format used from 1983 to 2001 and the suffix format used from 1963 to 1983 are not covered. Some three letter endings are ordinary words, which is the main source of noise. No collision with the existing uk-postcode: a postcode carries a digit immediately before its final two letters, which a plate never does.",
+      "fr": "Plaque d'immatriculation britannique au format courant en vigueur depuis 2001 : deux lettres de zone, un identifiant d'âge à deux chiffres, puis trois lettres, l'espace entre les deux étant optionnel. Les classes de lettres écartent celles que la DVLA n'emploie pas à ces positions. Le format à préfixe utilisé de 1983 à 2001 et le format à suffixe utilisé de 1963 à 1983 ne sont pas couverts. Certaines terminaisons de trois lettres forment des mots courants, ce qui est la principale source de bruit. Aucune collision avec le motif existant uk-postcode : un code postal porte un chiffre juste avant ses deux dernières lettres, ce qu'une plaque ne fait jamais."
+    },
+    "tags": [
+      "uk",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "reg AB12 CDE seen at the gate",
+          "value": "AB12 CDE"
+        },
+        {
+          "text": "La plaque YY68ABC apparaît sur la vidéo.",
+          "value": "YY68ABC"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "AB1 CDE"
+        },
+        {
+          "text": "AB12 CD"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "AB12 CD ",
+      "suffix": "x"
+    }
+  }
+}

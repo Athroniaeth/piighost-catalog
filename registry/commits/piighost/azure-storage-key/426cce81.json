@@ -1,0 +1,47 @@
+{
+  "digest": "426cce818fd86f9940022c9454176ea4b4abb07f80f2d07c914a5a67e9986b66",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "azure-storage-key",
+    "schema_version": 1,
+    "label": "AZURE_STORAGE_KEY",
+    "regex": "\\bAccountKey=[A-Za-z0-9+/]{86}==",
+    "description": {
+      "en": "Azure Storage account access key as it appears inside a connection string: the literal AccountKey= then eighty-six base64 characters and the two padding characters that a sixty-four byte key always produces. Self-anchored on the keyword, so noise is nil, and a key quoted on its own without that keyword is missed, which is also how the Microsoft detector behaves. The first example is the published Azurite emulator key, a known non-secret. No collision.",
+      "fr": "Clé d'accès à un compte de stockage Azure, telle qu'elle apparaît dans une chaîne de connexion : le littéral AccountKey= puis quatre-vingt-six caractères base64 et les deux caractères de remplissage qu'une clé de soixante-quatre octets produit toujours. Le motif s'ancre sur le mot-clé, le bruit est donc nul, et une clé citée seule sans ce mot-clé échappe au motif, comme chez le détecteur de Microsoft. Le premier exemple est la clé publiée de l'émulateur Azurite, un non-secret connu. Aucune collision."
+    },
+    "tags": [
+      "international",
+      "secrets",
+      "software-dev"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "DefaultEndpointsProtocol=https;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;",
+          "value": "AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw=="
+        },
+        {
+          "text": "La chaîne de connexion portait AccountKey=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA== en clair.",
+          "value": "AccountKey=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      ],
+      "no_match": [
+        {
+          "text": "AccountName=devstoreaccount1"
+        },
+        {
+          "text": "AccountKey=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "AccountKey=",
+      "filler": "A",
+      "suffix": "!"
+    }
+  }
+}

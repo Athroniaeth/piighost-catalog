@@ -1,0 +1,50 @@
+{
+  "digest": "ae65f821d5a6e2ad4b9e5ab8937ae30bce8587f7dc0f517be00ce0d4d0d46036",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "de-driving-licence",
+    "schema_version": 1,
+    "label": "DE_DRIVING_LICENCE",
+    "regex": "(?<!\\w)(?:[A-Z]{2}\\d{8}[A-Z0-9]|[A-Z0-9]\\d{2}[A-Z0-9]{6}\\d[A-Z0-9])(?!\\w)",
+    "description": {
+      "en": "German Fuehrerscheinnummer in the EU card format used since 2013, eleven characters in field five. The two sources disagree on the layout, so both are covered: Presidio reads it as two authority letters, eight digits and one check character, while Purview reads it as one letter or digit, two digits, six letters or digits, one digit and one letter or digit. The second branch accepts eleven bare digits. Reproduced collision: on 12345678901 the value is also matched whole by IT_PARTITA_IVA, by PL_PESEL and by US_PHONE, so an eleven digit run fires four labels at once and only context words separate them. The pattern is upper case only, unlike both vendor definitions which are case insensitive.",
+      "fr": "Numéro de permis de conduire allemand au format carte européenne depuis 2013, onze caractères au champ cinq. Les deux sources divergent sur la décomposition, donc les deux sont couvertes : Presidio y lit deux lettres d'autorité, huit chiffres et un caractère de contrôle, tandis que Purview y lit une lettre ou un chiffre, deux chiffres, six lettres ou chiffres, un chiffre et une lettre ou un chiffre. La seconde branche accepte onze chiffres nus. Collision reproduite : sur 12345678901, la valeur est aussi reconnue en entier par IT_PARTITA_IVA, par PL_PESEL et par US_PHONE, donc une suite de onze chiffres déclenche quatre labels à la fois et seuls les mots de contexte les séparent. Le motif n'accepte que les majuscules, à la différence des deux définitions éditeurs qui ignorent la casse."
+    },
+    "tags": [
+      "de",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Presidio publishes the fictitious Fuehrerscheinnummer BO12345678A for its tests.",
+          "value": "BO12345678A"
+        },
+        {
+          "text": "Field five of the specimen card carries M07ABCDEF9X on the front.",
+          "value": "M07ABCDEF9X"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "BO1234567A"
+        },
+        {
+          "text": "bo12345678a"
+        },
+        {
+          "text": "BO123456789AB"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "BO1234567",
+      "suffix": "!"
+    }
+  }
+}

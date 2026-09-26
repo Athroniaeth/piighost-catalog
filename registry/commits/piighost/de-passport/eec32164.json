@@ -1,0 +1,50 @@
+{
+  "digest": "eec321646a39fa03c049f16c6092f9b3f311978ab92672e2307dc52caa287cb3",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "de-passport",
+    "schema_version": 1,
+    "label": "DE_PASSPORT",
+    "regex": "(?<!\\w)[CFGHJKLMNPRTVWXYZ][CFGHJKLMNPRTVWXYZ0-9]{7}\\d(?!\\w)",
+    "description": {
+      "en": "German Reisepassnummer, nine characters: eight from the ICAO Doc 9303 restricted set, which drops the visually ambiguous letters A, B, D, E, I, O, Q, S and U, then one digit that is the ICAO check digit. Taken from the Presidio German passport recognizer and its published sample C01X00T41; Purview describes the same run with an optional trailing check digit and an optional d, which are not matched here. The check digit is not verified, only its position. The restricted alphabet makes the shape reasonably selective and no registry label fired on the examples.",
+      "fr": "Numéro de passeport allemand, neuf caractères : huit pris dans l'alphabet restreint ICAO Doc 9303, qui écarte les lettres visuellement ambiguës A, B, D, E, I, O, Q, S et U, puis un chiffre qui est la clé de contrôle ICAO. Repris du recognizer Presidio du passeport allemand et de son exemple publié C01X00T41 ; Purview décrit la même suite avec une clé finale facultative et un d facultatif, non reconnus ici. La clé n'est pas vérifiée, seule sa position l'est. L'alphabet restreint rend la forme raisonnablement sélective et aucun label du registre ne s'est déclenché sur les exemples."
+    },
+    "tags": [
+      "de",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Presidio documents the sample Reisepassnummer C01X00T41 in its recognizer.",
+          "value": "C01X00T41"
+        },
+        {
+          "text": "The specimen booklet carries PF7GJ2K80 on the data page.",
+          "value": "PF7GJ2K80"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "A01X00T41"
+        },
+        {
+          "text": "C01X00T4"
+        },
+        {
+          "text": "C01X00T4A"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "C01X00T4",
+      "suffix": "!"
+    }
+  }
+}

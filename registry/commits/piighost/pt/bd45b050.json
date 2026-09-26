@@ -1,0 +1,42 @@
+{
+  "digest": "bd45b05021693a55c11ef76b7464cb745430022542887ef642dfed3a60440a56",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "pt",
+    "schema_version": 1,
+    "description": {
+      "en": "Portugal: phone, postal code and the NIF tax number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.",
+      "fr": "Portugal : téléphone, code postal et le numéro fiscal NIF. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span."
+    },
+    "tags": [
+      "business",
+      "contact",
+      "government-id",
+      "identity",
+      "location",
+      "pt"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/pt-phone",
+        "commit": "3ded7843",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/pt-postal",
+        "commit": "cbcf9eaf",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/pt-nif",
+        "commit": "ff198615",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "digest": "f01a1f544e0e8f491ff29c190e6f2368f2351c28010b02f86ebb0c68097f12a0",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "ie",
+    "schema_version": 1,
+    "description": {
+      "en": "Ireland: phone, Eircode and the PPS number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.",
+      "fr": "Irlande : téléphone, Eircode et le numéro PPS. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span."
+    },
+    "tags": [
+      "contact",
+      "government-id",
+      "identity",
+      "ie",
+      "location"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/ie-phone",
+        "commit": "5f020102",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/ie-eircode",
+        "commit": "69fc3647",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/ie-ppsn",
+        "commit": "8b8a79de",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}
