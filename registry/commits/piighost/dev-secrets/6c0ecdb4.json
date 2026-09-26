@@ -1,0 +1,60 @@
+{
+  "digest": "6c0ecdb44ab7f91a5c7375686c130920cd3dd8b57d4c35a55bcd856235de7b6e",
+  "recorded_at": "2026-09-26T23:38:09+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "dev-secrets",
+    "schema_version": 1,
+    "description": {
+      "en": "For a coding assistant: every credential shape the registry knows, plus machine identifiers and the email address, and nothing else. Inherits regex-default without the country packs, card numbers, URLs and its IPv4, since the network detector carries a wider set. URL is dropped on purpose: a credential embedded in a URL, as in https://ghp_...@github.com/o/r, sits inside the URL span, and the URL starts first, so no ordering keeps the token. Losing the URL matters less here than leaking the token. The secrets detector comes first so a long token takes its ground before a phone or card pattern claims the digits inside it.",
+      "fr": "Pour un assistant de code : toutes les formes de secret que le registre connaît, plus les identifiants de machine et l'adresse e-mail, et rien d'autre. Hérite de regex-default sans les packs nationaux, les cartes bancaires, les URL ni son IPv4, le détecteur réseau portant un ensemble plus large. URL est écarté volontairement : un secret inclus dans une URL, comme https://ghp_...@github.com/o/r, se trouve à l'intérieur du span de l'URL, et l'URL commence avant, donc aucun ordre ne sauve le jeton. Perdre l'URL compte moins ici que laisser fuir le jeton. Le détecteur de secrets vient en premier pour qu'un long jeton prenne son terrain avant qu'un motif de téléphone ou de carte ne réclame les chiffres qu'il contient."
+    },
+    "tags": [
+      "international",
+      "secrets",
+      "network",
+      "software-dev",
+      "code-assistant",
+      "logs"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [
+      {
+        "ref": "piighost/regex-default",
+        "commit": "233fea73",
+        "exclude": [
+          "detector:regex-fr",
+          "detector:regex-eu",
+          "detector:regex-us",
+          "label:CREDIT_CARD",
+          "label:URL",
+          "label:IPV4"
+        ]
+      }
+    ],
+    "detectors": [
+      {
+        "name": "secrets",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/secrets-extended",
+            "commit": "0abcf574"
+          }
+        ]
+      },
+      {
+        "name": "network",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/network",
+            "commit": "a9b033a8"
+          }
+        ]
+      }
+    ],
+    "stages": {}
+  }
+}

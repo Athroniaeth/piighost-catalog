@@ -1,0 +1,68 @@
+{
+  "digest": "fa4e4dd86e25f1ebfc07434d263db9ecc3a461024a087c8480eac3a595c8c048",
+  "recorded_at": "2026-09-26T23:38:09+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "ie-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Ireland without a model: phone, Eircode and the PPS number, plus the European IBAN, BIC and VAT number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Irlande sans modèle : téléphone, Eircode et le numéro PPS, plus l'IBAN, le BIC et le numéro de TVA européens, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "eu",
+      "ie"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-ie",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/ie",
+            "commit": "f01a1f54"
+          }
+        ]
+      },
+      {
+        "name": "regex-eu",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/eu-extended",
+            "commit": "65ff1752"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "fab51b33"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

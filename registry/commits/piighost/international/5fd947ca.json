@@ -1,0 +1,45 @@
+{
+  "digest": "5fd947ca85bd20dd98f163a9c0747e6cf3a2a0b98c9500272aa84724f5f5a6e8",
+  "recorded_at": "2026-09-26T23:38:09+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "international",
+    "schema_version": 1,
+    "description": {
+      "en": "The `generic` group plus IPv6, international phone numbers and the ORCID researcher identifier. ORCID is declared first: sixteen digits in dashed groups is also a card number, and a value opening on 0000-0001 through 0000-0003 is an ORCID rather than a card. Do not combine with a country phone pattern: a +33 or +1 number collides on the same span.",
+      "fr": "Le groupe `generic` plus IPv6, les téléphones internationaux et l'identifiant de chercheur ORCID. ORCID est déclaré en premier : seize chiffres en groupes séparés par des tirets, c'est aussi un numéro de carte, et une valeur commençant par 0000-0001 à 0000-0003 est un ORCID et non une carte. À ne pas combiner avec un motif de téléphone national : un numéro en +33 ou +1 entre en collision sur le même span."
+    },
+    "tags": [
+      "international",
+      "contact",
+      "network"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/orcid",
+        "commit": "218a0405",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/generic",
+        "commit": "fab51b33",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/ipv6",
+        "commit": "4443d3c0",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/phone-international",
+        "commit": "375a9dfb",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

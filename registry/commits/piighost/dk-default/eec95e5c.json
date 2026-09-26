@@ -1,0 +1,68 @@
+{
+  "digest": "eec95e5c253411e9325f67ca0a1f1ad3629aa276b2840d1fc9b60e1a94f1e5a2",
+  "recorded_at": "2026-09-26T23:38:09+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "dk-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Denmark without a model: phone and the CPR number, which doubles as the health identifier, plus the European IBAN, BIC and VAT number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Danemark sans modèle : téléphone et le numéro CPR, qui sert aussi d'identifiant de santé, plus l'IBAN, le BIC et le numéro de TVA européens, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "dk",
+      "document",
+      "eu"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-dk",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/dk",
+            "commit": "6ac36560"
+          }
+        ]
+      },
+      {
+        "name": "regex-eu",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/eu-extended",
+            "commit": "65ff1752"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "fab51b33"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

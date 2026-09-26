@@ -1,0 +1,57 @@
+{
+  "digest": "545a3b9a6fa59a1481ced953c9ed06187221d2295ea79b45f292451d3e658e10",
+  "recorded_at": "2026-09-26T23:38:09+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "au-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Australia without a model: phone, postal code, the business number and the Medicare number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Australie sans modèle : téléphone, code postal, le numéro d'entreprise et le numéro Medicare, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "au",
+      "chat",
+      "customer-support",
+      "document"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-au",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/au",
+            "commit": "193c78b4"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "fab51b33"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

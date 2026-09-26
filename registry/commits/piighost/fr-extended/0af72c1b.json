@@ -1,0 +1,36 @@
+{
+  "digest": "0af72c1b2801272227ebef7bc2284355ce531b311e75540e657e5b88863bfb95",
+  "recorded_at": "2026-09-26T23:38:09+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "fr-extended",
+    "schema_version": 1,
+    "description": {
+      "en": "The `fr` group plus postal codes. Do not combine with a US or German ZIP pattern: five digits collide on the same span.",
+      "fr": "Le groupe `fr` plus les codes postaux. À ne pas combiner avec un code postal américain ou allemand : cinq chiffres entrent en collision sur le même span."
+    },
+    "tags": [
+      "fr",
+      "contact",
+      "finance",
+      "government-id",
+      "business",
+      "location"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/fr",
+        "commit": "6802f5ef",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-zip",
+        "commit": "d9f75c1a",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

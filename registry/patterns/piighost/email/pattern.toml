@@ -4,11 +4,11 @@ schema_version = 1
 name = "email"
 label = "EMAIL"
 tags = ["international", "contact"]
-regex = '(?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}'
+regex = '(?<![A-Za-z0-9À-ɏ._%+-])[A-Za-z0-9À-ɏ._%+-]+@(?:[A-Za-z0-9À-ɏ-]+\.)+[A-Za-z]{2,}'
 
 [pattern.description]
-en = "Email address, simplified RFC 5322. The lookbehind pins the start of the local part and the domain is segmented label by label, which keeps the scan linear."
-fr = "Adresse e-mail, RFC 5322 simplifiée. Le lookbehind ancre le début de la partie locale et le domaine est segmenté label par label, ce qui garde le balayage linéaire."
+en = "Email address, simplified RFC 5322. The lookbehind pins the start of the local part and the domain is segmented label by label, which keeps the scan linear. Latin letters with diacritics (U+00C0 to U+024F) belong to the local part and the domain labels, so an accented address is matched whole instead of from its first ASCII run."
+fr = "Adresse e-mail, RFC 5322 simplifiée. Le lookbehind ancre le début de la partie locale et le domaine est segmenté label par label, ce qui garde le balayage linéaire. Les lettres latines accentuées (U+00C0 à U+024F) font partie de la partie locale et des labels du domaine, donc une adresse accentuée est reconnue entière et non à partir de sa première suite ASCII."
 
 
 # Exemples synthétiques uniquement : domaines réservés (example.com), jamais
@@ -23,6 +23,12 @@ value = "john.doe@example.com"
 [[examples.match]]
 text = "Contact : support+billing@mail.example.org"
 value = "support+billing@mail.example.org"
+
+# Une adresse accentuée est reconnue entière : sans les lettres accentuées,
+# le motif partait de "diteur" et laissait "expé" en clair.
+[[examples.match]]
+text = "Répondre à expéditeur@example.fr avant lundi."
+value = "expéditeur@example.fr"
 
 [[examples.no_match]]
 text = "not an email"
