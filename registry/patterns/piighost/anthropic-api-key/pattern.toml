@@ -17,7 +17,7 @@ value = "sk-ant-api03-EFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz
 
 # Clé d'administration inventée.
 [[examples.match]]
-text = "La cle admin sk-ant-admin01-JKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdAA a fuite dans un journal."
+text = "La clé admin sk-ant-admin01-JKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdAA a fuité dans un journal."
 value = "sk-ant-admin01-JKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdAA"
 
 # Trop court pour être une clé.

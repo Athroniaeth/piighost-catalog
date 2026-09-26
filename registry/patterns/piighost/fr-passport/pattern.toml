@@ -8,14 +8,14 @@ regex = '(?<!\w)\d{2}[A-Z]{2}\d{5}(?!\w)'
 
 [pattern.description]
 en = "French passport number, nine characters: two digits, two letters, five digits, per the Purview France passport definition. No checksum. The two letters in the middle make it far more selective than a bare nine digit run, and no registry label matched the examples whole. Reproduced noise: the trailing five digit group is separately matched by ES_POSTAL and by IT_CAP, which guard with a lookbehind on digits; FR_ZIP, DE_ZIP and US_ZIP guard with a word boundary and do not fire here, because a letter sits right before the five digits."
-fr = "Numero de passeport francais, neuf caracteres : deux chiffres, deux lettres, cinq chiffres, selon la definition Purview du passeport francais. Pas de somme de controle. Les deux lettres centrales le rendent bien plus selectif qu'une suite de neuf chiffres, et aucun label du registre n'a reconnu les exemples en entier. Bruit reproduit : le groupe final de cinq chiffres est reconnu separement par ES_POSTAL et par IT_CAP, qui se protegent par une anti-recherche sur les chiffres ; FR_ZIP, DE_ZIP et US_ZIP se protegent par une limite de mot et ne se declenchent pas ici, car une lettre precede immediatement les cinq chiffres."
+fr = "Numéro de passeport français, neuf caractères : deux chiffres, deux lettres, cinq chiffres, selon la définition Purview du passeport français. Pas de somme de contrôle. Les deux lettres centrales le rendent bien plus sélectif qu'une suite de neuf chiffres, et aucun label du registre n'a reconnu les exemples en entier. Bruit reproduit : le groupe final de cinq chiffres est reconnu séparément par ES_POSTAL et par IT_CAP, qui se protègent par une anti-recherche sur les chiffres ; FR_ZIP, DE_ZIP et US_ZIP se protègent par une limite de mot et ne se déclenchent pas ici, car une lettre précède immédiatement les cinq chiffres."
 
 [[examples.match]]
 text = "The passport number 07AB12345 appears on the data page."
 value = "07AB12345"
 
 [[examples.match]]
-text = "Passeport 19CD54321 delivre a Paris en janvier."
+text = "Passeport 19CD54321 délivré à Paris en janvier."
 value = "19CD54321"
 
 [[examples.no_match]]

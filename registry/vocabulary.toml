@@ -189,7 +189,7 @@ label = { en = "Finland", fr = "Finlande" }
 
 [id]
 kind = "region"
-label = { en = "Indonesia", fr = "Indonesie" }
+label = { en = "Indonesia", fr = "Indonésie" }
 
 [ar]
 kind = "region"

@@ -17,7 +17,7 @@ value = "AB12 CDE"
 
 # Plaque inventée, sans l'espace.
 [[examples.match]]
-text = "La plaque YY68ABC apparait sur la video."
+text = "La plaque YY68ABC apparaît sur la vidéo."
 value = "YY68ABC"
 
 # Un seul chiffre d'âge.

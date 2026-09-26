@@ -17,7 +17,7 @@ value = "pypi-AgEIcHlwaS5vcmcAbCdEf0123456789_-AbCdEf0123456789_-AbCdEf012345678
 
 # Jeton inventé pour test.pypi.org.
 [[examples.match]]
-text = "Le jeton de test pypi-AgENdGVzdC5weXBpLm9yZwxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx est publie."
+text = "Le jeton de test pypi-AgENdGVzdC5weXBpLm9yZwxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx est publié."
 value = "pypi-AgENdGVzdC5weXBpLm9yZwxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 # Un texte de remplacement, pas un jeton.

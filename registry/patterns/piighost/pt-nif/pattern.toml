@@ -8,7 +8,7 @@ regex = '(?<!\w)\d{3} ?\d{3} ?\d{3}(?!\w)'
 
 [pattern.description]
 en = "Portuguese tax identification number, the NIF or numero de contribuinte: nine digits, written solid or in three groups of three, per the Purview Portugal tax identification definition; Cloudflare publishes 100000002 as its sample. The checksum is not verified. Reproduced collisions: written solid the value is matched whole by US_BANK_ROUTING, by NL_BSN and by PL_PHONE, and written with spaces it is matched whole by CA_SIN and by PL_PHONE. This is a keyword dependent label, the shape alone decides nothing."
-fr = "Numero d'identification fiscale portugais, le NIF ou numero de contribuinte : neuf chiffres, ecrits d'un bloc ou en trois groupes de trois, selon la definition Purview du numero fiscal portugais ; Cloudflare publie 100000002 comme exemple. La somme de controle n'est pas verifiee. Collisions reproduites : ecrite d'un bloc, la valeur est reconnue en entier par US_BANK_ROUTING, par NL_BSN et par PL_PHONE, et ecrite avec des espaces elle est reconnue en entier par CA_SIN et par PL_PHONE. Ce label depend des mots-cles, la forme seule ne tranche rien."
+fr = "Numéro d'identification fiscale portugais, le NIF ou numéro de contribuinte : neuf chiffres, écrits d'un bloc ou en trois groupes de trois, selon la définition Purview du numéro fiscal portugais ; Cloudflare publie 100000002 comme exemple. La somme de contrôle n'est pas vérifiée. Collisions reproduites : écrite d'un bloc, la valeur est reconnue en entier par US_BANK_ROUTING, par NL_BSN et par PL_PHONE, et écrite avec des espaces elle est reconnue en entier par CA_SIN et par PL_PHONE. Ce label dépend des mots-clés, la forme seule ne tranche rien."
 
 [[examples.match]]
 text = "O NIF 123456789 consta da factura."

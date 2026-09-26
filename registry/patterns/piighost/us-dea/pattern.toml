@@ -17,7 +17,7 @@ value = "AB1234563"
 
 # Numéro DEA inventé, type M.
 [[examples.match]]
-text = "Le praticien MJ9876547 a signe l'ordonnance."
+text = "Le praticien MJ9876547 a signé l'ordonnance."
 value = "MJ9876547"
 
 # Six chiffres : il en faut sept.
