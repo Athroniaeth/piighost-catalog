@@ -1,0 +1,47 @@
+{
+  "digest": "9e188c40f5bff613d0f8198be81c07a4adbad55189ca67d87018a0eee69db996",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "ca-sin",
+    "schema_version": 1,
+    "label": "CA_SIN",
+    "regex": "(?<!\\d)\\d{3}[\\s-]\\d{3}[\\s-]\\d{3}(?!\\d)",
+    "description": {
+      "en": "Canadian social insurance number: nine digits in three groups of three, separated by a space or a hyphen. The separator is required here on purpose: without it the pattern would be the same nine bare digits as the US bank routing number and the Dutch BSN.",
+      "fr": "Numéro d'assurance sociale canadien : neuf chiffres en trois groupes de trois, séparés par une espace ou un tiret. Le séparateur est exigé ici volontairement : sans lui, le motif serait les mêmes neuf chiffres nus que le numéro de routage bancaire américain et le BSN néerlandais."
+    },
+    "tags": [
+      "ca",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "SIN 046 454 286 on the tax slip.",
+          "value": "046 454 286"
+        },
+        {
+          "text": "Numéro 130-692-544 sur le formulaire.",
+          "value": "130-692-544"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "SIN 046454286"
+        },
+        {
+          "text": "SIN 046 454 28"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "046 ",
+      "filler": "454 ",
+      "suffix": "x"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "digest": "e5851c5a9c98d387a3cafa5a519ee0effd880c499ee69832c850d51b317b7745",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "driving-licences",
+    "schema_version": 1,
+    "description": {
+      "en": "Driving licence numbers, the shape every commercial catalogue implements and the registry lacked longest. Formats are national and sometimes regional: the Canadian and Australian patterns cover only the provinces and states whose layout mixes letters and digits, since a bare digit run is indistinguishable from any other number.",
+      "fr": "Numéros de permis de conduire, la forme que tous les catalogues commerciaux implémentent et qui manquait le plus longtemps au registre. Les formats sont nationaux et parfois régionaux : les motifs canadien et australien ne couvrent que les provinces et États dont la disposition mêle lettres et chiffres, une suite de chiffres nus étant indiscernable de n'importe quel autre nombre."
+    },
+    "tags": [
+      "international",
+      "government-id",
+      "identity",
+      "legal"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/fr-driving-licence",
+        "commit": "1adcbfcf",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/uk-driving-licence",
+        "commit": "792819e8",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/de-driving-licence",
+        "commit": "ae65f821",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/ca-driving-licence",
+        "commit": "4259eb7e",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/au-driving-licence",
+        "commit": "94c68eef",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

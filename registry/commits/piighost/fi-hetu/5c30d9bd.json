@@ -1,0 +1,51 @@
+{
+  "digest": "5c30d9bd99e801096f1d95e8739f685f624ab490d4e81ae9a88b2a80a0cffea8",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fi-hetu",
+    "schema_version": 1,
+    "label": "FI_HETU",
+    "regex": "(?<!\\w)(?:0[1-9]|[12]\\d|3[01])(?:0[1-9]|1[0-2])\\d{2}[-+ABCDEFYXWVU]\\d{3}[0-9A-FHJ-NPR-Y](?!\\w)",
+    "description": {
+      "en": "Finnish personal identity code, the henkilotunnus: the birth date as DDMMYY, one century sign, three digits of individual number and one control character. The century sign is a plus for the 1800s, a hyphen or one of Y, X, W, V and U for the 1900s and one of A to F for the 2000s; the control character comes from the thirty one character set that drops G, I, O, Q and Z. Taken from the Presidio Finnish recognizer, which cites the population register authority. The control character is not verified, only its alphabet. Reproduced noise: the six digit date head is separately matched by IN_PIN when the day does not start with a zero, and a hyphen separated code has its leading part matched by DE_PHONE.",
+      "fr": "Code d'identité personnel finlandais, le henkilotunnus : la date de naissance en JJMMAA, un signe de siècle, trois chiffres de numéro individuel et un caractère de contrôle. Le signe de siècle est un plus pour les années 1800, un trait d'union ou l'une des lettres Y, X, W, V et U pour les années 1900 et l'une des lettres A à F pour les années 2000 ; le caractère de contrôle appartient à l'ensemble de trente et un caractères qui exclut G, I, O, Q et Z. Repris du recognizer Presidio finlandais, qui cite l'autorité du registre de population. Le caractère de contrôle n'est pas vérifié, seul son alphabet l'est. Bruit reproduit : la tête de six chiffres de la date est reconnue séparément par IN_PIN lorsque le jour ne commence pas par zéro, et un code séparé par un trait d'union voit sa partie initiale reconnue par DE_PHONE."
+    },
+    "tags": [
+      "fi",
+      "government-id",
+      "identity",
+      "hr"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Henkilotunnus 010180-123A on lomakkeella.",
+          "value": "010180-123A"
+        },
+        {
+          "text": "The code 311299A456B carries the century letter for the 2000s.",
+          "value": "311299A456B"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "010180-123G"
+        },
+        {
+          "text": "321280-123A"
+        },
+        {
+          "text": "010180123A"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "010180-123",
+      "suffix": "x"
+    }
+  }
+}

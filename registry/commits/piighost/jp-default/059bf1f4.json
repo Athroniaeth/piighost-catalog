@@ -1,0 +1,57 @@
+{
+  "digest": "059bf1f4a3d0316971024463e7feb29741374fde45c6961db49823e9a8d67d32",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "jp-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Japan without a model: phone, postal code and the My Number individual identifier, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Japon sans modèle : téléphone, code postal et l'identifiant individuel My Number, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "jp"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-jp",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/jp",
+            "commit": "8bba9c31"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "e9f9b4fa"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

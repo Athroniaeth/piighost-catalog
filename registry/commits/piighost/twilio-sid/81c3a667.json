@@ -1,0 +1,47 @@
+{
+  "digest": "81c3a667b5b6e2bf4d379151c31b24ee36fe0ec20898133425862bf7a410f322",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "twilio-sid",
+    "schema_version": 1,
+    "label": "TWILIO_SID",
+    "regex": "\\b(?:AC|SK)[0-9a-fA-F]{32}\\b",
+    "description": {
+      "en": "Twilio resource identifier: the AC account SID and the SK API key SID, each followed by thirty-two hex characters. The account SID is half of the basic-auth pair and travels with the auth token in practice. That auth token is itself a bare thirty-two character hex string with no prefix and is deliberately not matched: on shape alone nothing tells it from a digest. A prefixed hex digest of the same shape would match, which is rare. No collision.",
+      "fr": "Identifiant de ressource Twilio : le SID de compte AC et le SID de clé d'API SK, chacun suivi de trente-deux caractères hexadécimaux. Le SID de compte est la moitié de la paire d'authentification basique et voyage en pratique avec le jeton d'authentification. Ce jeton est lui-même une suite nue de trente-deux caractères hexadécimaux sans préfixe : il n'est volontairement pas reconnu, car rien dans sa forme ne le distingue d'une empreinte. Une empreinte hexadécimale préfixée de la même forme serait reconnue, ce qui reste rare. Aucune collision."
+    },
+    "tags": [
+      "international",
+      "secrets",
+      "software-dev"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "TWILIO_ACCOUNT_SID=AC0123456789abcdef0123456789abcdef",
+          "value": "AC0123456789abcdef0123456789abcdef"
+        },
+        {
+          "text": "La clé d'API SKdeadbeefdeadbeefdeadbeefdeadbeef est encore active.",
+          "value": "SKdeadbeefdeadbeefdeadbeefdeadbeef"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "AC0123456789"
+        },
+        {
+          "text": "ACzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "AC",
+      "filler": "a",
+      "suffix": "!"
+    }
+  }
+}

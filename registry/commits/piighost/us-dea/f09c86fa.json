@@ -1,0 +1,47 @@
+{
+  "digest": "f09c86fa3ee2e1afb10210fd37eb6681a7f8f222ef0d94305baeb0458553272b",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "us-dea",
+    "schema_version": 1,
+    "label": "US_DEA",
+    "regex": "\\b[ABCDEFGHJKLMPRSTUX][A-Z9]\\d{7}\\b",
+    "description": {
+      "en": "United States Drug Enforcement Administration registration number, two letters then seven digits. The first letter is a registrant type code, A, B, F and G for practitioners and hospitals, M for a mid-level practitioner, P and R for manufacturers and distributors, X for the DATA-Waiver series retired on 29 December 2022 and still present in historical records. The second character is the registrant surname initial, or the digit 9 when they registered under a business name. Excluding the letters the agency never issues cuts false positives, but a part number of the same shape still matches. No collision: in particular the existing us-passport, one letter then eight digits, cannot overlap, because the word boundary forbids starting at the second letter.",
+      "fr": "Numéro d'enregistrement auprès de la Drug Enforcement Administration américaine, deux lettres puis sept chiffres. La première lettre code le type de titulaire : A, B, F et G pour les praticiens et les hôpitaux, M pour un praticien de niveau intermédiaire, P et R pour les fabricants et les distributeurs, X pour la série DATA-Waiver retirée le 29 décembre 2022 et encore présente dans les archives. Le second caractère est l'initiale du nom du titulaire, ou le chiffre 9 lorsqu'il s'est enregistré sous une raison sociale. Écarter les lettres que l'agence n'émet jamais réduit les faux positifs, mais une référence de pièce de la même forme reste reconnue. Aucune collision : en particulier le motif existant us-passport, une lettre puis huit chiffres, ne peut pas recouvrir celui-ci, la frontière de mot interdisant de commencer à la seconde lettre."
+    },
+    "tags": [
+      "us",
+      "health",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "DEA# AB1234563 on the prescription.",
+          "value": "AB1234563"
+        },
+        {
+          "text": "Le praticien MJ9876547 a signé l'ordonnance.",
+          "value": "MJ9876547"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "AB123456"
+        },
+        {
+          "text": "IB1234563"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "AB123456 ",
+      "suffix": "x"
+    }
+  }
+}

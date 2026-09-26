@@ -1,0 +1,35 @@
+{
+  "digest": "5330fd7a98b1270e15ab3b1ee0824645875a0d6a7db5b04ad19b8139ae0983b7",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "ca",
+    "schema_version": 1,
+    "description": {
+      "en": "Canada: postal code and social insurance number. The phone is the North American plan, already carried by us-phone. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.",
+      "fr": "Canada : code postal et numéro d'assurance sociale. Le téléphone est le plan nord-américain, déjà porté par us-phone. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span."
+    },
+    "tags": [
+      "ca",
+      "contact",
+      "government-id",
+      "identity",
+      "location"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/ca-postal",
+        "commit": "5dbd5fb2",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/ca-sin",
+        "commit": "9e188c40",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

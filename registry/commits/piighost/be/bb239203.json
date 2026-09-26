@@ -1,0 +1,34 @@
+{
+  "digest": "bb2392039ac4d8938d16ed866d92124ae05700f20a20b9cda7e4b61cd6be5917",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "be",
+    "schema_version": 1,
+    "description": {
+      "en": "Belgium: phone and the national register number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.",
+      "fr": "Belgique : téléphone et le numéro de registre national. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span."
+    },
+    "tags": [
+      "be",
+      "contact",
+      "government-id",
+      "identity"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/be-phone",
+        "commit": "670d9295",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/be-nrn",
+        "commit": "af6e0d51",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

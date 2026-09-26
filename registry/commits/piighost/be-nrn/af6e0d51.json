@@ -1,0 +1,47 @@
+{
+  "digest": "af6e0d518d1bbc66f4795f7c24cd5743264a933a5bdaa947075eeaa5939dbf3c",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "be-nrn",
+    "schema_version": 1,
+    "label": "BE_NRN",
+    "regex": "(?<!\\w)\\d{2}\\.(?:0[1-9]|1[0-2])\\.(?:0[1-9]|[12]\\d|3[01])-\\d{3}\\.\\d{2}(?!\\w)",
+    "description": {
+      "en": "Belgian national register number in its written form: the birth date in dotted pairs, a dash, a three digit sequence number and a two digit checksum. The punctuation is mandatory here, which makes it one of the safest national identifiers to detect.",
+      "fr": "Numéro de registre national belge dans sa forme écrite : la date de naissance en paires pointées, un tiret, un numéro d'ordre de trois chiffres et une clé de contrôle de deux chiffres. La ponctuation est obligatoire ici, ce qui en fait l'un des identifiants nationaux les plus sûrs à détecter."
+    },
+    "tags": [
+      "be",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Le dossier porte 85.07.30-033.61 comme référence.",
+          "value": "85.07.30-033.61"
+        },
+        {
+          "text": "Elle est enregistrée sous 90.01.01-123.45 depuis.",
+          "value": "90.01.01-123.45"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "Le code 85.13.30-033.61 n'a pas ce mois"
+        },
+        {
+          "text": "Référence 850730-03361"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "85.07.30",
+      "filler": "-033",
+      "suffix": "x"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "digest": "89203814390b41fd8b4bb6efe335b9182e74174666a7cce9b61e654bd25fd87b",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "au-passport",
+    "schema_version": 1,
+    "label": "AU_PASSPORT",
+    "regex": "(?<!\\w)(?:[ACDEFNUX]\\d{7}|P[A-FUWXZ]\\d{7})(?!\\w)",
+    "description": {
+      "en": "Australian passport number, eight or nine characters, per the Purview Australia passport definition: one letter from N, E, D, F, A, C, U or X followed by seven digits, or one of the pairs PA, PB, PC, PD, PE, PF, PU, PW, PX or PZ followed by seven digits. The restricted prefixes cut a lot of noise. Reproduced collision: the nine character P form, for instance PA7654321, is matched whole by US_DEA, whose first letter set includes P and whose second position accepts any letter, so Australian passports and United States controlled substance registrations land on the same string.",
+      "fr": "Numéro de passeport australien, huit ou neuf caractères, selon la définition Purview du passeport australien : une lettre parmi N, E, D, F, A, C, U ou X suivie de sept chiffres, ou l'une des paires PA, PB, PC, PD, PE, PF, PU, PW, PX ou PZ suivie de sept chiffres. Les préfixes restreints coupent beaucoup de bruit. Collision reproduite : la forme en P à neuf caractères, par exemple PA7654321, est reconnue en entier par US_DEA, dont l'ensemble de premières lettres contient P et dont la deuxième position accepte toute lettre, donc passeports australiens et enregistrements DEA américains tombent sur la même chaîne."
+    },
+    "tags": [
+      "au",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "The Australian passport N1234567 is on file with the agent.",
+          "value": "N1234567"
+        },
+        {
+          "text": "Document PA7654321 belongs to the P series.",
+          "value": "PA7654321"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "B1234567"
+        },
+        {
+          "text": "N123456"
+        },
+        {
+          "text": "n1234567"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "N123456",
+      "suffix": "!"
+    }
+  }
+}

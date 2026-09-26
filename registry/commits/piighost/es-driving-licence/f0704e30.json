@@ -1,0 +1,50 @@
+{
+  "digest": "f0704e3096ac0a42b27fa5760514d52470fe43bb163dbb4673dec56451625dcc",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "es-driving-licence",
+    "schema_version": 1,
+    "label": "ES_DRIVING_LICENCE",
+    "regex": "(?<!\\w)\\d{8}[0-9A-Z](?!\\w)",
+    "description": {
+      "en": "Spanish permiso de conducir number: eight digits then one digit or letter, per the Purview Spain driver licence definition. The number is the holder DNI, which is why this shape is not independent. Reproduced collision: both examples are matched whole by ES_DNI_NIE as well, so every hit here is also a DNI hit and the two labels should be read as the same underlying value seen through two lenses. The final character is the DNI check letter but nothing is verified, the match is on shape alone.",
+      "fr": "Numéro du permis de conduire espagnol : huit chiffres puis un chiffre ou une lettre, selon la définition Purview du permis espagnol. Ce numéro est le DNI du titulaire, ce qui explique que la forme ne soit pas indépendante. Collision reproduite : les deux exemples sont aussi reconnus en entier par ES_DNI_NIE, donc chaque détection ici est aussi une détection de DNI et les deux labels désignent la même valeur vue sous deux angles. Le dernier caractère est la lettre de contrôle du DNI, mais rien n'est vérifié, la reconnaissance porte sur la forme seule."
+    },
+    "tags": [
+      "es",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "The permiso de conducir 12345678Z is recorded in the file.",
+          "value": "12345678Z"
+        },
+        {
+          "text": "Licence number 87654321X repeats the DNI of the holder.",
+          "value": "87654321X"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "1234567Z"
+        },
+        {
+          "text": "12345678"
+        },
+        {
+          "text": "12345678z"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "1",
+      "suffix": "x"
+    }
+  }
+}

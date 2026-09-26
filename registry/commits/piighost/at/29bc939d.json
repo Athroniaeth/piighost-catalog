@@ -1,0 +1,35 @@
+{
+  "digest": "29bc939d1300d5671f08b041de199074c73fd9ac99df22b89f30ff9cb3b5494d",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "at",
+    "schema_version": 1,
+    "description": {
+      "en": "Austria: phone and the social insurance number. No postal code: four bare digits would shred the phone numbers and the card numbers beside them. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.",
+      "fr": "Autriche : téléphone et le numéro d'assurance sociale. Pas de code postal : quatre chiffres nus découperaient les téléphones et les numéros de carte à côté d'eux. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span."
+    },
+    "tags": [
+      "at",
+      "contact",
+      "government-id",
+      "health",
+      "identity"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/at-phone",
+        "commit": "3950738a",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/at-svnr",
+        "commit": "09315535",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

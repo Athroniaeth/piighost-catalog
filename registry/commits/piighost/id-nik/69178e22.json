@@ -1,0 +1,50 @@
+{
+  "digest": "69178e22f8b76908ba2606f811aeb00bce5ab30da0de8b07b04868008717651b",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "id-nik",
+    "schema_version": 1,
+    "label": "ID_NIK",
+    "regex": "(?<!\\w)\\d{6}(?:0[1-9]|[12]\\d|3[01]|4[1-9]|[56]\\d|7[01])(?:0[1-9]|1[0-2])\\d{6}(?!\\w)",
+    "description": {
+      "en": "Indonesian resident identity number, the NIK on the KTP card: sixteen digits, a two digit province code and four more digits of region, then the birth date as DDMMYY where a female holder has forty added to the day, then a four digit serial. Purview documents the province code, the four digits and the DDMMYY date; the plus forty rule for women is why the day range runs to seventy one. Cloudflare publishes 3203012503770011 as its sample. Reproduced collision: sixteen digits sits inside the CREDIT_CARD window of thirteen to nineteen digits, so every NIK is also a candidate card number and only the Luhn check or a keyword tells them apart.",
+      "fr": "Numéro d'identité du résident indonésien, le NIK de la carte KTP : seize chiffres, un code de province à deux chiffres et quatre chiffres de région, puis la date de naissance en JJMMAA où le jour est augmenté de quarante pour une femme, puis un numéro d'ordre à quatre chiffres. Purview documente le code de province, les quatre chiffres et la date JJMMAA ; la règle du plus quarante pour les femmes explique que la plage de jours monte à soixante et onze. Cloudflare publie 3203012503770011 comme exemple. Collision reproduite : seize chiffres tombent dans la fenêtre de CREDIT_CARD, de treize à dix-neuf chiffres, donc tout NIK est aussi un candidat numéro de carte et seuls la clé de Luhn ou un mot-clé les distinguent."
+    },
+    "tags": [
+      "id",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "The KTP number 3203012503770011 is printed on the card.",
+          "value": "3203012503770011"
+        },
+        {
+          "text": "NIK 1271016512880002 adds forty to the day for a female holder.",
+          "value": "1271016512880002"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "320301250377001"
+        },
+        {
+          "text": "3203013503770011"
+        },
+        {
+          "text": "32030125037700111"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "320301250377001",
+      "suffix": "x"
+    }
+  }
+}

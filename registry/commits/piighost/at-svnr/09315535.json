@@ -1,0 +1,51 @@
+{
+  "digest": "09315535aa28e2dc532f3e4ac8d5bbe3aa7e7a7a2e815cacd435a5728660e31f",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "at-svnr",
+    "schema_version": 1,
+    "label": "AT_SVNR",
+    "regex": "(?<!\\w)\\d{4} ?(?:0[1-9]|[12]\\d|3[01])(?:0[1-9]|1[0-2])\\d{2}(?!\\w)",
+    "description": {
+      "en": "Austrian social security number, the Sozialversicherungsnummer: ten digits, a three digit serial and one check digit, then the birth date as DDMMYY, per the Purview Austria social security definition; the card and the Cloudflare sample print it with a space after the fourth digit, as in 1018 010180. The day and month ranges are enforced, the check digit is not. Reproduced collision: written without the space the ten digit run is matched whole by UK_NHS, by US_NPI when it starts with a one or a two, and by BR_PHONE; and a ten digit run that starts from six to nine is matched whole by IN_PHONE as well, reproduced on 6234150367. With the space it stays clear of those but DE_PHONE still matches a leading part.",
+      "fr": "Numéro de sécurité sociale autrichien, la Sozialversicherungsnummer : dix chiffres, un numéro de série de trois chiffres et une clé, puis la date de naissance en JJMMAA, selon la définition Purview du numéro autrichien ; la carte et l'exemple Cloudflare l'impriment avec une espace après le quatrième chiffre, comme dans 1018 010180. Les plages de jour et de mois sont imposées, la clé ne l'est pas. Collision reproduite : sans l'espace, la suite de dix chiffres est reconnue en entier par UK_NHS, par US_NPI lorsqu'elle commence par un ou deux, et par BR_PHONE ; et une suite de dix chiffres commençant de six à neuf est aussi reconnue en entier par IN_PHONE, vérifié sur 6234150367. Avec l'espace elle échappe à ces labels, mais DE_PHONE en reconnaît encore une partie initiale."
+    },
+    "tags": [
+      "at",
+      "government-id",
+      "identity",
+      "hr"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Die Sozialversicherungsnummer 1018 010180 steht auf der Karte.",
+          "value": "1018 010180"
+        },
+        {
+          "text": "The number 1234150367 is the same layout written solid.",
+          "value": "1234150367"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "1018 011380"
+        },
+        {
+          "text": "101801018"
+        },
+        {
+          "text": "1018-010180"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "1018 0101",
+      "suffix": "x"
+    }
+  }
+}

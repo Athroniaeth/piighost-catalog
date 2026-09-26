@@ -1,0 +1,50 @@
+{
+  "digest": "e8745613dcf30225bfb905308644bb930f44122ca4cb7b9a8c0cdbf55ff54b1f",
+  "recorded_at": "2026-09-26T20:12:28+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "ca-passport",
+    "schema_version": 1,
+    "label": "CA_PASSPORT",
+    "regex": "(?<!\\w)[A-Z]{2}\\d{6}(?!\\w)",
+    "description": {
+      "en": "Canadian passport number, two upper case letters followed by six digits, per the Purview Canada passport definition. No checksum. Reproduced collisions: this is the same shape as BR_PASSPORT and as the eight character form of ES_PASSPORT, so all three fire on the same value; and the six digit tail is separately matched by IN_PIN. Only the surrounding words tell a Canadian booklet from a Brazilian one.",
+      "fr": "Numéro de passeport canadien, deux majuscules suivies de six chiffres, selon la définition Purview du passeport canadien. Pas de somme de contrôle. Collisions reproduites : c'est la même forme que BR_PASSPORT et que la variante à huit caractères de ES_PASSPORT, donc les trois se déclenchent sur la même valeur ; et la queue de six chiffres est reconnue séparément par IN_PIN. Seuls les mots environnants distinguent un carnet canadien d'un carnet brésilien."
+    },
+    "tags": [
+      "ca",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "The Canadian booklet AB123456 was issued in Ottawa.",
+          "value": "AB123456"
+        },
+        {
+          "text": "Passport GA654321 expires in five years.",
+          "value": "GA654321"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "A123456"
+        },
+        {
+          "text": "AB1234567"
+        },
+        {
+          "text": "ab123456"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "AB12345",
+      "suffix": "!"
+    }
+  }
+}
