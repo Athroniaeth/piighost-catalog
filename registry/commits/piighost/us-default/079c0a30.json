@@ -1,0 +1,57 @@
+{
+  "digest": "079c0a30dcdac4bcb4018b09ed0dee12042860f39209b21f7e69a85f935783d3",
+  "recorded_at": "2026-09-26T23:38:09+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "us-default",
+    "schema_version": 1,
+    "description": {
+      "en": "the United States without a model: phone, ZIP code, the individual taxpayer number and the social security number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "États-Unis sans modèle : téléphone, code ZIP, le numéro fiscal individuel et le numéro de sécurité sociale, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "us"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-us",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/us",
+            "commit": "29d5c0a5"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "fab51b33"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

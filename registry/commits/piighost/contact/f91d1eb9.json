@@ -1,0 +1,40 @@
+{
+  "digest": "f91d1eb9587fa427383466bfa63ea6563cd3d98b33c2433fc1f9c4a0e5aa1c4e",
+  "recorded_at": "2026-09-26T23:38:09+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "contact",
+    "schema_version": 1,
+    "description": {
+      "en": "How to reach a person, without knowing where they live: email, international phone, URL. The three shapes a message carries whatever the country, and the ones a support or sales corpus is made of.",
+      "fr": "Comment joindre une personne, sans savoir où elle vit : e-mail, téléphone international, URL. Les trois formes qu'un message porte quel que soit le pays, et celles dont un corpus de support ou de vente est fait."
+    },
+    "tags": [
+      "international",
+      "contact",
+      "customer-support",
+      "chat"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/email",
+        "commit": "1a7f6904",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/phone-international",
+        "commit": "375a9dfb",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/url",
+        "commit": "cf209031",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}
