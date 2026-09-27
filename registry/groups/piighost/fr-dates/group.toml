@@ -1,0 +1,12 @@
+schema_version = 1
+
+[group]
+name = "fr-dates"
+description = { en = "French dates, month in letters or in digits. A date of birth is a direct identifier a NER model does not tag, and a pattern cannot tell it from any other date, so every date is hidden. Meant for documents such as deeds and medical reports, not for chat, where a date is rarely identifying.", fr = "Les dates françaises, mois en lettres ou en chiffres. Une date de naissance est un identifiant direct qu'un modèle NER ne relève pas, et un motif ne la distingue d'aucune autre date, donc toutes les dates sont masquées. Fait pour des documents comme les actes et les comptes rendus médicaux, pas pour une conversation, où une date identifie rarement quelqu'un." }
+tags = ["fr", "identity", "legal", "notarial", "document"]
+
+[[sources]]
+ref = "piighost/fr-date"
+
+[[sources]]
+ref = "piighost/fr-date-numeric"
