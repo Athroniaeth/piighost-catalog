@@ -1,0 +1,49 @@
+{
+  "digest": "0099927532c8212a2b4c9a169c24b1a8dc634b3cce6c2655739bad394efeff03",
+  "recorded_at": "2026-09-29T08:38:09+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-street",
+    "schema_version": 1,
+    "label": "FR_STREET",
+    "regex": "(?<![\\w])\\d{1,4}[  ]*(?:bis|ter|quater)?[  ]*(?:rue|avenue|boulevard|place|impasse|quai|allée|chemin|route|cours|square|villa|passage|faubourg|venelle|sentier|ruelle|mail|esplanade|promenade|rond-point|voie)[  ]+(?:(?![  ]à[  ][A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ])[^,.;\\n()–—])+(?<![  ])(?:,[  ]*(?=bâtiment|appartement|escalier|étage|résidence|lieu-?dit|[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿ]|\\d{5}(?!\\d))(?:(?![  ]à[  ][A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ])[^,.;\\n()–—])+(?<![  ]))*",
+    "description": {
+      "en": "A French street address: a number, bis, ter or quater, a street type (rue, avenue, boulevard, chemin, allée, impasse, venelle...) and the street name, to the next comma, dash or parenthesis, with the building, flat, postal code and city that follow. A city introduced by à is left out.",
+      "fr": "Une adresse de rue française : un numéro, bis, ter ou quater, un type de voie (rue, avenue, boulevard, chemin, allée, impasse, venelle...) et le nom de la voie, jusqu'à la virgule, au tiret ou à la parenthèse suivante, avec le bâtiment, l'appartement, le code postal et la ville qui suivent. Une ville introduite par à est laissée de côté."
+    },
+    "tags": [
+      "fr",
+      "location",
+      "lang-fr",
+      "legal",
+      "notarial"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Livraison au 12 rue des Lilas, 75008 Paris.",
+          "value": "12 rue des Lilas, 75008 Paris"
+        },
+        {
+          "text": "Rendez-vous 16 bis venelle des Salines à Vannes.",
+          "value": "16 bis venelle des Salines"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "la rue est fermée"
+        },
+        {
+          "text": "article 12 du règlement"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "12 rue ",
+      "filler": "a ",
+      "suffix": "x"
+    }
+  }
+}

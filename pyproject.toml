@@ -10,7 +10,7 @@ dependencies = [
     "python-dotenv>=1.2.3",
     "litestar-granian>=0.16.0",
     "structlog>=26.1.0",
-    "piighost[config]>=1.9",
+    "piighost[config]>=1.10",
     "packaging>=26.3",
     "httpx>=0.28.1",
 ]

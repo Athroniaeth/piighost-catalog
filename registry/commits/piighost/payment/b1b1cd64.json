@@ -1,0 +1,34 @@
+{
+  "digest": "b1b1cd646f20abd31b84d8a0df5b8c7c9ef6a69a3ebca8ffff1837f4c841a998",
+  "recorded_at": "2026-09-29T08:38:09+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "payment",
+    "schema_version": 1,
+    "description": {
+      "en": "What moves money: the payment card, the IBAN, the BIC. Three shapes with nothing national about them, so this group sits beside any country without competing with it.",
+      "fr": "Ce qui fait circuler l'argent : la carte de paiement, l'IBAN, le BIC. Trois formes sans rien de national, donc ce groupe se place à côté de n'importe quel pays sans lui faire concurrence."
+    },
+    "tags": [
+      "international",
+      "finance",
+      "banking",
+      "ecommerce"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/credit-card",
+        "commit": "fc4a1e83",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/banking",
+        "commit": "4de88f5a",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

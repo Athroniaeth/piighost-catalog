@@ -1,0 +1,68 @@
+{
+  "digest": "e6990159af3a89c028d61505367f918137eb0c3c7903fb1027020e08f91d6d9f",
+  "recorded_at": "2026-09-29T08:38:09+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "fr-default",
+    "schema_version": 1,
+    "description": {
+      "en": "France without a model: phone, IBAN, social security number and company registration number, plus the European IBAN and VAT number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "France sans modèle : téléphone, IBAN, numéro de sécurité sociale et numéro d'entreprise, plus l'IBAN et le numéro de TVA européens, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "eu",
+      "fr"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-fr",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/fr",
+            "commit": "6802f5ef"
+          }
+        ]
+      },
+      {
+        "name": "regex-eu",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/eu-extended",
+            "commit": "9ea7e1c0"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "fab51b33"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}
