@@ -1,0 +1,66 @@
+{
+  "digest": "6485ce7ea52496206ae990167969f2056dcc57146544b4eb701f7c40527c0d51",
+  "recorded_at": "2026-09-29T08:24:36+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "fr-deeds",
+    "schema_version": 1,
+    "description": {
+      "en": "The formulae of a French deed that introduce a person or a place: a name after a civility, a notary, a maiden name, a cadastral reference, an address after demeurant or situé, a street address and a lieu-dit. A NER model misses these names and addresses most often, because the formula, not the words, says what they are. Meant for deeds, leases and client files, not for chat.",
+      "fr": "Les formules d'un acte français qui introduisent une personne ou un lieu : un nom après une civilité, un notaire, un nom de naissance, une référence cadastrale, une adresse après demeurant ou situé, une adresse de rue et un lieu-dit. Un modèle NER rate le plus souvent ces noms et ces adresses, car c'est la formule, pas les mots, qui dit ce qu'ils sont. Fait pour les actes, les baux et les dossiers clients, pas pour une conversation."
+    },
+    "tags": [
+      "fr",
+      "identity",
+      "legal",
+      "notarial",
+      "location",
+      "document"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/fr-civil-name",
+        "commit": "427201fb",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-notary",
+        "commit": "21f30aa4",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-maiden-name",
+        "commit": "8e56a495",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-cadastre",
+        "commit": "9370040b",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-residence",
+        "commit": "9558cf1a",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-street",
+        "commit": "f15cb359",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-lieu-dit",
+        "commit": "655a039b",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

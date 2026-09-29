@@ -1,0 +1,46 @@
+{
+  "digest": "655a039bf5b6276d4858ec669fe9038e4c4d2823a44502ee159e7085228ff429",
+  "recorded_at": "2026-09-29T08:24:36+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-lieu-dit",
+    "schema_version": 1,
+    "label": "FR_LIEU_DIT",
+    "regex": "(?<![\\w])lieu-?dit[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+(?:[ \\u00a0'’\\-]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+)*",
+    "description": {
+      "en": "A lieu-dit, the named place a rural address or a cadastral designation gives instead of a street: lieu-dit then its capitalised name.",
+      "fr": "Un lieu-dit, le nom de lieu qu'une adresse rurale ou une désignation cadastrale donne à la place d'une rue : lieu-dit puis son nom à capitale."
+    },
+    "tags": [
+      "fr",
+      "location",
+      "lang-fr",
+      "legal",
+      "notarial"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Une maison au lieu-dit Kerroc'h, commune de Plouha.",
+          "value": "lieu-dit Kerroc'h"
+        },
+        {
+          "text": "Terrain lieu-dit Le Clos Hamon.",
+          "value": "lieu-dit Le Clos Hamon"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "un lieu-dit sans nom"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "lieu-dit ",
+      "filler": "Ab ",
+      "suffix": "1"
+    }
+  }
+}

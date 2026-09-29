@@ -1,0 +1,29 @@
+schema_version = 1
+
+[pattern]
+name = "fr-lieu-dit"
+label = "FR_LIEU_DIT"
+tags = ["fr", "location", "lang-fr", "legal", "notarial"]
+regex = "(?<![\\w])lieu-?dit[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+(?:[ \\u00a0'’\\-]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+)*"
+
+[pattern.description]
+en = "A lieu-dit, the named place a rural address or a cadastral designation gives instead of a street: lieu-dit then its capitalised name."
+fr = "Un lieu-dit, le nom de lieu qu'une adresse rurale ou une désignation cadastrale donne à la place d'une rue : lieu-dit puis son nom à capitale."
+
+# Exemples fictifs uniquement.
+
+[[examples.match]]
+text = "Une maison au lieu-dit Kerroc'h, commune de Plouha."
+value = "lieu-dit Kerroc'h"
+
+[[examples.match]]
+text = "Terrain lieu-dit Le Clos Hamon."
+value = "lieu-dit Le Clos Hamon"
+
+[[examples.no_match]]
+text = "un lieu-dit sans nom"
+
+[redos]
+prefix = "lieu-dit "
+filler = "Ab "
+suffix = "1"

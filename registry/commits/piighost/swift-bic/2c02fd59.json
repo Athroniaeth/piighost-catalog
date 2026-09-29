@@ -1,0 +1,53 @@
+{
+  "digest": "2c02fd59a3b766faafb4feab929efd0206eebb61dc6ab291f9b10f984f8e2863",
+  "recorded_at": "2026-09-29T08:24:36+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "swift-bic",
+    "schema_version": 1,
+    "label": "SWIFT_BIC",
+    "regex": "(?:(?<=BIC )|(?<=BIC: )|(?<=BIC : )|(?<=BIC : )|(?<=BIC: )|(?<=BIC : )|(?<=BIC : )|(?<=SWIFT )|(?<=SWIFT: )|(?<=SWIFT : )|(?<=SWIFT : )|(?<=SWIFT: )|(?<=SWIFT : )|(?<=SWIFT : )|(?<=BIC/SWIFT )|(?<=BIC/SWIFT: )|(?<=BIC/SWIFT : )|(?<=BIC/SWIFT : )|(?<=BIC/SWIFT: )|(?<=BIC/SWIFT : )|(?<=BIC/SWIFT : )|(?<=SWIFT/BIC )|(?<=SWIFT/BIC: )|(?<=SWIFT/BIC : )|(?<=SWIFT/BIC : )|(?<=SWIFT/BIC: )|(?<=SWIFT/BIC : )|(?<=SWIFT/BIC : )|(?<=Code BIC )|(?<=Code BIC: )|(?<=Code BIC : )|(?<=Code BIC : )|(?<=Code BIC: )|(?<=Code BIC : )|(?<=Code BIC : )|(?<=code BIC )|(?<=code BIC: )|(?<=code BIC : )|(?<=code BIC : )|(?<=code BIC: )|(?<=code BIC : )|(?<=code BIC : ))[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}(?:[A-Z0-9]{3})?(?!\\w)",
+    "description": {
+      "en": "SWIFT business identifier code as ISO 9362 defines it: four letters of business party prefix, two letters of ISO 3166-1 country code, two alphanumerics of location code, then an optional three-character branch code, so eight or eleven characters. It is only matched after BIC, SWIFT, BIC/SWIFT or Code BIC, followed by a space or a colon. The bare shape is any run of eight or eleven capitals and digits, so without the keyword the pattern masked headings in capitals (DESIGNATION, PAIEMENT), ticker lists and constant names. A benchmark on French deeds counted 659 matches and not one BIC. A code given without its keyword is missed, which costs little, since a BIC designates a bank branch, not a person. The ISO TC68 note publishes ABCDBE22 for a Belgian bank and ABCDBE22XYZ for a branch of the same party. The value alone is not detected, so the resilience check is off.",
+      "fr": "Code d'identification bancaire SWIFT tel que le définit la norme ISO 9362 : quatre lettres de préfixe d'établissement, deux lettres de code pays ISO 3166-1, deux caractères alphanumériques de localisation, puis un code d'agence facultatif de trois caractères, soit huit ou onze caractères. Il n'est reconnu qu'après BIC, SWIFT, BIC/SWIFT ou Code BIC, suivi d'une espace ou d'un deux-points. La forme seule est n'importe quelle suite de huit ou onze capitales et chiffres, donc sans le mot-clé le motif masquait les titres en capitales (DESIGNATION, PAIEMENT), les listes de tickers et les noms de constantes. Un banc d'essai sur des actes français a compté 659 correspondances et pas un seul BIC. Un code donné sans son mot-clé est manqué, ce qui coûte peu, car un BIC désigne une agence bancaire, pas une personne. La note ISO TC68 publie ABCDBE22 pour une banque belge et ABCDBE22XYZ pour une agence du même établissement. La valeur seule n'est pas détectée, donc le contrôle de résilience est désactivé."
+    },
+    "tags": [
+      "international",
+      "finance",
+      "banking"
+    ],
+    "resilience": false,
+    "examples": {
+      "match": [
+        {
+          "text": "IBAN BE71 0961 2345 6769, BIC : ABCDBE22.",
+          "value": "ABCDBE22"
+        },
+        {
+          "text": "Virement par SWIFT ABCDBE22XYZ vers l'agence.",
+          "value": "ABCDBE22XYZ"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "DESIGNATION DU BIEN"
+        },
+        {
+          "text": "ABCDBE22"
+        },
+        {
+          "text": "BIC : ABCDBE2"
+        },
+        {
+          "text": "BIC : ABCDBE22XY"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "BIC ",
+      "filler": "ABCDBE2",
+      "suffix": "!"
+    }
+  }
+}

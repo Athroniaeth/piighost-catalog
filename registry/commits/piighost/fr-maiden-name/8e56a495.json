@@ -1,0 +1,49 @@
+{
+  "digest": "8e56a495d352f085a126f8f2b0d8b48d431d337a0baca0d6d55fd4dccc31fea5",
+  "recorded_at": "2026-09-29T08:24:36+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-maiden-name",
+    "schema_version": 1,
+    "label": "FR_MAIDEN_NAME",
+    "regex": "(?:(?<=née )|(?<=née )|(?<=né )|(?<=né ))[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+(?:(?:[  ]+(?:de|du|des|la|le|van|von|den|der|di|da|ben|el|al))*[  ]+(?:d['’])?[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+|,[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿ][a-zà-öø-ÿ'’\\-]*(?=[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+))*",
+    "description": {
+      "en": "A maiden name after née or né. A NER model trained on ordinary prose rarely tags it, since the surname stands alone after a participle. It only matches after the formula that introduces it, so the value alone is not detected and the resilience check is off.",
+      "fr": "Un nom de naissance après née ou né. Un modèle NER entraîné sur de la prose ordinaire le relève rarement, car le nom se trouve seul après un participe. Il ne reconnaît la valeur qu'après la formule qui l'introduit, donc la valeur seule n'est pas détectée et le contrôle de résilience est désactivé."
+    },
+    "tags": [
+      "fr",
+      "identity",
+      "legal",
+      "notarial",
+      "lang-fr"
+    ],
+    "resilience": false,
+    "examples": {
+      "match": [
+        {
+          "text": "Madame Yvonne TANGUY, née MARTIN, retraitée.",
+          "value": "MARTIN"
+        },
+        {
+          "text": "Jeanne Dupuis née Le Goff le 3 mars 1950.",
+          "value": "Le Goff"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "née le 3 mars 1950"
+        },
+        {
+          "text": "né à Brest"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "née ",
+      "filler": "Ab ",
+      "suffix": "1"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "digest": "3afa625b28749c6c2ed309615ae914723ef41ec32acc8a74cb691aec3feeda49",
+  "recorded_at": "2026-09-29T08:24:36+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-date-numeric",
+    "schema_version": 1,
+    "label": "FR_DATE_NUMERIC",
+    "regex": "(?<![\\w/.-])(?<!\\d du )(?<!\\d du )(?:0?[1-9]|[12]\\d|3[01])([/.-])(?:0?[1-9]|1[0-2])\\1(?:1[89]|20)\\d{2}(?!\\w|[/.-]\\d)",
+    "description": {
+      "en": "A date in digits, day first as France writes it: day, month and a four-digit year from 1800 to 2099, with the same separator twice, a slash, a dot or a hyphen. Like fr-date it hides a date of birth and the date of the document alike. A two-digit year is left out, since 12/03/85 is as often a reference as a date. The date of a legal text numbered before it (décret n° 2015-587 du 29/05/2015) is left out too.",
+      "fr": "Une date en chiffres, le jour d'abord comme l'écrit la France : jour, mois et année à quatre chiffres de 1800 à 2099, avec deux fois le même séparateur, une barre oblique, un point ou un tiret. Comme fr-date, il masque une date de naissance comme la date du document. Une année à deux chiffres est laissée de côté, car 12/03/85 est aussi souvent une référence qu'une date. La date d'un texte de loi numéroté juste avant (décret n° 2015-587 du 29/05/2015) est laissée aussi."
+    },
+    "tags": [
+      "fr",
+      "identity",
+      "legal",
+      "notarial",
+      "lang-fr"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Date de naissance : 12/03/1985",
+          "value": "12/03/1985"
+        },
+        {
+          "text": "Né le 05.11.1990 à Lyon.",
+          "value": "05.11.1990"
+        },
+        {
+          "text": "Visite du 1-2-2003, sans suite.",
+          "value": "1-2-2003"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "le 12/03/85"
+        },
+        {
+          "text": "12/03-1985"
+        },
+        {
+          "text": "13/13/1985"
+        },
+        {
+          "text": "ref 12/03/1985/4"
+        },
+        {
+          "text": "le décret n° 2015-587 du 29/05/2015"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "12/03/",
+      "filler": "1/",
+      "suffix": "x"
+    }
+  }
+}

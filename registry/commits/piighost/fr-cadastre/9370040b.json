@@ -1,0 +1,54 @@
+{
+  "digest": "9370040b3dba0b1ad3aee54dc22df4be611bb12de86827f4f1503207159c919f",
+  "recorded_at": "2026-09-29T08:24:36+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-cadastre",
+    "schema_version": 1,
+    "label": "FR_CADASTRE",
+    "regex": "(?:(?<=section )|(?<=section )|(?<=parcelle )|(?<=parcelle )|(?<=parcelles )|(?<=parcelles )|(?<=cadastrée )|(?<=cadastrée )|(?<=cadastré )|(?<=cadastré )|(?<=cadastrés )|(?<=cadastrés )|(?<=cadastrées )|(?<=cadastrées ))[A-Z]{1,2}[  ]*(?:n(?:°|o|uméro)[  ]*)?\\d{1,4}(?!\\w)",
+    "description": {
+      "en": "A cadastral reference: one or two letters of section and up to four digits of plot number, after section, parcelle or cadastrée. A plot designates one owner, so it identifies the parties of a deed as surely as their names. A reference in a table cell without the word is not caught. It only matches after the formula that introduces it, so the value alone is not detected and the resilience check is off.",
+      "fr": "Une référence cadastrale : une ou deux lettres de section et jusqu'à quatre chiffres de numéro de parcelle, après section, parcelle ou cadastrée. Une parcelle désigne un propriétaire, donc elle identifie les parties d'un acte aussi sûrement que leurs noms. Une référence dans une cellule de tableau sans le mot n'est pas reconnue. Il ne reconnaît la valeur qu'après la formule qui l'introduit, donc la valeur seule n'est pas détectée et le contrôle de résilience est désactivé."
+    },
+    "tags": [
+      "fr",
+      "identity",
+      "legal",
+      "notarial",
+      "location",
+      "lang-fr"
+    ],
+    "resilience": false,
+    "examples": {
+      "match": [
+        {
+          "text": "Le bien est cadastré section AB numéro 123.",
+          "value": "AB numéro 123"
+        },
+        {
+          "text": "Figurant au cadastre section YZ n° 2133, lieudit Kerroc'h.",
+          "value": "YZ n° 2133"
+        },
+        {
+          "text": "La parcelle ZC 45 est incluse.",
+          "value": "ZC 45"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "notre devis n° D2025-291"
+        },
+        {
+          "text": "section des comptes"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "section ",
+      "filler": "A",
+      "suffix": "x"
+    }
+  }
+}

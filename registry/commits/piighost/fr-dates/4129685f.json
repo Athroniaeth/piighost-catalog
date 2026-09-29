@@ -1,0 +1,35 @@
+{
+  "digest": "4129685f7b99173b798185935a8fef541bcf8ade46d1e8066e57481b6efe2ece",
+  "recorded_at": "2026-09-29T08:24:36+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "fr-dates",
+    "schema_version": 1,
+    "description": {
+      "en": "French dates, month in letters or in digits. A date of birth is a direct identifier a NER model does not tag, and a pattern cannot tell it from any other date, so every date is hidden. Meant for documents such as deeds and medical reports, not for chat, where a date is rarely identifying.",
+      "fr": "Les dates françaises, mois en lettres ou en chiffres. Une date de naissance est un identifiant direct qu'un modèle NER ne relève pas, et un motif ne la distingue d'aucune autre date, donc toutes les dates sont masquées. Fait pour des documents comme les actes et les comptes rendus médicaux, pas pour une conversation, où une date identifie rarement quelqu'un."
+    },
+    "tags": [
+      "fr",
+      "identity",
+      "legal",
+      "notarial",
+      "document"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/fr-date",
+        "commit": "e8982572",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-date-numeric",
+        "commit": "3afa625b",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

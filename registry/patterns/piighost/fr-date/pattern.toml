@@ -4,11 +4,11 @@ schema_version = 1
 name = "fr-date"
 label = "FR_DATE"
 tags = ["fr", "identity", "legal", "notarial", "lang-fr"]
-regex = '(?<!\w)(?i:1er|[12]\d|3[01]|0?[1-9])[   ]+(?i:janvier|f[eéÉ]vrier|mars|avril|mai|juin|juillet|ao[uûÛ]t|septembre|octobre|novembre|d[eéÉ]cembre)[   ]+(?:1[89]|20)\d{2}(?!\w)'
+regex = "(?<!\\w)(?<!\\d du )(?<!\\d du )(?i:1er|[12]\\d|3[01]|0?[1-9])[   ]+(?i:janvier|f[eéÉ]vrier|mars|avril|mai|juin|juillet|ao[uûÛ]t|septembre|octobre|novembre|d[eéÉ]cembre)[   ]+(?:1[89]|20)\\d{2}(?!\\w)"
 
 [pattern.description]
-en = "A French date written with its month in letters, as a deed, a civil-status record or a medical report writes it: a day from 1er to 31, the month, a four-digit year from 1800 to 2099. A date of birth is a direct identifier that a NER model does not tag, and on its own this pattern cannot tell it from the date of the document, so it hides both. Capitals are matched, the no-break spaces of French typography too. A date spelt out in words (le douze mars) is not."
-fr = "Une date française écrite avec son mois en lettres, comme l'écrit un acte, un état civil ou un compte rendu médical : un jour de 1er à 31, le mois, une année à quatre chiffres de 1800 à 2099. Une date de naissance est un identifiant direct qu'un modèle NER ne relève pas, et ce motif seul ne la distingue pas de la date du document, donc il masque les deux. Les capitales sont reconnues, les espaces insécables de la typographie française aussi. Une date écrite en toutes lettres (le douze mars) ne l'est pas."
+en = "A French date written with its month in letters, as a deed, a civil-status record or a medical report writes it: a day from 1er to 31, the month, a four-digit year from 1800 to 2099. A date of birth is a direct identifier that a NER model does not tag, and on its own this pattern cannot tell it from the date of the document, so it hides both. Capitals are matched, the no-break spaces of French typography too. A date spelt out in words (le douze mars) is not, nor the date of a legal text numbered before it (loi n° 89-462 du 6 juillet 1989), which designates no one."
+fr = "Une date française écrite avec son mois en lettres, comme l'écrit un acte, un état civil ou un compte rendu médical : un jour de 1er à 31, le mois, une année à quatre chiffres de 1800 à 2099. Une date de naissance est un identifiant direct qu'un modèle NER ne relève pas, et ce motif seul ne la distingue pas de la date du document, donc il masque les deux. Les capitales sont reconnues, les espaces insécables de la typographie française aussi. Une date écrite en toutes lettres (le douze mars) ne l'est pas, ni la date d'un texte de loi numéroté juste avant (loi n° 89-462 du 6 juillet 1989), qui ne désigne personne."
 
 # Dates fictives uniquement.
 [[examples.match]]
@@ -39,6 +39,10 @@ text = "12 marsupiaux 1985"
 # Une référence d'article n'est pas une date.
 [[examples.no_match]]
 text = "article 1583 du Code civil"
+
+# La date d'un texte de loi reste lisible : elle ne désigne personne.
+[[examples.no_match]]
+text = "en application de la loi n° 89-462 du 6 juillet 1989"
 
 [redos]
 prefix = "12 mars "

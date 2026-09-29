@@ -1,0 +1,30 @@
+schema_version = 1
+
+[pattern]
+name = "fr-notary"
+label = "FR_NOTARY"
+tags = ["fr", "identity", "legal", "notarial", "lang-fr"]
+regex = "(?:(?<=Maître )|(?<=Maître )|(?<=Maitre )|(?<=Maitre )|(?<=Me )|(?<=Me ))[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+(?:(?:[  ]+(?:de|du|des|la|le|van|von|den|der|di|da|ben|el|al))*[  ]+(?:d['’])?[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+|,[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿ][a-zà-öø-ÿ'’\\-]*(?=[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+))*"
+resilience = false
+
+[pattern.description]
+en = "The name of a notary or a lawyer after Maître, Maitre or Me. It only matches after the formula that introduces it, so the value alone is not detected and the resilience check is off."
+fr = "Le nom d'un notaire ou d'un avocat après Maître, Maitre ou Me. Il ne reconnaît la valeur qu'après la formule qui l'introduit, donc la valeur seule n'est pas détectée et le contrôle de résilience est désactivé."
+
+# Exemples fictifs uniquement.
+
+[[examples.match]]
+text = "Par-devant Maître Claire BEAUMONT, notaire à Quimper."
+value = "Claire BEAUMONT"
+
+[[examples.match]]
+text = "Représenté par Me Yannick Le Gall."
+value = "Yannick Le Gall"
+
+[[examples.no_match]]
+text = "Le maître d'ouvrage."
+
+[redos]
+prefix = "Maître "
+filler = "Ab "
+suffix = "1"

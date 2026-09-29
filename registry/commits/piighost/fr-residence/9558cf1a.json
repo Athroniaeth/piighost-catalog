@@ -1,0 +1,50 @@
+{
+  "digest": "9558cf1a99e7f2c4a886cb0dc1e840d1f4f6926272163f34cad8341f98f327d9",
+  "recorded_at": "2026-09-29T08:24:36+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-residence",
+    "schema_version": 1,
+    "label": "FR_RESIDENCE",
+    "regex": "(?:(?<=demeurant )|(?<=demeurant )|(?<=ensemble )|(?<=ensemble )|(?<=résidant )|(?<=résidant )|(?<=domicilié )|(?<=domicilié )|(?<=domiciliée )|(?<=domiciliée )|(?<=domiciliés )|(?<=domiciliés )|(?<=situé )|(?<=situé )|(?<=située )|(?<=située )|(?<=sis )|(?<=sis )|(?<=sise )|(?<=sise )|(?<=siège\\ est )|(?<=siège\\ est )|(?<=siège\\ social\\ est )|(?<=siège\\ social\\ est ))(?=\\d|lieu-?dit|résidence|hameau|(?:rue|avenue|boulevard|place|impasse|quai|allée|chemin|route|cours|square|villa|passage|faubourg|venelle|sentier|ruelle|mail|esplanade|promenade|rond-point|voie)[  ])(?:(?![  ]à[  ][A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ])[^,.;\\n()–—])+(?<![  ])(?:,[  ]*(?=bâtiment|appartement|escalier|étage|résidence|lieu-?dit|[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿ])(?:(?![  ]à[  ][A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ])[^,.;\\n()–—])+(?<![  ]))*",
+    "description": {
+      "en": "An address after the formula that introduces it in a deed: demeurant, demeurant ensemble, résidant, domicilié, situé, sis, siège est. It must start like an address (a number, lieu-dit, résidence, hameau or a street type) and runs to the next comma, with the building, flat and lieu-dit that follow one. A city introduced by à is left out. It only matches after the formula that introduces it, so the value alone is not detected and the resilience check is off.",
+      "fr": "Une adresse après la formule qui l'introduit dans un acte : demeurant, demeurant ensemble, résidant, domicilié, situé, sis, siège est. Elle doit commencer comme une adresse (un numéro, lieu-dit, résidence, hameau ou un type de voie) et court jusqu'à la virgule suivante, avec le bâtiment, l'appartement et le lieu-dit qui la suivent. Une ville introduite par à est laissée de côté. Il ne reconnaît la valeur qu'après la formule qui l'introduit, donc la valeur seule n'est pas détectée et le contrôle de résilience est désactivé."
+    },
+    "tags": [
+      "fr",
+      "identity",
+      "legal",
+      "notarial",
+      "location",
+      "lang-fr"
+    ],
+    "resilience": false,
+    "examples": {
+      "match": [
+        {
+          "text": "Monsieur Paul LEMOINE, demeurant 7 ter cours du Maréchal Foch, né le 3 mars 1950.",
+          "value": "7 ter cours du Maréchal Foch"
+        },
+        {
+          "text": "Un appartement situé résidence Ker Avel, bâtiment E, appartement 11 à Brest.",
+          "value": "résidence Ker Avel, bâtiment E, appartement 11"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "situé au deuxième étage"
+        },
+        {
+          "text": "domiciliée professionnellement en l'office notarial"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "demeurant ",
+      "filler": "1 a",
+      "suffix": "x"
+    }
+  }
+}

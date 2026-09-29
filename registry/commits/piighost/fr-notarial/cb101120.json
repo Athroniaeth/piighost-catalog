@@ -1,0 +1,71 @@
+{
+  "digest": "cb1011208e4f53e516ae8b83ecd3f86f22c69aaeeb6e5efb91b03dcce45fac17",
+  "recorded_at": "2026-09-29T08:24:36+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "fr-notarial",
+    "schema_version": 1,
+    "description": {
+      "en": "French deeds and client files: the French and European shapes, plus every date, since a date of birth is a direct identifier no model tags, the formulae that introduce a party, an address or a cadastral reference, and a local model for the names, addresses and firms an act is full of. Fuzzy entity resolution groups a name spelled two ways onto one token, and word-boundary expansion catches a value that appears again further down.",
+      "fr": "Actes et dossiers clients français : les formes françaises et européennes, plus toutes les dates, car une date de naissance est un identifiant direct qu'aucun modèle ne relève, les formules qui introduisent une partie, une adresse ou une référence cadastrale, et un modèle local pour les noms, adresses et études dont un acte est rempli. La résolution floue regroupe un nom orthographié de deux façons sur un seul jeton, et l'expansion par mot entier rattrape une valeur qui réapparaît plus bas."
+    },
+    "tags": [
+      "fr",
+      "eu",
+      "lang-fr",
+      "notarial",
+      "legal",
+      "document",
+      "identity"
+    ],
+    "piighost": ">=1.9,<2",
+    "extends": [
+      {
+        "ref": "piighost/fr-default",
+        "commit": "dcc8e3b7",
+        "exclude": []
+      }
+    ],
+    "detectors": [
+      {
+        "name": "regex-fr-dates",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/fr-dates",
+            "commit": "4129685f"
+          }
+        ]
+      },
+      {
+        "name": "regex-fr-deeds",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/fr-deeds",
+            "commit": "6485ce7e"
+          }
+        ]
+      },
+      {
+        "name": "ner",
+        "type": "gliner2",
+        "model": "fastino/gliner2-multi-v1",
+        "labels": [
+          "PERSON",
+          "ADDRESS",
+          "ORGANIZATION"
+        ],
+        "threshold": 0.5,
+        "max_chars": 1000
+      }
+    ],
+    "stages": {
+      "entity_resolver": {
+        "type": "fuzzy",
+        "threshold": 0.85
+      }
+    }
+  }
+}

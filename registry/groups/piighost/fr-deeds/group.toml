@@ -1,0 +1,29 @@
+schema_version = 1
+
+[group]
+name = "fr-deeds"
+description = { en = "The formulae of a French deed that introduce a person or a place: a name after a civility, a notary, a maiden name, a cadastral reference, an address after demeurant or situé, a street address and a lieu-dit. A NER model misses these names and addresses most often, because the formula, not the words, says what they are. Meant for deeds, leases and client files, not for chat.", fr = "Les formules d'un acte français qui introduisent une personne ou un lieu : un nom après une civilité, un notaire, un nom de naissance, une référence cadastrale, une adresse après demeurant ou situé, une adresse de rue et un lieu-dit. Un modèle NER rate le plus souvent ces noms et ces adresses, car c'est la formule, pas les mots, qui dit ce qu'ils sont. Fait pour les actes, les baux et les dossiers clients, pas pour une conversation." }
+tags = ["fr", "identity", "legal", "notarial", "location", "document"]
+
+[[sources]]
+ref = "piighost/fr-civil-name"
+
+[[sources]]
+ref = "piighost/fr-notary"
+
+[[sources]]
+ref = "piighost/fr-maiden-name"
+
+[[sources]]
+ref = "piighost/fr-cadastre"
+
+# The formula comes before the bare street, so an address it introduces keeps
+# the whole span the formula gives it.
+[[sources]]
+ref = "piighost/fr-residence"
+
+[[sources]]
+ref = "piighost/fr-street"
+
+[[sources]]
+ref = "piighost/fr-lieu-dit"

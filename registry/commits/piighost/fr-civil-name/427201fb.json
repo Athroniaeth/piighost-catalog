@@ -1,0 +1,57 @@
+{
+  "digest": "427201fb9cc3f0c3fa6a24eddfdd556655dd8d2bb13f3e033e0ac2d12ab7b674",
+  "recorded_at": "2026-09-29T08:24:36+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-civil-name",
+    "schema_version": 1,
+    "label": "FR_CIVIL_NAME",
+    "regex": "(?:(?<=Monsieur )|(?<=Monsieur )|(?<=Madame )|(?<=Madame )|(?<=Mademoiselle )|(?<=Mademoiselle )|(?<=Mme )|(?<=Mme )|(?<=Mlle )|(?<=Mlle )|(?<=M\\. )|(?<=M\\. )|(?<=Dr )|(?<=Dr )|(?<=Docteur )|(?<=Docteur )|(?<=Pr )|(?<=Pr ))[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+(?:(?:[  ]+(?:de|du|des|la|le|van|von|den|der|di|da|ben|el|al))*[  ]+(?:d['’])?[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+|,[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿ][a-zà-öø-ÿ'’\\-]*(?=[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+))*",
+    "description": {
+      "en": "A person's name after a civility, the way a deed, a lease or a medical report introduces a party: Monsieur, Madame, Mademoiselle, Mme, Mlle, M., Dr, Docteur, Pr. The name runs over capitalised words, particles (de, du, de la, van) and several first names separated by commas, as civil status writes them. The civility stays, so the text still reads. It only matches after the formula that introduces it, so the value alone is not detected and the resilience check is off.",
+      "fr": "Le nom d'une personne après une civilité, comme un acte, un bail ou un compte rendu médical présente une partie : Monsieur, Madame, Mademoiselle, Mme, Mlle, M., Dr, Docteur, Pr. Le nom court sur les mots à capitale, les particules (de, du, de la, van) et plusieurs prénoms séparés par des virgules, comme les écrit l'état civil. La civilité reste, donc le texte se lit encore. Il ne reconnaît la valeur qu'après la formule qui l'introduit, donc la valeur seule n'est pas détectée et le contrôle de résilience est désactivé."
+    },
+    "tags": [
+      "fr",
+      "identity",
+      "legal",
+      "notarial",
+      "lang-fr"
+    ],
+    "resilience": false,
+    "examples": {
+      "match": [
+        {
+          "text": "Entre Monsieur Paul LEMOINE, demeurant à Rennes.",
+          "value": "Paul LEMOINE"
+        },
+        {
+          "text": "Et Madame Juliette, Béatrice JULIEN, son épouse.",
+          "value": "Juliette, Béatrice JULIEN"
+        },
+        {
+          "text": "Reçu par Mme Anne-Sophie de La Tour hier.",
+          "value": "Anne-Sophie de La Tour"
+        },
+        {
+          "text": "Vu par le Dr Manon Jaouen ce matin.",
+          "value": "Manon Jaouen"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "Monsieur le Maire a signé."
+        },
+        {
+          "text": "Madame, nous accusons réception."
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "Monsieur ",
+      "filler": "Ab ",
+      "suffix": "1"
+    }
+  }
+}
