@@ -2,9 +2,11 @@
   /**
    * The mark: piighost's ghost, identity v3, the one piighost.dev serves.
    *
-   * A solid silhouette in the text colour, closed eyes (^^) and a hatched drop
-   * shadow in the primary colour. The paths are those of
-   * piighost-identite/brand/outils/assembler-logo.py and of the site's
+   * A solid silhouette, closed eyes (^^) and a hatched drop shadow in the
+   * primary colour. The silhouette and the eyes follow the mode through two
+   * tokens, --marque-silhouette and --marque-yeux: the text colour and the
+   * primary on dark, night violet and off-white on light. The paths are those
+   * of piighost-identite/brand/outils/assembler-logo.py and of the site's
    * Ghost.svelte, so the hub and the site cannot drift. The silhouette is never
    * the primary colour: all violet, it reads as a fingertip.
    *
@@ -54,11 +56,11 @@
   </g>
   <path
     d="M5.1 24.6V11.6a10 10 0 0 1 20 0v13q-3.333 5.6-6.667 0-3.333 5.6-6.666 0-3.333 5.6-6.667 0Z"
-    fill="var(--foreground)"
+    fill="var(--marque-silhouette)"
   />
   <path
     d="M9.9 14.2 11.9 12 13.9 14.2M16.3 14.2 18.3 12 20.3 14.2"
-    stroke="var(--primary)"
+    stroke="var(--marque-yeux)"
     stroke-width="1.9"
     stroke-linecap="round"
     stroke-linejoin="round"
