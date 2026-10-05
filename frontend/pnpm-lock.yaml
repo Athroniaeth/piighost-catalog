@@ -21,8 +21,8 @@ importers:
         specifier: ^1.4.1
         version: 1.4.1
       '@piighost/ui':
-        specifier: file:vendor/piighost-ui-0.2.3.tgz
-        version: file:vendor/piighost-ui-0.2.3.tgz(svelte@5.57.0(@typescript-eslint/types@8.69.0))
+        specifier: file:vendor/piighost-ui-0.2.4.tgz
+        version: file:vendor/piighost-ui-0.2.4.tgz(svelte@5.57.0(@typescript-eslint/types@8.69.0))
       pyodide:
         specifier: ^314.0.7
         version: 314.0.7
@@ -311,9 +311,9 @@ packages:
   '@oxc-project/types@0.147.0':
     resolution: {integrity: sha512-IJ3s6ltHLp45S0bh7phkX+gJO7A1Wuz2EaqpAhb8WjqDwbzMiWKHhyyT42tskaWjEYXtHtVCPpnBJVT9+dcRLg==}
 
-  '@piighost/ui@file:vendor/piighost-ui-0.2.3.tgz':
-    resolution: {integrity: sha512-hrhekrcUcH/7F1nLDjwn0wvUan0Mg3AbuwdL1zPtIDXHVkEvQWfyVOQxB7fns0D3OHzOQjZaFjMXmsBaIOhW5w==, tarball: file:vendor/piighost-ui-0.2.3.tgz}
-    version: 0.2.3
+  '@piighost/ui@file:vendor/piighost-ui-0.2.4.tgz':
+    resolution: {integrity: sha512-WYSdangCjEJeoxL2vwhe2yLjDPINnvnmCHB18p5tow3FoygtcRHmQWruSr/Wf0p9FoWAYDHDpCzhrmtpaXtqvQ==, tarball: file:vendor/piighost-ui-0.2.4.tgz}
+    version: 0.2.4
     peerDependencies:
       svelte: ^5.0.0
 
@@ -1979,7 +1979,7 @@ snapshots:
 
   '@oxc-project/types@0.147.0': {}
 
-  '@piighost/ui@file:vendor/piighost-ui-0.2.3.tgz(svelte@5.57.0(@typescript-eslint/types@8.69.0))':
+  '@piighost/ui@file:vendor/piighost-ui-0.2.4.tgz(svelte@5.57.0(@typescript-eslint/types@8.69.0))':
     dependencies:
       '@fontsource-variable/schibsted-grotesk': 5.3.0
       '@fontsource/ibm-plex-mono': 5.3.0
