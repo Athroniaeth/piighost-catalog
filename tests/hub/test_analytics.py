@@ -61,10 +61,7 @@ class TestSending:
         async with httpx.AsyncClient(
             transport=transport,
             base_url=analytics.url,
-            headers={
-                "openpanel-client-id": analytics.client_id,
-                "openpanel-client-secret": analytics.client_secret,
-            },
+            headers=analytics.headers(),
         ) as client:
             await analytics._send(client, "pull", {"object": "piighost/fr-default"})
 
@@ -73,6 +70,8 @@ class TestSending:
         assert str(request.url) == "https://op.example.com/track"
         assert request.headers["openpanel-client-id"] == "abc"
         assert request.headers["openpanel-client-secret"] == "shh"
+        # httpx's default agent is a bot to OpenPanel, which drops its events.
+        assert not request.headers["user-agent"].startswith("python-httpx")
         body = request.read().decode()
         assert '"type":"track"' in body.replace(" ", "")
         assert "fr-default" in body
