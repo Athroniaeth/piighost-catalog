@@ -192,8 +192,11 @@ class TestSnippetsAndBadges:
         ).json()
         # No catalog recipe either: a catalogs entry cannot say model.
         assert set(snippets["items"]) == {"python"}
-        assert "PipelineConfig" in snippets["items"]["python"]
-        assert "RegexDetector" not in snippets["items"]["python"]
+        python = snippets["items"]["python"]
+        # Built whole by its reference: piighost 2.0 pulls a config itself.
+        assert f'load_pipeline("catalog:{snippets["ref"]}")' in python
+        assert "urllib" not in python
+        assert "RegexDetector" not in python
         badge = (await client.get("/api/v1/badge/piighost/all")).json()
         assert badge["schemaVersion"] == 1
         assert badge["message"].startswith("piighost/all:")
@@ -207,6 +210,24 @@ class TestSnippetsAndBadges:
         assert set(items) == {"python", "config"}
         assert f'RegexDetector.from_catalog("{ref}")' in items["python"]
         assert f"catalogs = ['catalog:{ref}']" in items["config"]
+
+    async def test_a_snippet_runs_on_a_text_its_object_catches(
+        self, client: AsyncTestClient[Litestar]
+    ) -> None:
+        """The first "must match" example, not an email for every object."""
+        for key, text in (
+            # A pattern: its own first example.
+            ("piighost/fr-siret", "SIRET 73282932000074 ok"),
+            # A group: the first example of the first pattern it carries.
+            ("piighost/all", "SIRET 73282932000074 ok"),
+            # A config: the same, through its regex detector.
+            ("piighost/base", "SIRET 73282932000074 ok"),
+        ):
+            items = (await client.get(f"/api/v1/refs/{key}/latest/snippets")).json()[
+                "items"
+            ]
+            assert f'("{text}")' in items["python"], key
+            assert "a@b.co" not in items["python"], key
 
     async def test_no_snippet_names_a_command_that_does_not_exist(
         self, client: AsyncTestClient[Litestar]

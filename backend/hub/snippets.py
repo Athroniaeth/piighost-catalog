@@ -1,10 +1,20 @@
 """Ready-to-paste ways to use a reference, one per target."""
 
 MIN_VERSION = "2.0"
-"""The piighost release that ships RegexDetector.from_catalog and catalog: refs."""
+"""The piighost release that ships RegexDetector.from_catalog, load_pipeline on a
+catalog: reference, and catalog: refs in a pipeline file."""
+
+FALLBACK_TEXT = "mail me at a@b.co"
+"""The text a snippet runs when the object carries no example of its own."""
 
 
-def snippets(ref: str, kind: str, *, origin: str, regex_only: bool) -> dict[str, str]:
+def snippets(
+    ref: str,
+    kind: str,
+    *,
+    regex_only: bool,
+    example: str | None = None,
+) -> dict[str, str]:
     """Ready-to-paste ways to use a reference: from Python, or from a config.
 
     The registry hands out regexes, so both recipes are about the detector.
@@ -17,19 +27,30 @@ def snippets(ref: str, kind: str, *, origin: str, regex_only: bool) -> dict[str,
     model detector: their regexes are half the object, so they are shown being
     built whole and get no catalog recipe, since a catalogs entry cannot say
     model.
+
+    ``example`` is a sentence the object must catch, the first of its "must
+    match" examples, so the snippet of `jwt` runs on a token and not on an
+    email address it would leave alone.
     """
+    text = _python_string(example or FALLBACK_TEXT)
     if not regex_only:
-        return {"python": _whole_pipeline(ref, origin)}
-    return {"python": _from_catalog(ref), "config": _catalog(ref)}
+        return {"python": _whole_pipeline(ref, text)}
+    return {"python": _from_catalog(ref, text), "config": _catalog(ref)}
 
 
-def _from_catalog(ref: str) -> str:
-    """The detector by its id, which is what the registry is for."""
+def _python_string(text: str) -> str:
+    """A text as a Python literal on one line, quoted the way the snippets are."""
+    escaped = text.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
+    return f'"{escaped}"'
+
+
+def _from_catalog(ref: str, text: str) -> str:
+    """The detector by its id, which is what the catalog is for."""
     return (
         f"# needs piighost >= {MIN_VERSION}\n"
         "from piighost.components.detector import RegexDetector\n\n"
         f'detector = RegexDetector.from_catalog("{ref}")\n'
-        'found = await detector.detect("mail me at a@b.co")'
+        f"found = await detector.detect({text})"
     )
 
 
@@ -47,18 +68,17 @@ def _catalog(ref: str) -> str:
     )
 
 
-def _whole_pipeline(ref: str, origin: str) -> str:
-    """A reference carrying a model detector is used whole, or not at all."""
-    key, _, selector = ref.partition(":")
-    url = f"{origin}/api/v1/refs/{key}/{selector}/pipeline.toml"
+def _whole_pipeline(ref: str, text: str) -> str:
+    """A reference carrying a model detector is used whole, or not at all.
+
+    ``load_pipeline`` pulls the whole configuration by its reference and builds
+    it, caching a commit on disk as ``from_catalog`` does.
+    """
     return (
+        f"# needs piighost >= {MIN_VERSION}, with the extras its model needs.\n"
         "# This one carries a model detector as well as regexes, so it is\n"
         "# built whole rather than lifted apart.\n"
-        "import tomllib\n"
-        "import urllib.request\n\n"
-        "from piighost.config import PipelineConfig\n\n"
-        f'URL = "{url}"\n'
-        "config = tomllib.loads(urllib.request.urlopen(URL).read().decode())\n\n"
-        "pipeline = PipelineConfig.model_validate(config).build()\n"
-        'result = await pipeline.anonymize("mail me at a@b.co")'
+        "from piighost.config import load_pipeline\n\n"
+        f'pipeline = load_pipeline("catalog:{ref}")\n'
+        f"result = await pipeline.anonymize({text})"
     )

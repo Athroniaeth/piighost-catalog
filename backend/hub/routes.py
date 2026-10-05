@@ -576,7 +576,6 @@ class HubController(Controller):
     async def snippets_for(
         self,
         state: State,
-        request: Request,
         namespace: FromPath[str],
         name: FromPath[str],
         selector: FromPath[str],
@@ -589,8 +588,8 @@ class HubController(Controller):
             items=snippets(
                 snapshot.ref,
                 snapshot.kind,
-                origin=origin_of(request),
                 regex_only=_is_regex_only(registry, snapshot),
+                example=_example_text(registry, snapshot),
             ),
         )
 
@@ -680,8 +679,8 @@ def origin_of(request: Request) -> str:
 
     Taken from the request rather than from configuration so a preview
     deployment, a local run and production each advertise themselves and not
-    each other. Shared with the usage snippets, which have to hand out a URL
-    someone can paste into a shell.
+    each other. Shared with robots.txt, the sitemap and llms.txt, which hand
+    out URLs someone or something follows.
     """
     url = request.url
     scheme = request.headers.get("x-forwarded-proto", url.scheme)
@@ -705,6 +704,32 @@ def _is_regex_only(registry: Registry, snapshot: Snapshot) -> bool:
         return False
     blocks = detector["detectors"] if detector["type"] == "composite" else [detector]
     return all(block["type"] == "regex" for block in blocks)
+
+
+def _example_text(registry: Registry, snapshot: Snapshot) -> str | None:
+    """A sentence the object must catch, for its snippets to run on.
+
+    A pattern's first "must match" example; for a group or a config, the first
+    one of the first pattern it carries that has any. None when nothing does,
+    or when the object does not resolve, and the snippet keeps its default.
+    """
+    try:
+        if snapshot.kind == "config":
+            patterns = [
+                pattern
+                for detector in resolve_config(registry, snapshot).regex_detectors()
+                if detector.labels
+                for pattern in detector.labels.patterns.values()
+            ]
+        else:
+            patterns = list(resolve_labels(registry, snapshot).patterns.values())
+    except ResolutionError:
+        return None
+    for pattern in patterns:
+        matches = (pattern.content.get("examples") or {}).get("match") or []
+        if matches:
+            return str(matches[0]["text"])
+    return None
 
 
 def _cache_headers(selector: str, snapshot: Snapshot) -> dict[str, str]:
