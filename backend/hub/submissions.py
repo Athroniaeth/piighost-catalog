@@ -26,7 +26,7 @@ from backend.hub.store import Kind
 
 REPO_ENV_VAR = "HUB_REGISTRY_REPO"
 BRANCH_ENV_VAR = "HUB_REGISTRY_BRANCH"
-DEFAULT_REPO = "Athroniaeth/piighost-hub"
+DEFAULT_REPO = "Athroniaeth/piighost-catalog"
 """Where a contribution lands: this application's repository.
 
 The registry is a directory of it rather than a repository of its own, so
