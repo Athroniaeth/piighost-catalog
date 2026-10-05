@@ -47,7 +47,7 @@ STATIC_PATHS = (
 # An hour: the registry changes when a pull request lands, not by the minute.
 CACHE = "public, max-age=3600"
 
-_REPO = "https://github.com/Athroniaeth/piighost-hub"
+_REPO = "https://github.com/Athroniaeth/piighost-catalog"
 """Where the manifests live, which is the answer to "can I read the source"."""
 
 

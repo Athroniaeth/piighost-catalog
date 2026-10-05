@@ -192,5 +192,5 @@ class TestDeployment:
             registry, "pattern", "alice", "order-id", MANIFEST
         )
         assert result.pull_request_url is not None
-        assert "/Athroniaeth/piighost-hub/new/main?" in result.pull_request_url
+        assert "/Athroniaeth/piighost-catalog/new/main?" in result.pull_request_url
         assert "filename=registry%2Fpatterns%2F" in result.pull_request_url

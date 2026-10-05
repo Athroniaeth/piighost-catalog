@@ -39,7 +39,7 @@ services:
       # Where the catalog registry lives inside the image. Override to serve a mirror.
       HUB_REGISTRY_DIR: ${HUB_REGISTRY_DIR:-/app/registry}
       # Target of the pull request link the contribution page builds.
-      HUB_REGISTRY_REPO: ${HUB_REGISTRY_REPO:-Athroniaeth/piighost-hub}
+      HUB_REGISTRY_REPO: ${HUB_REGISTRY_REPO:-Athroniaeth/piighost-catalog}
       HUB_REGISTRY_BRANCH: ${HUB_REGISTRY_BRANCH:-main}
       # The host /api/op forwards events to, and the origin nginx presents to
       # OpenPanel's allow list. Read once, when the template is rendered.
@@ -65,7 +65,7 @@ services:
       # Where the catalog registry lives inside the image. Override to serve a mirror.
       HUB_REGISTRY_DIR: ${HUB_REGISTRY_DIR:-/app/registry}
       # Target of the pull request link the contribution page builds.
-      HUB_REGISTRY_REPO: ${HUB_REGISTRY_REPO:-Athroniaeth/piighost-hub}
+      HUB_REGISTRY_REPO: ${HUB_REGISTRY_REPO:-Athroniaeth/piighost-catalog}
       HUB_REGISTRY_BRANCH: ${HUB_REGISTRY_BRANCH:-main}
       # Usage counters. A volume rather than the image, else a deployment
       # forgets how the catalog was used.
