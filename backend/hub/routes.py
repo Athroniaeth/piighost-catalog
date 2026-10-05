@@ -1,6 +1,6 @@
-"""Read-only hub API: what the ``piighost hub`` CLI and the site consume.
+"""Read-only catalog API: what the piighost library and the site consume.
 
-Public on purpose: a third party resolves ``hub:`` references from its own
+Public on purpose: a third party resolves ``catalog:`` references from its own
 deployment, so these routes carry no API key guard. They only serve what the
 registry already publishes. A commit is immutable, so a response selected by
 commit is cached forever; one selected by tag must be revalidated.
@@ -106,7 +106,7 @@ class CountOut(msgspec.Struct):
 
 
 class StatsOut(msgspec.Struct):
-    """How the hub is used, over a window, from counters rather than a log."""
+    """How the catalog is used, over a window, from counters rather than a log."""
 
     days: int
     pulls: int
@@ -287,7 +287,7 @@ class HubController(Controller):
     """``/api/v1``: objects, commits, resolution and rendering."""
 
     path = "/v1"
-    tags: Sequence[str] | None = ("hub",)
+    tags: Sequence[str] | None = ("catalog",)
 
     @get("/vocabulary", name="hub:vocabulary")
     async def vocabulary(self, state: State) -> VocabularyOut:
@@ -420,7 +420,7 @@ class HubController(Controller):
         keep_refs: Annotated[
             bool,
             QueryParameter(
-                description="Keep hub: references instead of inlining regexes."
+                description="Keep catalog: references instead of inlining regexes."
             ),
         ] = False,
         part: Annotated[
@@ -650,7 +650,7 @@ class HubController(Controller):
         snapshot = _snapshot(registry_of(state), _ref(namespace, name, tag))
         body = BadgeOut(
             schemaVersion=1,
-            label=f"piighost hub {tag}",
+            label=f"piighost catalog {tag}",
             message=f"{namespace}/{name}:{snapshot.short}",
             color="5865F2",
         )

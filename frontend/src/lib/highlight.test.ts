@@ -14,7 +14,7 @@ describe("pythonTokens", () => {
     // The tokeniser used to walk a slice of the source, and `\b` reads the
     // start of a string as a word boundary: `detector` sliced after `detect`
     // begins with `or`, so every identifier ending in a keyword was painted.
-    const tokens = pythonTokens("detector = RegexDetector.from_hub(ref)");
+    const tokens = pythonTokens("detector = RegexDetector.from_catalog(ref)");
     expect(kind(tokens, "keyword")).toEqual([]);
   });
 
@@ -24,9 +24,11 @@ describe("pythonTokens", () => {
   });
 
   it("names the callee, the strings and the comments", () => {
-    const tokens = pythonTokens('# note\nd = RegexDetector.from_hub("a/b")');
+    const tokens = pythonTokens(
+      '# note\nd = RegexDetector.from_catalog("a/b")',
+    );
     expect(kind(tokens, "comment")).toEqual(["# note"]);
-    expect(kind(tokens, "function")).toEqual(["from_hub"]);
+    expect(kind(tokens, "function")).toEqual(["from_catalog"]);
     expect(kind(tokens, "string")).toEqual(['"a/b"']);
   });
 });

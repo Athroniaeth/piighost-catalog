@@ -35,7 +35,7 @@
 
   // The page opens on the first sample: an empty box asks the visitor to invent
   // a text holding personal data, which is the slowest possible way to see what
-  // the hub does.
+  // the catalog does.
   api.samples().then((result) => {
     const first = result.items[0];
     if (first && text === "") text = first.text.trim();

@@ -6,7 +6,7 @@ sources are the very same pattern commit (a harmless diamond). ``exclude`` and
 ``only`` must name labels the source actually provides, so a typo is caught. The
 order of sources is the order of insertion in the detector, hence the tie-break
 between two patterns matching the same span: piighost's resolver keeps the first
-inserted, and the hub adds no rule of its own.
+inserted, and the catalog adds no rule of its own.
 """
 
 from collections.abc import Iterable, Mapping
@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from backend.hub.errors import ResolutionError
+from backend.hub.refs import strip_scheme
 from backend.hub.registry import Registry
 from backend.hub.store import Snapshot
 
@@ -276,5 +277,5 @@ def _own_detector(
 
 def _key_of(ref_text: str) -> str:
     """``ns/name`` of a written reference, whatever its selector."""
-    body = ref_text.removeprefix("hub:").removeprefix("//")
+    body = strip_scheme(ref_text)
     return body.split(":", 1)[0]

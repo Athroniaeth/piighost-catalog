@@ -1,16 +1,19 @@
-# Measuring how the hub is used
+# Measuring how the catalog is used
 
-Two things use this hub and only one has a browser. The site is instrumented from
-the page, where OpenPanel sees a device and a session. `piighost hub pull` is a
-command line tool: nothing there loads a script, so the only place its calls can
-be observed is on the way out of the API.
+Two things use this catalog and only one has a browser. The site is instrumented
+from the page, where OpenPanel sees a device and a session. The other is the
+piighost library: it fetches a `pipeline.toml` when a pipeline config names a
+`catalog:` reference (`load_pipeline`, `catalogs = [...]`) or when Python code
+calls `RegexDetector.from_catalog` or `piighost.catalog.pull`. Nothing there
+loads a script, so the only place its calls can be observed is on the way out
+of the API.
 
 Hence one client in the dashboard whose secret is only needed on one side, which
 is the answer to the question you arrive with:
 
 | | From the browser | From the server |
 |---|---|---|
-| Who speaks | the site, from the page | the API, for the CLI |
+| Who speaks | the site, from the page | the API, for the library |
 | Credentials | `clientId` alone | `clientId` **and** `clientSecret` |
 | Where it lives | inlined in the bundle, public | a variable of the `api` service, never in the bundle |
 | Variable | `VITE_OPENPANEL_CLIENT_ID` | `OPENPANEL_CLIENT_ID` + `OPENPANEL_CLIENT_SECRET` |
@@ -76,4 +79,4 @@ does.
    a build argument: changing the variable without rebuilding changes nothing.
 
 Without those variables nothing is loaded and nothing is sent. That is the
-default in development and for anyone hosting the hub themselves.
+default in development and for anyone hosting the catalog themselves.

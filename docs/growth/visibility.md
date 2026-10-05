@@ -1,19 +1,19 @@
 # Making the registry findable
 
 A companion to the project-wide visibility plan, which audits the library and
-its documentation site. This one is about `hub.piighost.dev`, which that plan
+its documentation site. This one is about `catalog.piighost.dev`, which that plan
 does not mention and which is a different problem: the library has one page,
 the registry has 226.
 
 ## What changed, and why it had to change first
 
-Until September 2026 every URL on the hub served the same 1.3 KB document:
-`piighost hub` as its title, nothing in its body, the whole registry behind a
-bundle. Google renders JavaScript, eventually and within a budget. The crawlers
-that feed the assistants people now ask _how do I redact PII before a prompt_
-mostly do not.
+Until September 2026 every URL on the catalog served the same 1.3 KB document:
+the product name (then `piighost hub`) as its title, nothing in its body, the
+whole registry behind a bundle. Google renders JavaScript, eventually and within
+a budget. The crawlers that feed the assistants people now ask _how do I redact
+PII before a prompt_ mostly do not.
 
-That was the mechanical reason the hub could not be cited, and no directory
+That was the mechanical reason the catalog could not be cited, and no directory
 submission would have changed it. It is fixed: `scripts/prerender.mjs` writes
 one real HTML file per route at build time, each with its own title,
 description, canonical, `og:url` and schema.org JSON-LD, and with the content
@@ -48,13 +48,13 @@ test is the highest-yield content work available.
 
 ### 2. The two sites do not link to each other
 
-`piighost.dev` and `hub.piighost.dev` are two domains with no mesh between
+`piighost.dev` and `catalog.piighost.dev` are two domains with no mesh between
 them. Free signal, currently unspent:
 
 - Every object page should link to the library's detector reference.
-- The library's `reference/detectors.md` should link to the hub for the
-  catalogue, which it now does for `from_hub` but not for browsing.
-- `piighost.dev` should carry the hub in its navigation, not only in prose.
+- The library's `reference/detectors.md` should link to the catalog for
+  browsing, not only for `from_catalog`.
+- `piighost.dev` should carry the catalog in its navigation, not only in prose.
 
 ### 3. Google Dataset Search is empty in this field
 
@@ -64,7 +64,7 @@ of records with a licence and a provenance. Dataset Search indexes that
 vocabulary, it ranks on queries no software directory competes for, and nothing
 in PII de-identification is currently there.
 
-Submit `hub.piighost.dev` to Google Search Console and Bing Webmaster Tools,
+Submit `catalog.piighost.dev` to Google Search Console and Bing Webmaster Tools,
 then check the Dataset report. This is the one channel where being early is
 worth more than being good.
 
@@ -81,7 +81,7 @@ Python package does not.
       this, and stale. Contributing there is contributing to the field.
 - [ ] **Google Dataset Search**, via Search Console.
 - [ ] **Hugging Face Datasets** — the registry exports as JSON; a dataset card
-      pointing back to the hub indexes very well and costs one upload.
+      pointing back to the catalog indexes very well and costs one upload.
 - [ ] **Data Privacy Stack** (`microsoft.github.io/presidio/community`) — the
       library belongs there; so does the registry, as a pattern source.
 
@@ -103,11 +103,11 @@ worth restating because a registry invites breaking them:
 
 ## Measuring
 
-The hub already reports to OpenPanel, and `/stats` shows pulls and searches.
+The catalog already reports to OpenPanel, and `/stats` shows pulls and searches.
 What is missing is the outside view:
 
 - Impressions and position per page, from Search Console, weekly.
-- Whether an assistant names the hub when asked where to find a tested regex
+- Whether an assistant names the catalog when asked where to find a tested regex
   for a French social security number. Quarterly, same questions each time.
 - Referring domains, which is the metric the submissions above move.
 

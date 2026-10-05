@@ -51,7 +51,7 @@
 
   type Kind = "pattern" | "group" | "config";
 
-  // Groups first, then patterns, then configurations. The hub is a registry of
+  // Groups first, then patterns, then configurations. The catalog is a registry of
   // regexes: a group is a set of them you can run as it is, a pattern is one
   // shape, and a configuration is a piighost pipeline that happens to carry
   // regexes — a different object, and not what someone came here for. Within

@@ -129,7 +129,7 @@ class ConfigManifest(msgspec.Struct, forbid_unknown_fields=True):
     """``config.toml``: detectors, stages, and the configs it extends.
 
     A detector is a piighost detector config plus a ``name``. A regex detector
-    carries ``groups`` (hub references) and no inline patterns, so every regex
+    carries ``groups`` (catalog references) and no inline patterns, so every regex
     reaching a config went through a tested pattern. Stages are piighost sections
     passed through as is; ``memory`` and ``token_memo_ttl`` are deployment
     concerns and are refused.
@@ -168,7 +168,7 @@ STAGE_SECTIONS = frozenset(
 """The piighost sections a config may carry as stages."""
 
 FORBIDDEN_SECTIONS = frozenset({"memory", "token_memo_ttl"})
-"""Deployment-only sections a hub config must not carry."""
+"""Deployment-only sections a catalog config must not carry."""
 
 
 def load_toml[T](path: Path, schema: type[T]) -> T:

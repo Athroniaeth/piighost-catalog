@@ -12,6 +12,7 @@ import unicodedata
 from collections.abc import Sequence
 from dataclasses import dataclass, field
 
+from backend.hub.refs import strip_scheme
 from backend.hub.registry import Registry
 from backend.hub.store import Snapshot
 
@@ -253,5 +254,5 @@ def _referenced(head: Snapshot) -> list[str]:
 
 
 def _key(ref_text: str) -> str:
-    body = ref_text.removeprefix("hub:").removeprefix("//")
+    body = strip_scheme(ref_text)
     return body.split(":", 1)[0]

@@ -1,7 +1,8 @@
 """``python -m backend.hub``: check, record, resolve, render, log, tags.
 
-The consumer commands of the future ``piighost hub`` CLI (pull, lock, verify)
-live in the library. These are the registry-side commands: what the CI runs and
+Consuming a reference is the library's side: a ``catalog:`` entry in a pipeline
+config, or ``RegexDetector.from_catalog`` and ``piighost.catalog.pull`` from
+Python. These are the registry-side commands: what the CI runs and
 what an author uses to see what a reference resolves to.
 """
 

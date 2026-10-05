@@ -10,19 +10,19 @@ format des fichiers est dans [manifest.md](manifest.md), l'API HTTP dans
 ## Références
 
 ```
-hub:alice/fr-notariat:prod            tag, mobile, posé par le propriétaire
-hub:piighost/fr-notariat:3fa9c2e1     commit, immuable
-hub:piighost/fr-notariat:latest       tag calculé, dernier commit
-hub:piighost/fr-notariat              équivaut à :latest
+catalog:alice/fr-notariat:prod            tag, mobile, posé par le propriétaire
+catalog:piighost/fr-notariat:3fa9c2e1     commit, immuable
+catalog:piighost/fr-notariat:latest       tag calculé, dernier commit
+catalog:piighost/fr-notariat              équivaut à :latest
 ```
 
 Un seul séparateur sert aux tags et aux commits. La règle de désambiguïsation est
 syntaxique : huit caractères hexadécimaux exactement désignent un commit, tout le
 reste est un tag. En contrepartie un tag ne peut pas être composé uniquement de
-caractères hexadécimaux, ni s'appeler `latest`. Le préfixe `hub:` est facultatif
-dans un manifeste, où toute référence est une référence hub, et obligatoire dans
-un fichier piighost, où il distingue une référence d'un catalogue intégré comme
-`generic`.
+caractères hexadécimaux, ni s'appeler `latest`. Le préfixe `catalog:` est
+facultatif dans un manifeste, où toute référence désigne un objet du catalogue,
+et d'usage dans un fichier piighost, où il marque une référence au catalogue.
+L'ancien préfixe `hub:` reste accepté partout, ici comme dans la bibliothèque.
 
 ## Commits
 
@@ -92,7 +92,7 @@ règles :
 3. **L'ordre des sources est l'ordre d'insertion dans le détecteur.** Tous les
    regex valent une confiance de 1, et le resolver de piighost trie par confiance
    puis par span avec un tri stable : sur deux spans identiques, le premier
-   inséré gagne. Le hub n'ajoute aucune règle, il respecte l'ordre.
+   inséré gagne. Le catalogue n'ajoute aucune règle, il respecte l'ordre.
 
 Sur la troisième règle, un cas réel : un SIRET de quatorze chiffres est aussi une
 carte bancaire de forme (treize à dix-neuf chiffres). Avec `generic` déclaré
@@ -213,10 +213,9 @@ plusieurs deviennent un `composite` dans l'ordre. Deux formes :
 
 - **aplatie**, par défaut : chaque détecteur regex reçoit `patterns = { LABEL =
   '...' }` dans l'ordre résolu. Le fichier fonctionne hors ligne, sur toute
-  version de piighost qui accepte ses sections, sans support du hub.
-- **référencée** (`keep_refs`) : `catalogs = ["hub:piighost/fr:3fa9c2e1"]`, pour
-  un piighost qui résout lui-même. Ce support n'existe pas encore dans la
-  bibliothèque, voir plus bas.
+  version de piighost qui accepte ses sections, sans support du catalogue.
+- **référencée** (`keep_refs`) : `catalogs = ["catalog:piighost/fr:3fa9c2e1"]`,
+  pour un piighost qui résout lui-même, ce que fait la 2.0. Voir plus bas.
 
 Le champ `name` du pipeline reçoit la référence rendue, `ns/name:short`, pour la
 traçabilité. Les regex sont écrits en chaînes littérales TOML quand ils ne
@@ -249,18 +248,11 @@ Tous les checks tournent avec les vrais composants piighost, `RegexDetector` et
 
 ## Ce qui revient à la bibliothèque
 
-Le hub publie et vérifie. Consommer une référence depuis un déploiement revient à
-`piighost`, dans un futur sous-groupe `piighost hub` de sa CLI :
-
-| Commande | Rôle |
-|---|---|
-| `hub pull REF [-o FILE] [--keep-refs] [--memory TYPE]` | écrit un pipeline TOML depuis l'API, aplati par défaut |
-| `hub resolve REF`, `hub info REF`, `hub search`, `hub tags REF`, `hub log REF` | inspection |
-| `hub lock [CONFIG]` | fige chaque référence d'un fichier en commit et digest dans `piighost.lock` |
-| `hub verify [CONFIG] [--offline]` | compare au lock, code 1 sur toute dérive |
-| `hub lock --update` | re-résout les tags quand on décide de suivre |
-
-Au chargement, le lock l'emporte sur le tag, puis le cache local, puis le réseau
-sauf `PIIGHOST_HUB_OFFLINE`. Le digest est vérifié à chaque fois et un écart
-lève `ConfigError`. Côté bibliothèque, il reste à accepter une référence `hub:`
-dans `catalogs`, et l'ordre des motifs y est déjà l'ordre d'insertion.
+Le catalogue publie et vérifie. Consommer une référence depuis un déploiement
+revient à `piighost`, qui le fait depuis la 2.0 sans ligne de commande dédiée :
+une référence `catalog:` dans `catalogs` ou passée à `load_pipeline`, ou
+`RegexDetector.from_catalog` et `piighost.catalog.pull` depuis Python. Chacun
+récupère `pipeline.toml` depuis l'API, et une référence épinglée par commit est
+mise en cache sur disque. L'ordre des motifs y est l'ordre d'insertion. Le détail,
+et ce qui n'est pas livré (lock, vérification, mode hors ligne), est dans
+[library-support.md](library-support.md).

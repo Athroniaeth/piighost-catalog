@@ -21,7 +21,7 @@
   // The catalogue is the registry of regexes. A piighost configuration is a
   // pipeline that happens to carry some, which is a different object with a
   // page of its own; listing it here put 32 of them among 186 regexes and
-  // made the hub look like a config store.
+  // made the catalog look like a config store.
   const KINDS: Kind[] = ["pattern", "group"];
   // Widest coverage leads: a visitor who has not typed anything is looking for
   // the configuration that covers the most, not the one edited most recently.

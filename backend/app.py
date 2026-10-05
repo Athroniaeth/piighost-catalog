@@ -109,7 +109,7 @@ def build_openapi_config(*, docs_enabled: bool) -> OpenAPIConfig | None:
         return None
 
     return OpenAPIConfig(
-        title="PIIGhost Hub API",
+        title="piighost catalog API",
         version="1.0.0",
         components=Components(
             security_schemes={
@@ -239,7 +239,7 @@ app = Litestar(
     # Checked at startup, not at import: the CLI (`litestar assets generate-types`)
     # loads this module without needing a key.
     # The registry loads once here too: an invalid tree stops the app instead of
-    # serving half a hub.
+    # serving half a catalog.
     on_startup=[
         ensure_api_key_configured,
         load_hub_registry,

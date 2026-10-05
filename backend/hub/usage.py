@@ -1,4 +1,4 @@
-"""How the hub is used, counted rather than logged.
+"""How the catalog is used, counted rather than logged.
 
 The site promises that a text sent to the playground is never written to a
 database. Analytics that broke that promise would be worse than no analytics, so
@@ -14,9 +14,10 @@ and the difference is structural rather than a matter of discipline:
 - Writes are `INSERT ... ON CONFLICT DO UPDATE SET count = count + 1`, so two
   identical calls in the same hour are indistinguishable by construction.
 
-What it answers is the question that prompted it: which configurations do people
-actually pull through `piighost hub pull`, pinned or floating, and does that
-change over time. What it cannot answer is who did it, which is the point.
+What it answers is the question that prompted it: which configurations does the
+piighost library actually pull, through a `catalog:` reference in a pipeline
+config or `RegexDetector.from_catalog`, pinned or floating, and does that change
+over time. What it cannot answer is who did it, which is the point.
 
 Counting happens in memory and is flushed on a timer, so the hot path is a
 dictionary increment and a slow disk never delays a response.
@@ -58,7 +59,7 @@ Key = tuple[str, str, str, str, str, int]
 
 _COMMIT = re.compile(r"^[0-9a-f]{8}$")
 
-#: The prefix of every path that says something about how the hub is used.
+#: The prefix of every path that says something about how the catalog is used.
 #: Everything else, the health check included, is not counted at all rather
 #: than counted and hidden.
 _REFS = "/api/v1/refs/"
@@ -104,9 +105,10 @@ def selector_of(selector: str | None) -> str:
 def classify(path: str) -> tuple[str, str, str] | None:
     """The (kind, object, selector) a request counts as, or None to ignore it.
 
-    A pull is the thing worth knowing: `piighost hub pull` fetches the rendered
-    pipeline, so `pipeline.toml` is counted apart from merely reading an
-    object's metadata.
+    A pull is the thing worth knowing: the library resolves a `catalog:`
+    reference (`load_pipeline`, `catalogs = [...]`, `RegexDetector.from_catalog`,
+    `piighost.catalog.pull`) by fetching the rendered pipeline, so
+    `pipeline.toml` is counted apart from merely reading an object's metadata.
     """
     if path.startswith("/api/v1/search"):
         return ("search", "", "")

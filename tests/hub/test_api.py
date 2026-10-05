@@ -117,7 +117,7 @@ class TestCommits:
             params={"keep_refs": "true"},
         )
         assert tomllib.loads(refs.text)["detector"]["catalogs"][0].startswith(
-            "hub:piighost/all:"
+            "catalog:piighost/all:"
         )
 
     async def test_the_detector_can_be_taken_without_the_stages(

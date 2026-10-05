@@ -1,0 +1,46 @@
+{
+  "digest": "29ad6889e08a00e3544ef309f3efa2286e20cde29191cb4bed111e21529c5a7d",
+  "recorded_at": "2026-10-05T01:10:48+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "us-extended",
+    "schema_version": 1,
+    "description": {
+      "en": "The `us` group plus passport, EIN and bank routing numbers. The routing pattern is noisy: any nine-digit run.",
+      "fr": "Le groupe `us` plus passeport, EIN et numéro de routage bancaire. Le motif de routage est bruyant : toute suite de neuf chiffres."
+    },
+    "tags": [
+      "us",
+      "government-id",
+      "finance",
+      "business"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/us",
+        "commit": "29d5c0a5",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/us-passport",
+        "commit": "2b3d9486",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/us-ein",
+        "commit": "456819f3",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/us-bank-routing",
+        "commit": "e0f348f7",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

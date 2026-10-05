@@ -1,9 +1,9 @@
-# API HTTP du hub
+# API HTTP du catalogue
 
 *[English version](en/api.md).*
 
-Lecture seule, publique, sous `/api/v1`. C'est ce que la future CLI `piighost
-hub` et le site consomment. Les routes ne portent pas la clé d'API du template :
+Lecture seule, publique, sous `/api/v1`. C'est ce que la bibliothèque piighost
+et le site consomment. Les routes ne portent pas la clé d'API du template :
 elles ne servent que ce que le registre publie, et un tiers doit pouvoir résoudre
 une référence depuis son propre déploiement. Le quota par client et la limite de
 taille de corps s'appliquent comme au reste de l'API. Le contrat exact est
@@ -22,7 +22,7 @@ taille de corps s'appliquent comme au reste de l'API. Le contrat exact est
 | `GET /api/v1/stats?days=` | l'usage du registre sur une fenêtre, agrégé depuis des compteurs |
 | `GET /api/v1/labels` | tous les labels que le registre peut émettre |
 | `GET /api/v1/samples` | les textes annotés, avec leurs annotations |
-| `GET /api/v1/diff/{ns}/{name}?before=&after=` | ce que deux commits détectent différemment. Pas d'écran sur le site : c'est la matière de `piighost hub log` |
+| `GET /api/v1/diff/{ns}/{name}?before=&after=` | ce que deux commits détectent différemment. Pas d'écran sur le site, ni de commande dans la bibliothèque |
 | `GET /api/v1/badge/{ns}/{name}?tag=` | un endpoint shields.io, pour afficher un commit dans un README. Pas d'écran non plus, par construction |
 
 `{selector}` est un tag, `latest` compris, ou un commit de huit caractères
@@ -84,7 +84,7 @@ curl -s "http://127.0.0.1:5173/api/v1/refs/piighost/fr-default/latest/pipeline.t
 
 ## Ce qui est compté
 
-Le hub compte son usage, et la forme du stockage est le garde-fou plutôt que la
+Le catalogue compte son usage, et la forme du stockage est le garde-fou plutôt que la
 discipline. Ce n'est pas un journal de requêtes auquel on aurait retiré des
 colonnes : c'est une table de compteurs, agrégée à l'écriture.
 
@@ -102,5 +102,7 @@ Le comptage se fait en mémoire et se vide sur minuterie, donc le chemin chaud
 est une incrémentation de dictionnaire : un disque lent ne retarde jamais une
 réponse. Le fichier vit dans `HUB_USAGE_DB`, un volume en production.
 
-`piighost hub pull` récupère `pipeline.toml`, c'est donc ce chemin qui compte
-comme une récupération, distinct de la simple lecture des métadonnées d'un objet.
+La bibliothèque récupère `pipeline.toml` quand elle résout une référence
+`catalog:` (dans `catalogs`, par `load_pipeline`, `RegexDetector.from_catalog`
+ou `piighost.catalog.pull`), c'est donc ce chemin qui compte comme une
+récupération, distinct de la simple lecture des métadonnées d'un objet.

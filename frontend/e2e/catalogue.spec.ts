@@ -20,7 +20,7 @@ test.describe("the catalogue", () => {
     page,
   }) => {
     await page.goto("/r/piighost/fr-default");
-    await expect(page).toHaveTitle("piighost/fr-default · piighost hub");
+    await expect(page).toHaveTitle("piighost/fr-default · piighost catalog");
   });
 
   test("caps a long facet, and keeps it open across a filter", async ({

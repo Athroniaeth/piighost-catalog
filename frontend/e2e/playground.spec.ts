@@ -95,7 +95,7 @@ test.describe("the playground", () => {
   });
 
   test("leads with the groups in the picker", async ({ page }) => {
-    // The hub is a registry of regexes: a group is the set someone came to
+    // The catalog is a registry of regexes: a group is the set someone came to
     // run, a piighost config is a different object further down.
     await page.goto("/playground");
     await page.locator("#play-ref").click();

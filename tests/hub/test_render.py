@@ -78,18 +78,21 @@ class TestRender:
     def test_catalogs_fold_by_concatenation(self) -> None:
         folded = _fold(
             [
-                {"type": "regex", "catalogs": ["hub:piighost/fr"]},
-                {"type": "regex", "catalogs": ["hub:piighost/contact"]},
+                {"type": "regex", "catalogs": ["catalog:piighost/fr"]},
+                {"type": "regex", "catalogs": ["catalog:piighost/contact"]},
             ]
         )
         assert folded == [
-            {"type": "regex", "catalogs": ["hub:piighost/fr", "hub:piighost/contact"]}
+            {
+                "type": "regex",
+                "catalogs": ["catalog:piighost/fr", "catalog:piighost/contact"],
+            }
         ]
 
-    def test_keep_refs_writes_hub_catalogs(self, registry: Registry) -> None:
+    def test_keep_refs_writes_catalog_references(self, registry: Registry) -> None:
         data = render_pipeline(config(registry, "child"), keep_refs=True)
         assert data["detector"]["catalogs"] == [
-            f"hub:{registry.heads['piighost/all'].ref}"
+            f"catalog:{registry.heads['piighost/all'].ref}"
         ]
         assert "patterns" not in data["detector"]
 

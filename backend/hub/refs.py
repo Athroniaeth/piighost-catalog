@@ -1,10 +1,11 @@
-"""Reference grammar: ``[hub:]namespace/name[:selector]``.
+"""Reference grammar: ``[catalog:]namespace/name[:selector]``.
 
 A selector is either a commit, exactly eight lowercase hex characters, or a tag.
 That syntactic split is what lets one separator serve both: a tag made only of
 hex characters is refused at publication, so the two sets never meet. ``latest``
 is a tag every object carries, computed and never set by hand; a reference with
-no selector means ``latest``.
+no selector means ``latest``. The scheme is optional, and the older ``hub:``
+is still read, as the piighost library does.
 """
 
 import re
@@ -12,7 +13,8 @@ from dataclasses import dataclass, replace
 
 from backend.hub.errors import RefError
 
-SCHEME = "hub:"
+SCHEME = "catalog:"
+LEGACY_SCHEME = "hub:"
 LATEST = "latest"
 
 _NAME = re.compile(r"^[a-z0-9][a-z0-9-]*$")
@@ -45,7 +47,7 @@ def is_valid_tag(tag: str) -> bool:
 
 @dataclass(frozen=True, slots=True)
 class Ref:
-    """A parsed reference to a hub object at a tag or a commit."""
+    """A parsed reference to a catalog object at a tag or a commit."""
 
     namespace: str
     name: str
@@ -69,16 +71,21 @@ class Ref:
         return f"{self.key}:{self.selector}"
 
 
+def strip_scheme(text: str) -> str:
+    """Drop a leading ``catalog:`` or ``hub:`` scheme, and the ``//`` after it."""
+    for scheme in (SCHEME, LEGACY_SCHEME):
+        if text.startswith(scheme):
+            return text[len(scheme) :].removeprefix("//")
+    return text
+
+
 def parse_ref(text: str) -> Ref:
-    """Parse ``[hub:][//]namespace/name[:selector]`` into a Ref.
+    """Parse ``[catalog:][//]namespace/name[:selector]`` into a Ref.
 
     Raises:
         RefError: If the text does not follow the grammar.
     """
-    body = text.strip()
-    if body.startswith(SCHEME):
-        body = body[len(SCHEME) :]
-        body = body.removeprefix("//")
+    body = strip_scheme(text.strip())
 
     namespace, sep, rest = body.partition("/")
     if not sep or "/" in rest:

@@ -1,4 +1,4 @@
-"""Hub errors. Every failure a registry author can cause derives from HubError."""
+"""Catalog errors. Every failure a registry author can cause derives from HubError."""
 
 
 class HubError(Exception):

@@ -1,6 +1,6 @@
-# The hub's HTTP API
+# The catalog's HTTP API
 
-Read only, public, under `/api/v1`. This is what the future `piighost hub` CLI
+Read only, public, under `/api/v1`. This is what the piighost library
 and the site consume. The routes do not carry the template's API key: they serve
 only what the registry publishes, and a third party has to be able to resolve a
 reference from their own deployment. The per-client quota and the body size
@@ -20,7 +20,7 @@ limit apply as they do to the rest of the API. The exact contract is
 | `GET /api/v1/stats?days=` | the registry's usage over a window, aggregated from counters |
 | `GET /api/v1/labels` | every label the registry can emit |
 | `GET /api/v1/samples` | the annotated texts, with their annotations |
-| `GET /api/v1/diff/{ns}/{name}?before=&after=` | what two commits detect differently. No screen on the site: this is the matter of `piighost hub log` |
+| `GET /api/v1/diff/{ns}/{name}?before=&after=` | what two commits detect differently. No screen on the site, and no command in the library |
 | `GET /api/v1/badge/{ns}/{name}?tag=` | a shields.io endpoint, to show a commit in a README. No screen either, by design |
 
 `{selector}` is a tag, `latest` included, or an eight character hexadecimal
@@ -83,7 +83,7 @@ curl -s "http://127.0.0.1:5173/api/v1/refs/piighost/fr-default/latest/pipeline.t
 
 ## What is counted
 
-The hub counts its own usage, and the shape of the storage is the safeguard
+The catalog counts its own usage, and the shape of the storage is the safeguard
 rather than discipline. This is not a request log with columns removed: it is a
 table of counters, aggregated as it is written.
 
@@ -100,5 +100,6 @@ Counting happens in memory and drains on a timer, so the hot path is a
 dictionary increment: a slow disk never delays a response. The file lives at
 `HUB_USAGE_DB`, a volume in production.
 
-`piighost hub pull` fetches `pipeline.toml`, so that path is what counts as a
-pull, apart from merely reading an object's metadata.
+The library fetches `pipeline.toml` when it resolves a `catalog:` reference (in
+`catalogs`, through `load_pipeline`, `RegexDetector.from_catalog` or
+`piighost.catalog.pull`), so that path is what counts as a pull, apart from merely reading an object's metadata.

@@ -1,7 +1,7 @@
 """Registry checks: what the CI of the registry runs, and what ``record`` requires.
 
 Every check runs against the real piighost components, RegexDetector and
-ConfidenceOverlapResolver, never against a re-implementation: a hub that passed
+ConfidenceOverlapResolver, never against a re-implementation: a catalog that passed
 its own tests but behaved differently in the library would be worse than none.
 
 - Pattern examples: each ``match`` value is detected as itself, alone and wrapped

@@ -78,7 +78,7 @@ e2e:
 # The registry is data with tests of its own: examples, backtracking bounds,
 # composition, recorded commits. See docs/hub/resolution.md.
 
-# Validate the hub registry (registry/).
+# Validate the catalog registry (registry/).
 hub-check:
     uv run python -m backend.hub check
 

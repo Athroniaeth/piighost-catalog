@@ -163,6 +163,11 @@
      Voir brand/charte/CHARTE.md, journal du 22 septembre 2026. */
   --marque: var(--primary);
 
+  /* Fantôme du logo : silhouette et yeux, par mode. L'ombre reste
+     --primary. Voir brand/logo/README.md, journal du 2 octobre 2026. */
+  --marque-silhouette: oklch(0.21 0.08 277);
+  --marque-yeux: var(--primary-foreground);
+
   /* Coloration syntaxique : GitHub Primer, cité tel quel.
      Seul hexadécimal du fichier, voir CHARTE.md section 8. */
   --code-comment: #656d76;
@@ -264,6 +269,11 @@
   --entite-08-jeton-fond: oklch(0.4 0.09 330);
   --entite-08-jeton-texte: oklch(0.78 0.13 330);
   --entite-08-puce: oklch(0.62 0.16 330);
+
+  /* Fantôme du logo : silhouette et yeux, par mode. L'ombre reste
+     --primary. Voir brand/logo/README.md, journal du 2 octobre 2026. */
+  --marque-silhouette: var(--foreground);
+  --marque-yeux: var(--primary);
 
   /* Coloration syntaxique : GitHub Primer, cité tel quel.
      Seul hexadécimal du fichier, voir CHARTE.md section 8. */

@@ -37,7 +37,7 @@ async def client(
     """Fixture for creating an async test client.
 
     The app refuses to start without an API key, so one is set before the lifespan
-    runs. The hub registry is pointed at a small fixture tree for the same reason:
+    runs. The catalog registry is pointed at a small fixture tree for the same reason:
     the real one is data under edit, and a test must not depend on it. The context
     manager restores the environment afterwards. The usage counters go to a
     temporary file too, else a test run would leave rows in the working tree.
