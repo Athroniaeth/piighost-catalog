@@ -50,9 +50,9 @@
   const snippets = $derived(api.snippets(ref).catch(() => null));
 
   let tab = $state<Tab>("content");
-  // By hub id first: naming the reference is the short form and the one that
+  // By catalog id first: naming the reference is the short form and the one that
   // keeps the patterns auditable at their source. Inlining is the fallback,
-  // for a file that has to work with no hub to reach.
+  // for a file that has to work with no catalog to reach.
   let form = $state<"flattened" | "referenced">("referenced");
   let memory = $state<"" | "in_memory" | "redis" | "sqlalchemy">("");
   let snippet = $state("python");
@@ -91,7 +91,7 @@
     const suffix = part === "detector" ? "detector" : "pipeline";
     download(`${name}-${suffix}.toml`, await pipeline, "application/toml");
     // Which rendering people take away is the question `keep_refs` exists to
-    // answer: a flattened file works offline, a referenced one needs the hub.
+    // answer: a flattened file works offline, a referenced one needs the catalog.
     track({
       name: "pipeline_copied",
       props: { form, memory: memory || "none", part },

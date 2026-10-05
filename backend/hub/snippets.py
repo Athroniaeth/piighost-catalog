@@ -1,7 +1,7 @@
 """Ready-to-paste ways to use a reference, one per target."""
 
-MIN_VERSION = "1.8"
-"""The piighost release that ships RegexDetector.from_hub and hub catalogs."""
+MIN_VERSION = "2.0"
+"""The piighost release that ships RegexDetector.from_catalog and catalog: refs."""
 
 
 def snippets(ref: str, kind: str, *, origin: str, regex_only: bool) -> dict[str, str]:
@@ -9,7 +9,7 @@ def snippets(ref: str, kind: str, *, origin: str, regex_only: bool) -> dict[str,
 
     The registry hands out regexes, so both recipes are about the detector.
     What a pipeline does afterwards — link, anonymize, remember — is the
-    application's to choose, and a hub that picked those for you would be a
+    application's to choose, and a catalog that picked those for you would be a
     different kind of thing.
 
     ``regex_only`` says the rendered detector is a plain regex one, which is
@@ -20,15 +20,15 @@ def snippets(ref: str, kind: str, *, origin: str, regex_only: bool) -> dict[str,
     """
     if not regex_only:
         return {"python": _whole_pipeline(ref, origin)}
-    return {"python": _from_hub(ref), "config": _catalog(ref)}
+    return {"python": _from_catalog(ref), "config": _catalog(ref)}
 
 
-def _from_hub(ref: str) -> str:
+def _from_catalog(ref: str) -> str:
     """The detector by its id, which is what the registry is for."""
     return (
         f"# needs piighost >= {MIN_VERSION}\n"
         "from piighost.components.detector import RegexDetector\n\n"
-        f'detector = RegexDetector.from_hub("{ref}")\n'
+        f'detector = RegexDetector.from_catalog("{ref}")\n'
         'found = await detector.detect("mail me at a@b.co")'
     )
 
@@ -39,7 +39,7 @@ def _catalog(ref: str) -> str:
         "# pipeline.toml\n"
         "[detector]\n"
         "type = 'regex'\n"
-        f"catalogs = ['hub:{ref}']\n"
+        f"catalogs = ['catalog:{ref}']\n"
         "\n"
         "# Your own on top: an inline pattern wins on a shared label.\n"
         "[detector.patterns]\n"

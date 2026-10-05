@@ -53,7 +53,7 @@ describe("RefPicker", () => {
   beforeEach(() => vi.clearAllMocks());
 
   it("leads with the groups, then patterns, then configurations", async () => {
-    // The hub is a registry of regexes: a group is the set someone came to
+    // The catalog is a registry of regexes: a group is the set someone came to
     // run, and a piighost config is a different object.
     const list = await open();
     const keys = within(list)

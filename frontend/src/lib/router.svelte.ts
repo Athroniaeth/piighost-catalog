@@ -16,7 +16,7 @@ export type Match = {
 /**
  * The chat demo is off until a model detector exists. Scripted replies over
  * regex hits show nothing the run tab does not already show, and the tab
- * implied a capability the hub has not shipped. The route, the page, its
+ * implied a capability the catalog has not shipped. The route, the page, its
  * strings and its analytics event are all kept: turning it back on is this
  * one flag.
  */
@@ -107,9 +107,9 @@ export function interceptLinks(event: MouseEvent) {
   router.go(href);
 }
 
-/** Split `namespace/name:selector` into its pieces. */
+/** Split `namespace/name:selector` into its pieces, with or without a scheme. */
 export function parseRef(ref: string) {
-  const body = ref.replace(/^hub:(\/\/)?/, "");
+  const body = ref.replace(/^(catalog|hub):(\/\/)?/, "");
   const [key, selector = "latest"] = body.split(":");
   const [namespace, name] = key.split("/");
   return { namespace, name, selector, key };

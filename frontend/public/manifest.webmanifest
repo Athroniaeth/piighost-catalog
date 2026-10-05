@@ -1,6 +1,6 @@
 {
-  "name": "piighost hub",
-  "short_name": "piighost hub",
+  "name": "piighost catalog",
+  "short_name": "piighost catalog",
   "description": "Tested de-identification regexes: patterns, and the groups that compose them.",
   "start_url": "/",
   "display": "standalone",

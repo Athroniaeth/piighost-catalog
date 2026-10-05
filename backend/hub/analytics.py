@@ -1,10 +1,13 @@
-"""The hub's traffic, forwarded to a self-hosted OpenPanel.
+"""The catalog's traffic, forwarded to a self-hosted OpenPanel.
 
-Two things use this hub and only one of them has a browser. The site is
+Two things use this catalog and only one of them has a browser. The site is
 instrumented from the page, where OpenPanel can see a device and a session and
-answer the questions a dashboard is for. `piighost hub pull` is a command line
-tool: nothing there loads a script, so the only place its calls can be observed
-is here, on the way out of the API.
+answer the questions a dashboard is for. The other is the piighost library: it
+fetches a rendered `pipeline.toml` when a pipeline config names a `catalog:`
+reference (`load_pipeline`, `catalogs = [...]`) or when Python code calls
+`RegexDetector.from_catalog` or `piighost.catalog.pull`. Nothing there loads a
+script, so the only place its calls can be observed is here, on the way out of
+the API.
 
 So this forwards exactly the calls the browser cannot speak for, and nothing
 else. A request from a browser is skipped, because the page already sent its

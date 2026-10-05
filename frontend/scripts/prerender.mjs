@@ -3,7 +3,7 @@
  * still reads the registry.
  *
  * The site is a single page application: every URL served the same 1.3 KB of
- * empty document, with `piighost hub` as its title and nothing in its body.
+ * empty document, with `piighost catalog` as its title and nothing in its body.
  * Google renders JavaScript, eventually and within a budget; the crawlers that
  * feed the assistants people now ask "how do I redact PII before a prompt"
  * mostly do not. Two hundred and twenty-six pages of real content were
@@ -45,7 +45,7 @@ const ROOT = resolve(HERE, "..", "..");
 const REGISTRY = join(ROOT, "registry");
 const DIST = resolve(HERE, "..", "dist");
 const ORIGIN =
-  process.env.SITE_URL?.replace(/\/$/, "") || "https://hub.piighost.dev";
+  process.env.SITE_URL?.replace(/\/$/, "") || "https://catalog.piighost.dev";
 
 const KINDS = {
   patterns: { file: "pattern.toml", key: "pattern", kind: "pattern" },
@@ -251,7 +251,7 @@ function neighboursOf(object, objects, index) {
  * A registry entry is a Dataset, and the registry a DataCatalog. That is not a
  * stretch to please a crawler: each object is a versioned, addressable set of
  * records with a licence and a provenance, which is what the vocabulary means.
- * It also puts the hub in Google Dataset Search, where nothing in this field
+ * It also puts the catalog in Google Dataset Search, where nothing in this field
  * currently is.
  */
 function objectJsonLd(object) {
@@ -271,7 +271,7 @@ function objectJsonLd(object) {
       "pseudonymization",
     ],
     license: "https://opensource.org/licenses/MIT",
-    isPartOf: { "@type": "DataCatalog", name: "piighost hub", url: ORIGIN },
+    isPartOf: { "@type": "DataCatalog", name: "piighost catalog", url: ORIGIN },
     distribution: {
       "@type": "DataDownload",
       encodingFormat: "text/toml",
@@ -331,7 +331,7 @@ objects.forEach((object, index) => {
   write(
     `/r/${object.key}`,
     render(template, {
-      title: `${object.key} — ${kindName} — piighost hub`,
+      title: `${object.key} — ${kindName} — piighost catalog`,
       description: summary(object.description),
       canonical: `${ORIGIN}/r/${object.key}`,
       jsonLd: objectJsonLd(object),
@@ -406,16 +406,16 @@ function staticBody(route, heading, description) {
 const STATIC = [
   {
     route: "/",
-    title: "piighost hub — tested de-identification regexes",
+    title: "piighost catalog — tested de-identification regexes",
     description:
       `A registry of ${counts.pattern} tested de-identification regex patterns and ` +
       `${counts.group} groups for piighost, each carrying the cases it must catch and ` +
       `the cases it must leave alone.`,
-    heading: "piighost hub",
+    heading: "piighost catalog",
   },
   {
     route: "/labels",
-    title: "Labels — piighost hub",
+    title: "Labels — piighost catalog",
     description:
       "Every label the registry emits, and the patterns that define it, from EMAIL " +
       "and FR_SIRET to the credential shapes a traceback leaks.",
@@ -423,7 +423,7 @@ const STATIC = [
   },
   {
     route: "/configs",
-    title: "piighost configs — piighost hub",
+    title: "piighost configs — piighost catalog",
     description:
       "Pipelines assembled from the registry's groups: a detector, then what happens " +
       "once something is found.",
@@ -439,7 +439,7 @@ const STATIC = [
   },
   {
     route: "/playground/compare",
-    title: "Compare de-identification patterns — piighost hub",
+    title: "Compare de-identification patterns — piighost catalog",
     description:
       "Run several registry objects over the same text and see where they disagree, " +
       "value by value.",
@@ -447,7 +447,7 @@ const STATIC = [
   },
   {
     route: "/contribute",
-    title: "Contribute a pattern — piighost hub",
+    title: "Contribute a pattern — piighost catalog",
     description:
       "Propose a regex pattern or a group of patterns. Checked here with the " +
       "maintainers' own tests, merged by pull request.",
@@ -455,7 +455,7 @@ const STATIC = [
   },
   {
     route: "/stats",
-    title: "Usage — piighost hub",
+    title: "Usage — piighost catalog",
     description:
       "What the registry is asked for: pulls, searches and the objects behind them.",
     heading: "Usage",
@@ -465,7 +465,7 @@ const STATIC = [
 const catalog = {
   "@context": "https://schema.org",
   "@type": "DataCatalog",
-  name: "piighost hub",
+  name: "piighost catalog",
   url: ORIGIN,
   description:
     "A registry of tested de-identification regexes for piighost: patterns, and the " +

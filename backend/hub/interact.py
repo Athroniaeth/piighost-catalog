@@ -24,6 +24,7 @@ from backend.hub.playground import (
     run_chat,
     run_ref,
 )
+from backend.hub.refs import strip_scheme
 from backend.hub.registry import Registry
 from backend.hub.resolve import ResolvedLabels, resolve_sources
 from backend.hub.routes import (
@@ -190,7 +191,7 @@ async def _resolve_and_run(registry: Registry, ref_text: str, text: str) -> RunO
 
 
 def _split(ref_text: str) -> tuple[str, str, str | None]:
-    body = ref_text.strip().removeprefix("hub:").removeprefix("//")
+    body = strip_scheme(ref_text.strip())
     namespace, _, rest = body.partition("/")
     name, sep, selector = rest.partition(":")
     return namespace, name, selector if sep else None

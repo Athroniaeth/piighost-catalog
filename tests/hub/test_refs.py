@@ -11,6 +11,9 @@ class TestParse:
             ("piighost/fr", Ref("piighost", "fr", "latest")),
             ("piighost/fr:prod", Ref("piighost", "fr", "prod")),
             ("piighost/fr:3fa9c2e1", Ref("piighost", "fr", "3fa9c2e1")),
+            ("catalog:piighost/fr:prod", Ref("piighost", "fr", "prod")),
+            ("catalog://piighost/fr", Ref("piighost", "fr", "latest")),
+            # The scheme the library read before 2.0, still accepted.
             ("hub:piighost/fr:prod", Ref("piighost", "fr", "prod")),
             ("hub://piighost/fr", Ref("piighost", "fr", "latest")),
             (

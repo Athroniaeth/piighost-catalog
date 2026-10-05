@@ -2,7 +2,7 @@
 
 The flattened form inlines every regex, so the file works offline and on any
 piighost version that accepts the sections it carries. The referenced form keeps
-``hub:`` entries in ``catalogs`` for a piighost that resolves them itself. Memory
+``catalog:`` entries in ``catalogs`` for a piighost that resolves them itself. Memory
 is never part of a shared config: it is appended on request from a preset.
 """
 
@@ -13,6 +13,7 @@ from typing import Any
 from pydantic import ValidationError
 
 from backend.hub.errors import ResolutionError
+from backend.hub.refs import SCHEME
 from backend.hub.resolve import ResolvedConfig, ResolvedLabels
 
 MEMORY_PRESETS: dict[str, dict[str, Any]] = {
@@ -137,7 +138,7 @@ def _render_detector(
     if labels is None:
         return detector
     if keep_refs:
-        detector["catalogs"] = [f"hub:{group}" for group in groups]
+        detector["catalogs"] = [f"{SCHEME}{group}" for group in groups]
     else:
         detector["patterns"] = labels.regexes()
     return detector

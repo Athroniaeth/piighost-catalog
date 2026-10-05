@@ -17,7 +17,7 @@
   const route = $derived(router.route);
 
   // One title per route. Without this every tab, every bookmark and every
-  // shared link read "piighost hub", which is useless once you have three of
+  // shared link read "piighost catalog", which is useless once you have three of
   // them open. The reference is the title on a detail page, since that is what
   // someone is actually pointing at.
   const title = $derived.by(() => {

@@ -7,7 +7,7 @@
    * tokens, --marque-silhouette and --marque-yeux: the text colour and the
    * primary on dark, night violet and off-white on light. The paths are those
    * of piighost-identite/brand/outils/assembler-logo.py and of the site's
-   * Ghost.svelte, so the hub and the site cannot drift. The silhouette is never
+   * Ghost.svelte, so the catalog and the site cannot drift. The silhouette is never
    * the primary colour: all violet, it reads as a fingertip.
    *
    * The ids are unique per instance: the first mark on a page may sit in a

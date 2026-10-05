@@ -144,7 +144,7 @@ async def llms(request: Request, state: State) -> Response[str]:
         return [f"\n## {title}\n", note, ""] + rows
 
     lines = [
-        "# piighost hub",
+        "# piighost catalog",
         "",
         (
             "> A registry of tested de-identification regexes for piighost, a Python "
@@ -162,9 +162,10 @@ async def llms(request: Request, state: State) -> Response[str]:
         ),
         "",
         (
-            'Use one from Python with `RegexDetector.from_hub("piighost/logs")`, or '
-            'name it in a pipeline file with `catalogs = ["hub:piighost/logs"]`. '
-            "Both need piighost 1.8 or later."
+            "Use one from Python with "
+            '`RegexDetector.from_catalog("piighost/logs")`, or name it in a pipeline '
+            'file with `catalogs = ["catalog:piighost/logs"]`. '
+            "Both need piighost 2.0 or later."
         ),
         "",
         "## How to read an object",

@@ -205,8 +205,8 @@ class TestSnippetsAndBadges:
         body = (await client.get("/api/v1/refs/piighost/all/latest/snippets")).json()
         ref, items = body["ref"], body["items"]
         assert set(items) == {"python", "config"}
-        assert f'RegexDetector.from_hub("{ref}")' in items["python"]
-        assert f"catalogs = ['hub:{ref}']" in items["config"]
+        assert f'RegexDetector.from_catalog("{ref}")' in items["python"]
+        assert f"catalogs = ['catalog:{ref}']" in items["config"]
 
     async def test_no_snippet_names_a_command_that_does_not_exist(
         self, client: AsyncTestClient[Litestar]

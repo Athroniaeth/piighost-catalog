@@ -20,7 +20,7 @@ const STRINGS = {
     "nav.menu": "Menu",
     "nav.main": "Main navigation",
 
-    "home.title": "piighost hub",
+    "home.title": "piighost catalog",
     "home.lede":
       "Explore and contribute tested de-identification regexes: single patterns, and the groups that compose them.",
     "home.search": "Search patterns, groups, labels, tags...",
@@ -75,7 +75,7 @@ const STRINGS = {
     "detail.download": "Download TOML",
     "detail.pipeline": "Pipeline file",
     "detail.flattened": "Inlined",
-    "detail.referenced": "By hub id",
+    "detail.referenced": "By catalog id",
     "detail.pullsWindow": "Over the last thirty days",
     "detail.memory": "Memory",
     "detail.part": "Scope",
@@ -281,7 +281,7 @@ const STRINGS = {
     "nav.menu": "Menu",
     "nav.main": "Navigation principale",
 
-    "home.title": "piighost hub",
+    "home.title": "piighost catalog",
     "home.lede":
       "Explorez et proposez des regex de dé-identification testés : des motifs seuls, et les groupes qui les composent.",
     "home.search": "Chercher un motif, un groupe, un label, un tag...",
@@ -336,7 +336,7 @@ const STRINGS = {
     "detail.download": "Télécharger le TOML",
     "detail.pipeline": "Fichier de pipeline",
     "detail.flattened": "Inliné",
-    "detail.referenced": "Par id du hub",
+    "detail.referenced": "Par id du catalogue",
     "detail.pullsWindow": "Sur les trente derniers jours",
     "detail.memory": "Mémoire",
     "detail.part": "Portée",

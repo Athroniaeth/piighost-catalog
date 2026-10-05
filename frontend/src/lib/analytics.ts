@@ -48,7 +48,7 @@ let panel: OpenPanel | null = null;
  * Start the SDK, or do nothing at all.
  *
  * Without a client id there is no script, no request and no cookie, which is
- * the default in development and for anyone running the hub themselves.
+ * the default in development and for anyone running the catalog themselves.
  */
 export function startAnalytics(): void {
   const clientId = import.meta.env.VITE_OPENPANEL_CLIENT_ID;

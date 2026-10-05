@@ -15,11 +15,15 @@ describe("parseRef", () => {
     expect(parseRef("piighost/fr-default:3fa9c2e1").selector).toBe("3fa9c2e1");
   });
 
-  it("strips the hub prefix in both its written forms", () => {
-    expect(parseRef("hub:piighost/fr-default:prod").selector).toBe("prod");
-    expect(parseRef("hub://piighost/fr-default").key).toBe(
+  it("strips the catalog prefix in both its written forms", () => {
+    expect(parseRef("catalog:piighost/fr-default:prod").selector).toBe("prod");
+    expect(parseRef("catalog://piighost/fr-default").key).toBe(
       "piighost/fr-default",
     );
+  });
+
+  it("still reads the older hub prefix", () => {
+    expect(parseRef("hub:piighost/fr-default:prod").selector).toBe("prod");
   });
 });
 

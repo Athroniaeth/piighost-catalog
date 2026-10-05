@@ -8,7 +8,7 @@
    * The piighost configurations, on their own page.
    *
    * They used to sit in the catalogue beside the patterns and the groups,
-   * where 32 pipelines among 186 regexes made the hub read as a config store.
+   * where 32 pipelines among 186 regexes made the catalog read as a config store.
    * A configuration is a different object: it names a detector, then decides
    * what happens once something is found. The registry's own subject is the
    * regexes, so these live next door rather than in the middle.
