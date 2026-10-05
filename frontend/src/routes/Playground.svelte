@@ -166,7 +166,7 @@
 
   <Region step={2} done={run !== null} title={t("play.text")}>
     {#snippet action()}
-      <div class="flex items-center gap-2">
+      <div class="flex min-w-0 flex-wrap items-center gap-2">
         {#if run}
           <Segmented
             options={viewOptions}

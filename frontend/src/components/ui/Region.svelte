@@ -28,12 +28,15 @@
 </script>
 
 <section class="flex min-h-0 flex-col overflow-auto p-4">
-  <div class="mb-3 flex shrink-0 items-center justify-between gap-2">
+  <!-- Wraps on a phone: an action wider than what the title leaves, the
+       sample picker and its longest title, goes to its own line rather than
+       past the card's edge, which clips it. -->
+  <div class="mb-3 flex shrink-0 flex-wrap items-center justify-between gap-2">
     <h2 class={cn("flex items-center gap-2", EYEBROW)}>
       {#if step !== null}<StepChip n={step} {done} />{/if}
       {title}
     </h2>
-    {#if action}{@render action()}{/if}
+    {#if action}<div class="min-w-0 max-w-full">{@render action()}</div>{/if}
   </div>
   <div class={cn("flex min-h-0 flex-1 flex-col", bodyClass)}>
     {@render children()}

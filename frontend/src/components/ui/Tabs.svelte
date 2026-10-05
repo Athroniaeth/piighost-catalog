@@ -16,7 +16,7 @@
 
 <nav
   aria-label={label}
-  class="mb-3 flex shrink-0 gap-1 self-start rounded-lg border bg-muted/40 p-1 text-sm"
+  class="flex shrink-0 gap-1 self-start rounded-lg border bg-muted/40 p-1 text-sm"
 >
   {#each tabs as tab (tab.href)}
     {@const active = current === tab.href}

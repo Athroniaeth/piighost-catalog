@@ -20,7 +20,7 @@
     aria-label={t("play.sample")}
     {disabled}
     value=""
-    class="rounded-md border bg-background px-2 py-1 text-xs"
+    class="max-w-full min-w-0 truncate rounded-md border bg-background px-2 py-1 text-xs"
     onchange={(event) => {
       const select = event.currentTarget;
       const sample = result.items.find((s) => s.name === select.value);

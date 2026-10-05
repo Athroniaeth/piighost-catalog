@@ -22,7 +22,14 @@
 <div
   class="mx-auto flex w-full max-w-[88rem] flex-col p-4 lg:h-[calc(100dvh-4rem)]"
 >
-  <Tabs {tabs} label={t("nav.playground")} />
+  <!-- The page's heading, beside the tabs so the full-height card keeps its
+       room: "Playground" is the page, Run and Compare are its modes. -->
+  <div class="mb-3 flex shrink-0 flex-wrap items-center gap-x-4 gap-y-2">
+    <h1 class="text-xl font-semibold tracking-tight">
+      {t("nav.playground")}
+    </h1>
+    <Tabs {tabs} label={t("nav.playground")} />
+  </div>
   <div
     class="grid flex-1 divide-y overflow-hidden rounded-xl border bg-card shadow-sm lg:min-h-0 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.9fr)_minmax(0,1.05fr)] lg:divide-x lg:divide-y-0"
   >
