@@ -29,7 +29,7 @@ services:
       args:
         # Inlined into the bundle by Vite, so it is a build argument. Empty
         # means the site loads no analytics at all.
-        VITE_OPENPANEL_CLIENT_ID: ${VITE_OPENPANEL_CLIENT_ID:-}
+        VITE_OPENPANEL_CLIENT_ID: ${VITE_OPENPANEL_CLIENT_ID:-6b28f138-22a9-4dca-aa30-20d96f67435c}
     environment:
       # Magic variable, intentionally valueless: Coolify fills it in.
       SERVICE_FQDN_WEB_8080: ""
@@ -73,7 +73,7 @@ services:
       # Where the API reports what a browser cannot report for itself. All three
       # or none; the secret never reaches the bundle. See hub/analytics.py.
       OPENPANEL_API_URL: ${OPENPANEL_API_URL:-}
-      OPENPANEL_CLIENT_ID: ${OPENPANEL_CLIENT_ID:-}
+      OPENPANEL_CLIENT_ID: ${OPENPANEL_CLIENT_ID:-6b28f138-22a9-4dca-aa30-20d96f67435c}
       OPENPANEL_CLIENT_SECRET: ${OPENPANEL_CLIENT_SECRET:-}
     volumes:
       - usage:/app/data
