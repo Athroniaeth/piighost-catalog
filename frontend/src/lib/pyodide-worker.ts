@@ -33,7 +33,7 @@ export type FromWorker = Ready | Failed | Ran;
 
 /** Where the assets are served from, same origin, by the build step. */
 const ASSETS = "/pyodide/";
-const WHEEL = "piighost-1.7.1-py3-none-any.whl";
+const WHEEL = "piighost-2.0.0-py3-none-any.whl";
 
 /**
  * Unpack a pure-Python wheel into the virtual filesystem.

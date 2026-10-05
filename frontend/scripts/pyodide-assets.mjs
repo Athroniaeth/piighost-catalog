@@ -32,7 +32,7 @@ const RUNTIME = [
   "pyodide-lock.json",
 ];
 
-const PIIGHOST = "1.7.1";
+const PIIGHOST = "2.0.0";
 const WHEEL = `piighost-${PIIGHOST}-py3-none-any.whl`;
 const WHEEL_URL = `https://pypi.org/pypi/piighost/${PIIGHOST}/json`;
 
