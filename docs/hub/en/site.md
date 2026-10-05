@@ -78,7 +78,7 @@ lists the files to restore. The API still accepts a `config` submission.
 
 **Entity colours are the studio's.** A palette of fifteen hues handed out by
 first appearance, `PERSON` on the primary, carried verbatim from `labels.ts`. A
-label therefore keeps the same colour in the hub and in the studio's playground.
+label therefore keeps the same colour in the catalog and in the studio's playground.
 
 **The components.** Under `components/ui/`: `Button`, `Badge`, `Card`,
 `Segmented`, `Tabs`, `Region`, `StepChip`, `CodeBlock`, `CopyButton`. Above

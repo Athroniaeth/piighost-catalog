@@ -1,4 +1,4 @@
-# Registre piighost hub
+# Registre piighost catalog
 
 Les motifs, groupes et configs officiels, un dossier par objet. Le format est
 décrit dans [docs/hub/manifest.md](../docs/hub/manifest.md), la résolution et les

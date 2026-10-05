@@ -8,18 +8,19 @@ pipeline. The file format is in [manifest.md](manifest.md), the HTTP API in
 ## References
 
 ```
-hub:alice/fr-notariat:prod            tag, movable, set by the owner
-hub:piighost/fr-notariat:3fa9c2e1     commit, immutable
-hub:piighost/fr-notariat:latest       computed tag, the latest commit
-hub:piighost/fr-notariat              the same as :latest
+catalog:alice/fr-notariat:prod            tag, movable, set by the owner
+catalog:piighost/fr-notariat:3fa9c2e1     commit, immutable
+catalog:piighost/fr-notariat:latest       computed tag, the latest commit
+catalog:piighost/fr-notariat              the same as :latest
 ```
 
 One separator serves both tags and commits. The rule that tells them apart is
 syntactic: exactly eight hexadecimal characters name a commit, everything else
 is a tag. In exchange a tag cannot be made only of hexadecimal characters, nor
-be called `latest`. The `hub:` prefix is optional in a manifest, where every
-reference is a hub reference, and required in a piighost file, where it
-distinguishes a reference from a built-in catalogue such as `generic`.
+be called `latest`. The `catalog:` prefix is optional in a manifest, where every
+reference names a catalog object, and customary in a piighost file, where it
+marks a catalog reference. The former `hub:` prefix is still accepted
+everywhere, here as in the library.
 
 ## Commits
 
@@ -87,7 +88,7 @@ of a piighost catalogue, plus the provenance of each label. Three rules:
 3. **The order of the sources is the insertion order in the detector.** Every
    regex has a confidence of 1, and piighost's resolver sorts by confidence then
    by span with a stable sort: on two identical spans, the first inserted wins.
-   The hub adds no rule of its own, it honours the order.
+   The catalog adds no rule of its own, it honours the order.
 
 On the third rule, a real case: a fourteen digit SIRET is also a card number by
 shape (thirteen to nineteen digits). With `generic` declared before `fr`,
@@ -204,10 +205,10 @@ several become a `composite` in order. Two forms:
 
 - **flattened**, the default: each regex detector receives `patterns = { LABEL =
   '...' }` in the resolved order. The file works offline, on any piighost
-  version that accepts its sections, with no hub support.
-- **referenced** (`keep_refs`): `catalogs = ["hub:piighost/fr:3fa9c2e1"]`, for a
-  piighost that resolves them itself. That support does not exist in the library
-  yet; see [library-support.md](../library-support.md).
+  version that accepts its sections, with no catalog support.
+- **referenced** (`keep_refs`): `catalogs = ["catalog:piighost/fr:3fa9c2e1"]`,
+  for a piighost that resolves them itself, which 2.0 does; see
+  [library-support.md](library-support.md).
 
 Every rendered configuration is validated by the installed piighost's
 `PipelineConfig`, without building a component: no model loads.

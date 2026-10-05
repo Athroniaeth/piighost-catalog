@@ -1,18 +1,21 @@
-# Mesurer l'usage du hub
+# Mesurer l'usage du catalogue
 
 *[English version](en/analytics.md).*
 
-Deux choses utilisent ce hub et une seule a un navigateur. Le site est
+Deux choses utilisent ce catalogue et une seule a un navigateur. Le site est
 instrumenté depuis la page, où OpenPanel voit un appareil et une session.
-`piighost hub pull` est une ligne de commande : rien n'y charge de script, donc
-le seul endroit d'où ses appels sont observables est la sortie de l'API.
+L'autre est la bibliothèque piighost : elle récupère un `pipeline.toml` quand une
+configuration de pipeline nomme une référence `catalog:` (`load_pipeline`,
+`catalogs = [...]`) ou quand du code Python appelle `RegexDetector.from_catalog`
+ou `piighost.catalog.pull`. Rien n'y charge de script, donc le seul endroit d'où
+ses appels sont observables est la sortie de l'API.
 
 D'où deux clients à créer dans le dashboard, et c'est la réponse à la question
 qu'on se pose en arrivant :
 
 | | Client navigateur | Client serveur |
 |---|---|---|
-| Qui parle | le site, depuis la page | l'API, pour la CLI |
+| Qui parle | le site, depuis la page | l'API, pour la bibliothèque |
 | Type OpenPanel | lecture/écriture, CORS ouvert | `write` |
 | Identifiant | `clientId` seul | `clientId` **et** `clientSecret` |
 | Où il vit | inliné dans le bundle, public | variable du service `api`, jamais dans le bundle |
@@ -77,4 +80,4 @@ la rétention. On garde les deux, chacun pour ce qu'il fait.
    rien.
 
 Sans ces variables, rien n'est chargé et rien n'est envoyé. C'est le défaut en
-développement et pour quiconque héberge le hub lui-même.
+développement et pour quiconque héberge le catalogue lui-même.

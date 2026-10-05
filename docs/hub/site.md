@@ -84,7 +84,7 @@ restaurer. L'API, elle, accepte toujours une soumission de type `config`.
 
 **Les couleurs d'entités sont celles du studio.** Une palette de quinze teintes
 attribuée par ordre d'apparition, `PERSON` sur le primaire, portée
-verbatim de `labels.ts`. Un label garde donc la même couleur dans le hub et
+verbatim de `labels.ts`. Un label garde donc la même couleur dans le catalogue et
 dans le bac à sable du studio.
 
 **Les composants.** Sous `components/ui/` : `Button`, `Badge`, `Card`,
