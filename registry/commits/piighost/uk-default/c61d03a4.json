@@ -1,0 +1,57 @@
+{
+  "digest": "c61d03a423a5d01f2e85c001e5cdb99123f746b0557a5f77a2c366e520a0fabe",
+  "recorded_at": "2026-10-05T12:40:27+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "uk-default",
+    "schema_version": 1,
+    "description": {
+      "en": "the United Kingdom without a model: phone, postcode, the National Insurance number, the NHS number and the VAT number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Royaume-Uni sans modèle : téléphone, code postal, le numéro d'assurance nationale, le numéro NHS et le numéro de TVA, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "uk"
+    ],
+    "piighost": ">=2.0,<3",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-uk",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/uk",
+            "commit": "c468ea8c"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

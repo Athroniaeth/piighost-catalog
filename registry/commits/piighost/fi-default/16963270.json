@@ -1,0 +1,68 @@
+{
+  "digest": "16963270d79a21935c50a6a5f70a19cf23b6e200e84a8622d2b66adabc9462b3",
+  "recorded_at": "2026-10-05T12:40:27+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "fi-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Finland without a model: phone and the personal identity code. No postal code: five bare digits are not safe beside a phone number, plus the European IBAN, BIC and VAT number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Finlande sans modèle : téléphone et le code d'identité personnel. Pas de code postal : cinq chiffres nus ne sont pas sûrs à côté d'un téléphone, plus l'IBAN, le BIC et le numéro de TVA européens, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "eu",
+      "fi"
+    ],
+    "piighost": ">=2.0,<3",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-fi",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/fi",
+            "commit": "47437c04"
+          }
+        ]
+      },
+      {
+        "name": "regex-eu",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/eu-extended",
+            "commit": "3779aaa6"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ schema_version = 1
 name = "at-default"
 description = { en = "Austria without a model: phone and the social insurance number. No postal code: four bare digits would shred the phone numbers and the card numbers beside them, plus the European IBAN, BIC and VAT number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.", fr = "Autriche sans modèle : téléphone et le numéro d'assurance sociale. Pas de code postal : quatre chiffres nus découperaient les téléphones et les numéros de carte à côté d'eux, plus l'IBAN, le BIC et le numéro de TVA européens, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois." }
 tags = ["at", "chat", "customer-support", "document", "eu"]
-piighost = ">=1.7,<2"
+piighost = ">=2.0,<3"
 
 [[detectors]]
 name = "regex-at"

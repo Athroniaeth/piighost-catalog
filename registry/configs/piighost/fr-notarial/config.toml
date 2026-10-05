@@ -4,7 +4,7 @@ schema_version = 1
 name = "fr-notarial"
 description = { en = "French deeds and client files: the French and European shapes, plus every date, since a date of birth is a direct identifier no model tags, the formulae that introduce a party, an address or a cadastral reference, and a local model for the names, addresses and firms an act is full of. Fuzzy entity resolution groups a name spelled two ways onto one token, and word-boundary expansion catches a value that appears again further down.", fr = "Actes et dossiers clients français : les formes françaises et européennes, plus toutes les dates, car une date de naissance est un identifiant direct qu'aucun modèle ne relève, les formules qui introduisent une partie, une adresse ou une référence cadastrale, et un modèle local pour les noms, adresses et études dont un acte est rempli. La résolution floue regroupe un nom orthographié de deux façons sur un seul jeton, et l'expansion par mot entier rattrape une valeur qui réapparaît plus bas." }
 tags = ["fr", "eu", "lang-fr", "notarial", "legal", "document", "identity"]
-piighost = ">=1.10,<2"
+piighost = ">=2.0,<3"
 
 [[extends]]
 ref = "piighost/fr-default"

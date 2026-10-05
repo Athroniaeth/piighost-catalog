@@ -1,0 +1,57 @@
+{
+  "digest": "b0fa50823e2e031c0081cc8241fe220e70d654773fba8f22fed825fb2f0f2bbe",
+  "recorded_at": "2026-10-05T12:40:27+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "cl-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Chile without a model: phone and the RUT, which serves as both the personal and the company identifier, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Chili sans modèle : téléphone et le RUT, qui sert d'identifiant à la fois personnel et d'entreprise, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "cl",
+      "customer-support",
+      "document"
+    ],
+    "piighost": ">=2.0,<3",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-cl",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/cl",
+            "commit": "31b192e3"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

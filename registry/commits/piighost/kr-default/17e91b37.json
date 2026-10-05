@@ -1,0 +1,57 @@
+{
+  "digest": "17e91b37dd6336569e6b466ddd16838841beed650f0a400b74d14e7123de7e2b",
+  "recorded_at": "2026-10-05T12:40:27+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "kr-default",
+    "schema_version": 1,
+    "description": {
+      "en": "South Korea without a model: mobile phone and the resident registration number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Corée du Sud sans modèle : téléphone mobile et le numéro d'enregistrement de résident, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "kr"
+    ],
+    "piighost": ">=2.0,<3",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-kr",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/kr",
+            "commit": "2ee42d25"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

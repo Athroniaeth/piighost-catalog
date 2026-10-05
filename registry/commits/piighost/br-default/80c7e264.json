@@ -1,0 +1,57 @@
+{
+  "digest": "80c7e264c6971ddfa9a307b7b3027b45a8d446d4ccfdb4a4ea92b39499a6050e",
+  "recorded_at": "2026-10-05T12:40:27+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "br-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Brazil without a model: phone, CEP postal code, the CPF for a person, the CNPJ for a company and the CNS health number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Brésil sans modèle : téléphone, code postal CEP, le CPF pour une personne, le CNPJ pour une entreprise et le numéro de santé CNS, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "br",
+      "chat",
+      "customer-support",
+      "document"
+    ],
+    "piighost": ">=2.0,<3",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-br",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/br",
+            "commit": "b82b9f75"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

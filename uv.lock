@@ -542,7 +542,7 @@ requires-dist = [
     { name = "litestar-vite", specifier = ">=0.31.0" },
     { name = "markupsafe", specifier = ">=3.0.3" },
     { name = "packaging", specifier = ">=26.3" },
-    { name = "piighost", extras = ["config"], specifier = ">=1.10" },
+    { name = "piighost", extras = ["config"], specifier = ">=2.0,<3" },
     { name = "python-dotenv", specifier = ">=1.2.3" },
     { name = "structlog", specifier = ">=26.1.0" },
 ]
@@ -713,14 +713,14 @@ wheels = [
 
 [[package]]
 name = "piighost"
-version = "1.10.0"
+version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/37/13/474a56db73dfc2dd50359787a26883b51d3ebe0bb1c818524de26d5a6316/piighost-1.10.0.tar.gz", hash = "sha256:7124a1f67b53f2c8247a17287befbf6b05f01e3110500a134b831c742789e5f3", size = 126553, upload-time = "2026-09-29T08:37:48.207Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3e/b3/d1e7c5e911832cdcb41a349100df97670d997a3fb66ab9e9ee9d4ac2a0e6/piighost-2.0.0.tar.gz", hash = "sha256:4c06b224ce5a5ce69a2d3965471e9fd060e82bcf7e9576db765b044b8f53bbb1", size = 129409, upload-time = "2026-10-05T06:54:35.044Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7d/4b/57425cb349c72e8f72875f63a7027100a6658fbb51e44a29a559c863641b/piighost-1.10.0-py3-none-any.whl", hash = "sha256:090187a122fca03c8d6b7e18ec87bc164e402a442b2fea8d01f09f45d49bdf37", size = 178326, upload-time = "2026-09-29T08:37:46.858Z" },
+    { url = "https://files.pythonhosted.org/packages/32/52/716e8da16511e17bbd9556c6ff95d10cad8e7962cddd70f2cab67642f9f1/piighost-2.0.0-py3-none-any.whl", hash = "sha256:b17700d60e75a88568b3cd0e67eb0fd805b6b09ac09d790000321fb18dc128ba", size = 177770, upload-time = "2026-10-05T06:54:33.694Z" },
 ]
 
 [package.optional-dependencies]

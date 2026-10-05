@@ -1,0 +1,57 @@
+{
+  "digest": "81d6e20e2cae14cae65431d8f2d62a3d53f4f35c312c7a75c49183ee7c9e4c0f",
+  "recorded_at": "2026-10-05T12:40:27+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "ch-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Switzerland without a model: phone and the AHV social insurance number, which doubles as the health identifier, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Suisse sans modèle : téléphone et le numéro AVS d'assurance sociale, qui sert aussi d'identifiant de santé, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "ch",
+      "chat",
+      "customer-support",
+      "document"
+    ],
+    "piighost": ">=2.0,<3",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-ch",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/ch",
+            "commit": "4aa0f6aa"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

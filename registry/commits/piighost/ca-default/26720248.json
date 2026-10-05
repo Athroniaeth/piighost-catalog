@@ -1,0 +1,57 @@
+{
+  "digest": "2672024893987c9618f24e8c83b002e07e66ead3232cc4fa6bc34a880eb02106",
+  "recorded_at": "2026-10-05T12:40:27+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "ca-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Canada without a model: postal code and social insurance number. The phone is the North American plan, already carried by us-phone, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Canada sans modèle : code postal et numéro d'assurance sociale. Le téléphone est le plan nord-américain, déjà porté par us-phone, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "ca",
+      "chat",
+      "customer-support",
+      "document"
+    ],
+    "piighost": ">=2.0,<3",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-ca",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/ca",
+            "commit": "5330fd7a"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

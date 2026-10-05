@@ -4,7 +4,7 @@ schema_version = 1
 name = "ch-default"
 description = { en = "Switzerland without a model: phone and the AHV social insurance number, which doubles as the health identifier, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.", fr = "Suisse sans modèle : téléphone et le numéro AVS d'assurance sociale, qui sert aussi d'identifiant de santé, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois." }
 tags = ["ch", "chat", "customer-support", "document"]
-piighost = ">=1.7,<2"
+piighost = ">=2.0,<3"
 
 [[detectors]]
 name = "regex-ch"

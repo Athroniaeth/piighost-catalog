@@ -143,7 +143,7 @@ schema_version = 1
 name = "fr-default"
 description = { en = "French default", fr = "Défaut français" }
 tags = ["fr", "chat"]
-piighost = ">=1.7,<2"
+piighost = ">=2.0,<3"
 
 [[extends]]
 ref = "piighost/regex-default"

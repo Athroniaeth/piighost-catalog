@@ -4,7 +4,7 @@ schema_version = 1
 name = "mx-default"
 description = { en = "Mexico without a model: phone, the CURP population identifier and the RFC tax number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.", fr = "Mexique sans modèle : téléphone, l'identifiant de population CURP et le numéro fiscal RFC, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois." }
 tags = ["chat", "customer-support", "document", "mx"]
-piighost = ">=1.7,<2"
+piighost = ">=2.0,<3"
 
 [[detectors]]
 name = "regex-mx"
