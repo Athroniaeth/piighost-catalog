@@ -7,8 +7,8 @@ tags = ["us", "government-id", "identity"]
 regex = '\b[A-Z]\d{8}\b'
 
 [pattern.description]
-en = "US passport number, one uppercase letter then eight digits. Noisy by nature: any reference code of that shape matches, for example an invoice number. Pair it with a whitelist, or keep it for documents where a passport is expected."
-fr = "Numéro de passeport américain, une lettre majuscule puis huit chiffres. Bruyant par nature : tout code de cette forme correspond, un numéro de facture par exemple. À combiner avec une whitelist, ou à réserver aux documents où un passeport est attendu."
+en = "US passport number, one uppercase letter then eight digits. Noisy by nature: any reference code of that shape matches, for example an invoice number. Pair it with an allow list (`allow_list`) for the known reference codes, or keep it for documents where a passport is expected."
+fr = "Numéro de passeport américain, une lettre majuscule puis huit chiffres. Bruyant par nature : tout code de cette forme correspond, un numéro de facture par exemple. À combiner avec une liste à laisser en clair (`allow_list`) pour les codes de référence connus, ou à réserver aux documents où un passeport est attendu."
 
 [[examples.match]]
 text = "Passport C12345678 expires in 2031."

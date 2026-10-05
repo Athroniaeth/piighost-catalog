@@ -1,0 +1,47 @@
+{
+  "digest": "2b3d94866c6afa39417373067297e0686afc8f1abc3869d12fcca6efc4b14dcd",
+  "recorded_at": "2026-10-05T01:10:48+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "us-passport",
+    "schema_version": 1,
+    "label": "US_PASSPORT",
+    "regex": "\\b[A-Z]\\d{8}\\b",
+    "description": {
+      "en": "US passport number, one uppercase letter then eight digits. Noisy by nature: any reference code of that shape matches, for example an invoice number. Pair it with an allow list (`allow_list`) for the known reference codes, or keep it for documents where a passport is expected.",
+      "fr": "Numéro de passeport américain, une lettre majuscule puis huit chiffres. Bruyant par nature : tout code de cette forme correspond, un numéro de facture par exemple. À combiner avec une liste à laisser en clair (`allow_list`) pour les codes de référence connus, ou à réserver aux documents où un passeport est attendu."
+    },
+    "tags": [
+      "us",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Passport C12345678 expires in 2031.",
+          "value": "C12345678"
+        },
+        {
+          "text": "Travel document: X98765432",
+          "value": "X98765432"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "C123456789"
+        },
+        {
+          "text": "c12345678"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "C",
+      "filler": "1",
+      "suffix": "x"
+    }
+  }
+}
