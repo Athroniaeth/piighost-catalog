@@ -152,8 +152,13 @@
       >
         <KindIcon kind={object.kind} class="size-5 text-muted-foreground" />
         <h1 class="font-mono text-xl font-bold tracking-tight">
-          <span class="text-muted-foreground">{object.namespace}/</span
-          >{object.name}
+          <!-- The namespace links to its objects, as the header's trail did
+               before the shared header replaced it. -->
+          <a
+            href="/?q={encodeURIComponent(object.namespace)}"
+            class="text-muted-foreground hover:text-foreground hover:underline"
+            >{object.namespace}</a
+          ><span class="text-muted-foreground">/</span>{object.name}
         </h1>
         <Badge variant="outline">{kindName(object.kind)}</Badge>
         {#each object.tags as tag (tag)}

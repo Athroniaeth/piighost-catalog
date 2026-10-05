@@ -33,6 +33,8 @@ const STRINGS = {
     "home.clear": "Clear",
     "home.usedBy": "used by",
     "home.tryIt": "Try it",
+    "home.playground":
+      "Have a text to check? Run it through any pattern in the",
     "home.updated": "Updated",
     "home.never": "unrecorded",
     "home.labelsCount": "labels",
@@ -294,6 +296,8 @@ const STRINGS = {
     "home.clear": "Effacer",
     "home.usedBy": "utilisé par",
     "home.tryIt": "Essayer",
+    "home.playground":
+      "Un texte à vérifier\u00a0? Passez-le à n'importe quel motif dans le",
     "home.updated": "Mis à jour",
     "home.never": "non enregistré",
     "home.labelsCount": "labels",

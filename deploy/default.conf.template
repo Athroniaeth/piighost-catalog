@@ -22,9 +22,26 @@ map $http_x_forwarded_for $forwarded_for {
     default $http_x_forwarded_for;
 }
 
+# The catalog's former name. Both hostnames reach this container, and the old
+# one now only redirects, path and query kept, so a link or a bookmark lands on
+# the same page under the new name. piighost 1.x resolves `hub:` references
+# with GET /api/v1/refs/... on this host, and urllib follows a 301 on a GET:
+# those clients keep working through the redirect. A matching server_name
+# rather than an `if ($host ...)`: the main server below stays the default, so
+# a request with any other Host (a health check on localhost, Traefik probing
+# the port) is served as before.
 server {
-    # 8080 rather than 80: the base image runs unprivileged.
     listen 8080;
+    server_name hub.piighost.dev;
+
+    # Logged on purpose: the access log tells when the old name stops being used.
+    return 301 https://catalog.piighost.dev$request_uri;
+}
+
+server {
+    # 8080 rather than 80: the base image runs unprivileged. default_server so
+    # that any Host but the one above, localhost included, is served here.
+    listen 8080 default_server;
 
     # Recover the real client address from the proxy in front, so $remote_addr — and
     # therefore the access log and X-Real-IP — stop showing Traefik's internal IP.
