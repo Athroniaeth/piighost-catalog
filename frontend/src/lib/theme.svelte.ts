@@ -7,7 +7,10 @@
  * prerendered; this module only keeps the state and the toggle.
  */
 
-const STORAGE_KEY = "piighost-hub-theme";
+import { THEME_STORAGE_KEY as STORAGE_KEY } from "@piighost/ui";
+
+// The ecosystem's key, piighost-theme. public/theme.js moves a choice saved
+// under the catalog's former key, piighost-hub-theme, before this module runs.
 
 class Theme {
   dark = $state(localStorage.getItem(STORAGE_KEY) !== "light");
