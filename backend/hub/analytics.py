@@ -48,6 +48,9 @@ QUEUE_SIZE = 512
 #: the worker for a minute while the queue fills behind it.
 TIMEOUT_SECONDS = 5.0
 
+USER_AGENT = "piighost-catalog-server/1.0"
+"""Who sends the events: a name OpenPanel does not take for a bot."""
+
 logger = structlog.get_logger(__name__)
 
 
@@ -86,14 +89,23 @@ class Analytics:
         except asyncio.QueueFull:
             self.dropped += 1
 
-    async def run(self) -> None:
-        """Drain the queue until cancelled."""
-        headers = {
+    def headers(self) -> dict[str, str]:
+        """The credentials, and a user agent that names the catalog.
+
+        OpenPanel classes a request whose user agent is httpx's default as a
+        bot: it answers 202 and drops the event without a word. Every pull went
+        that way until the catalog named itself.
+        """
+        return {
             "openpanel-client-id": self.client_id,
             "openpanel-client-secret": self.client_secret,
+            "User-Agent": USER_AGENT,
         }
+
+    async def run(self) -> None:
+        """Drain the queue until cancelled."""
         async with httpx.AsyncClient(
-            base_url=self.url, headers=headers, timeout=TIMEOUT_SECONDS
+            base_url=self.url, headers=self.headers(), timeout=TIMEOUT_SECONDS
         ) as client:
             try:
                 while True:
