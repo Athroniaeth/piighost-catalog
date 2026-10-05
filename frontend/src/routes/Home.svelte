@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ArrowRight from "@lucide/svelte/icons/arrow-right";
   import Search from "@lucide/svelte/icons/search";
   import Async from "../components/Async.svelte";
   import FacetSection from "../components/FacetSection.svelte";
@@ -163,6 +164,16 @@
         </button>
       </label>
     </form>
+    <!-- The playground left the header for the shared ecosystem menu, so the
+         catalogue points to it from where a visitor starts. -->
+    <p class="mt-5 text-sm text-balance text-muted-foreground">
+      {t("home.playground")}
+      <a
+        href="/playground"
+        class="inline-flex items-center gap-1 font-medium text-primary hover:underline"
+        >{t("nav.playground").toLowerCase()}<ArrowRight class="size-3.5" /></a
+      >
+    </p>
   </div>
 </section>
 

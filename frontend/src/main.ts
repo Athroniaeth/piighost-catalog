@@ -1,7 +1,8 @@
 import { mount } from "svelte";
 import App from "./App.svelte";
 import { startAnalytics } from "./lib/analytics";
-import "./app.css";
+// hub.css imports the generated tokens (app.css) first, then the catalog's own
+// rules: one Tailwind build, which also scans @piighost/ui.
 import "./hub.css";
 
 // Before the app mounts, so the first screen view is the one the visitor
