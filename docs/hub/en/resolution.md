@@ -77,7 +77,7 @@ publications.
 ## Resolving a group
 
 A group resolves into an ordered dictionary of label to regex, exactly the shape
-of a piighost catalogue, plus the provenance of each label. Three rules:
+of a piighost catalog, plus the provenance of each label. Three rules:
 
 1. **A label coming from two sources is an error.** The author settles it by
    excluding it from one of the two, in that source's block, or with `only`.

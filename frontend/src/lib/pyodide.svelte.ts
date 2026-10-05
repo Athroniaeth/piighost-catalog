@@ -39,9 +39,9 @@ function ask(message: ToWorker): Promise<FromWorker> {
 }
 
 /**
- * Run a catalogue over a text, in this tab.
+ * Run a catalog over a text, in this tab.
  *
- * The catalogue comes from the API, because flattening a group is the
+ * The catalog comes from the API, because flattening a group is the
  * registry's own rule and there must be one implementation of it. The text does
  * not: it stays here, which is the reason any of this exists.
  */

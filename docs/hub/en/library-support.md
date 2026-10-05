@@ -22,7 +22,7 @@ piighost ships no pattern of its own, and the former literals (`generic`, `us`,
 `eu`, `fr`) are refused with the reference that replaces them. A reference is
 resolved **at construction** (`build()`) and never at validation, so that
 `piighost validate` stays offline and fast. The merge does not change:
-catalogues first, in order, then the inline patterns, which is already the
+catalogs first, in order, then the inline patterns, which is already the
 insertion order the catalog guarantees.
 
 The `hub:` prefix of the 1.x releases is still read exactly as `catalog:` is.

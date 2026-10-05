@@ -17,13 +17,13 @@ python3 scripts/coverage_report.py          # HUB_INVENTORIES points at the inve
 |---|---|---|
 | Microsoft Purview | 325 | the sensitive information types of the Microsoft 365 suite |
 | Google Cloud DLP | 261 | the infoTypes of Sensitive Data Protection, including a long per-country series |
-| Nightfall | 179 | a commercial DLP service, public catalogue |
+| Nightfall | 179 | a commercial DLP service, public catalog |
 | AWS Macie | 167 | the managed data identifiers, plus Comprehend's PII types |
 | Cloudflare DLP | 143 | the predefined profiles, including entries aimed at AI prompts |
 | Microsoft Presidio | ~50 | the predefined recognisers, the only inventory whose code can be read |
 | AI4Privacy | 56 and 20 | the label sets of two de-identification training corpora |
 
-The first four are commercial catalogues: their existence proves a customer paid
+The first four are commercial catalogs: their existence proves a customer paid
 for those shapes, which is a signal of real frequency. Presidio is the only one
 whose regex can be read, and therefore judged. AI4Privacy gives corpus labels,
 not patterns.
@@ -48,7 +48,7 @@ instead of a percentage:
 
 ## What the comparison does not say
 
-A good part of what these catalogues call PII has no shape at all. A name, an
+A good part of what these catalogs call PII has no shape at all. A name, an
 age, a postal address written out, an ethnic origin, a political opinion, a
 diagnosis: no regex finds those, and pretending otherwise produces a pattern
 that flags everything. Those categories are the business of the NER or LLM
@@ -62,10 +62,10 @@ something other than what is counted here.
 
 Finally, coverage is not quality. Two patterns for one country are worth more
 than six fighting over the same span, and the registry's composition check
-refuses publication in that case, which none of these catalogues does.
+refuses publication in that case, which none of these catalogs does.
 
 ## How to use it
 
 The report ranks the gaps by how many independent sources carry them. A gap
 cited by four vendors out of five deserves to be written; one cited by a single
-vendor deserves a question: is this a real shape, or that catalogue's speciality?
+vendor deserves a question: is this a real shape, or that catalog's speciality?

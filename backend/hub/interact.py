@@ -119,7 +119,7 @@ class PreviewLabel(msgspec.Struct):
 
 
 class PreviewOut(msgspec.Struct):
-    """The flattened catalogue, in the order the detector will receive it."""
+    """The flattened catalog, in the order the detector will receive it."""
 
     labels: list[PreviewLabel]
 
@@ -277,7 +277,7 @@ class PlaygroundController(Controller):
         """Flatten a group that has not been published, so it can be tried.
 
         No text is taken, and that is the point. The contribution page runs the
-        catalogue this returns in the visitor's own browser, so a group can be
+        catalog this returns in the visitor's own browser, so a group can be
         tried against a real text without the text ever being sent anywhere. The
         registry is public; the text is not.
         """

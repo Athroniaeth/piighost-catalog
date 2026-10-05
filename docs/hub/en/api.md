@@ -27,7 +27,7 @@ limit apply as they do to the rest of the API. The exact contract is
 commit. The tags of a search combine with AND: ticking two facets narrows, which
 is what the counts announce. Every result carries the bilingual description, the
 date of the last recorded commit and the number of commits, which is what a row
-of the catalogue shows.
+of the catalog shows.
 
 ## Interactive routes
 
