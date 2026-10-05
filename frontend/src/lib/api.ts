@@ -44,6 +44,8 @@ import type {
   VocabularyOut,
 } from "../generated/api";
 
+import { t } from "./i18n.svelte";
+
 export class ApiError extends Error {
   status: number;
   constructor(message: string, status: number) {
@@ -67,7 +69,7 @@ function unwrap<T>(result: Envelope<T>): T {
     result.error !== null &&
     "detail" in result.error
       ? String((result.error as { detail: unknown }).detail)
-      : (result.response?.statusText ?? "the request did not reach the server");
+      : result.response?.statusText || t("common.unreachable");
   throw new ApiError(detail, result.response?.status ?? 0);
 }
 

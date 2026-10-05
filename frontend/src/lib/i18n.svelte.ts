@@ -1,16 +1,19 @@
 /**
  * Two languages, one dictionary, no dependency.
  *
- * The registry is bilingual down to each manifest, so the site has to be too.
+ * The catalog is bilingual down to each manifest, so the site is too: every
+ * page lives under /en/ and /fr/, and the router sets the locale from the path.
  * A missing key falls back to English rather than rendering the key itself.
- * Copy follows the studio's rules: no em-dash, correct French accents.
+ * Copy follows the studio's rules: no em-dash, correct French accents, and in
+ * French a no-break space (U+00A0) before : ; ? ! so the sign never starts a
+ * line on its own.
  */
 
 export type Locale = "en" | "fr";
 
 const STRINGS = {
   en: {
-    "nav.catalogue": "Catalogue",
+    "nav.catalogue": "Catalog",
     "nav.playground": "Playground",
     "nav.contribute": "Contribute",
     "nav.github": "GitHub",
@@ -28,7 +31,6 @@ const STRINGS = {
     "home.patterns": "Patterns",
     "home.groups": "Groups",
     "home.configs": "Configurations",
-    "home.results": "results",
     "home.empty": "Nothing matches these filters.",
     "home.clear": "Clear",
     "home.usedBy": "used by",
@@ -37,10 +39,6 @@ const STRINGS = {
       "Have a text to check? Run it through any pattern in the",
     "home.updated": "Updated",
     "home.never": "unrecorded",
-    "home.labelsCount": "labels",
-    "home.commitsCount": "commits",
-    "home.usedCount": "uses",
-    "home.pullsCount": "pulls",
     "home.sort": "Sort",
     "home.sort.relevance": "Relevance",
     "home.sort.updated": "Recently updated",
@@ -70,7 +68,6 @@ const STRINGS = {
     "kind.config": "piighost config",
 
     "pick.filter": "Filter by name, label or tag",
-    "pick.coverage": "labels covered",
     "pick.none": "Nothing matches.",
 
     "detail.openPlayground": "Open in the playground",
@@ -110,7 +107,7 @@ const STRINGS = {
     "play.object": "Object",
     "play.candidate": "Regex",
     "play.candidateNote":
-      "Not in the registry. Runs in a separate process, killed after two seconds.",
+      "Not in the catalog. Runs in a separate process, killed after two seconds.",
     "play.regexPlaceholder": "A regex to try",
     "play.sample": "Load a sample",
     "play.go": "Run",
@@ -120,7 +117,6 @@ const STRINGS = {
     "play.legend":
       "Colours follow the label, from your text to the tokens and back.",
     "play.edit": "Edit",
-    "play.kept": "kept",
     "play.dropped": "Dropped",
     "play.lostTo": "lost to",
     "play.elapsed": "ms",
@@ -190,7 +186,7 @@ const STRINGS = {
       "The regex holds a single quote, which the manifest cannot carry.",
     "draft.description.empty": "A description is required.",
     "draft.descriptionNote":
-      "In English. The registry and the site are English.",
+      "In English, the language every manifest is written in. A French translation can be added in the pull request.",
     "draft.description.dash":
       "Replace the em-dash with a comma or a full stop.",
     "draft.matches.two": "Two sentences that must be caught are required.",
@@ -206,7 +202,6 @@ const STRINGS = {
     "try.go": "Run here",
     "try.loading": "Loading the engine",
     "try.text": "A text to try the group on",
-    "try.caught": "caught",
     "try.note": "piighost runs in this tab. Your text stays on your machine.",
     "contribute.lede":
       "Propose a pattern or a group of patterns. Checked here, merged by pull request.",
@@ -227,14 +222,11 @@ const STRINGS = {
     "contribute.findings": "Findings",
 
     "stats.title": "Usage",
-    "stats.lede": "What the registry is asked for, counted rather than logged.",
+    "stats.lede": "What the catalog is asked for, counted rather than logged.",
     "stats.window": "Window",
     "stats.7": "7 days",
     "stats.30": "30 days",
     "stats.90": "90 days",
-    "stats.pulls": "pipelines pulled",
-    "stats.browses": "objects looked at",
-    "stats.searches": "searches",
     "stats.perDay": "Pulls per day",
     "stats.top": "Most pulled",
     "stats.selectors": "Pinned or floating",
@@ -249,10 +241,10 @@ const STRINGS = {
     "home.configsNote":
       "Patterns and groups. The pipelines built from them are the",
     "configs.lede":
-      "Pipelines assembled from the registry's groups: a detector, then what happens once something is found. The catalogue itself is the regexes.",
+      "Pipelines assembled from the catalog's groups: a detector, then what happens once something is found. The catalog itself is the regexes.",
     "configs.link": "piighost configs",
     "labels.lede":
-      "Every label this registry can emit, and the pattern that defines it.",
+      "Every label this catalog can emit, and the pattern that defines it.",
     "labels.definedBy": "defined by",
 
     "common.loading": "Loading",
@@ -260,16 +252,22 @@ const STRINGS = {
     "common.retry": "Retry",
     "common.notFound": "Nothing here",
     "common.notFoundLede": "That page does not exist.",
-    "common.back": "Back to the catalogue",
+    "common.back": "Back to the catalog",
     "common.close": "Close",
     "common.copy": "Copy",
     "common.copied": "Copied",
     "common.copyFailed": "Copy failed",
+    "common.colon": ":",
+    "common.unreachable": "the request did not reach the server",
+    "common.level.error": "error",
+    "common.level.warning": "warning",
+    "common.level.info": "info",
 
     "footer.tagline":
       "Tested, versioned de-identification regexes for piighost.",
     "footer.links": "Links",
     "footer.docs": "Documentation",
+    "footer.chat": "Ask the documentation",
     "footer.mit": "MIT license.",
   },
   fr: {
@@ -285,13 +283,12 @@ const STRINGS = {
 
     "home.title": "piighost catalog",
     "home.lede":
-      "Explorez et proposez des regex de dé-identification testés : des motifs seuls, et les groupes qui les composent.",
+      "Explorez et proposez des regex de dé-identification testés\u00a0: des motifs seuls, et les groupes qui les composent.",
     "home.search": "Chercher un motif, un groupe, un label, un tag...",
     "home.all": "Tout",
     "home.patterns": "Motifs",
     "home.groups": "Groupes",
     "home.configs": "Configurations",
-    "home.results": "résultats",
     "home.empty": "Rien ne correspond à ces filtres.",
     "home.clear": "Effacer",
     "home.usedBy": "utilisé par",
@@ -300,10 +297,6 @@ const STRINGS = {
       "Un texte à vérifier\u00a0? Passez-le à n'importe quel motif dans le",
     "home.updated": "Mis à jour",
     "home.never": "non enregistré",
-    "home.labelsCount": "labels",
-    "home.commitsCount": "commits",
-    "home.usedCount": "usages",
-    "home.pullsCount": "récupérations",
     "home.sort": "Trier",
     "home.sort.relevance": "Pertinence",
     "home.sort.updated": "Mis à jour récemment",
@@ -333,7 +326,6 @@ const STRINGS = {
     "kind.config": "config piighost",
 
     "pick.filter": "Filtrer par nom, label ou tag",
-    "pick.coverage": "labels couverts",
     "pick.none": "Aucun résultat.",
 
     "detail.openPlayground": "Ouvrir dans le bac à sable",
@@ -373,7 +365,7 @@ const STRINGS = {
     "play.object": "Objet",
     "play.candidate": "Regex",
     "play.candidateNote":
-      "Hors registre. Tourne dans un processus séparé, tué au bout de deux secondes.",
+      "Hors catalogue. Tourne dans un processus séparé, tué au bout de deux secondes.",
     "play.regexPlaceholder": "Un regex à essayer",
     "play.sample": "Charger un exemple",
     "play.go": "Lancer",
@@ -383,12 +375,11 @@ const STRINGS = {
     "play.legend":
       "Les couleurs suivent le label, de votre texte aux jetons et retour.",
     "play.edit": "Modifier",
-    "play.kept": "gardées",
     "play.dropped": "Écartées",
     "play.lostTo": "au profit de",
     "play.elapsed": "ms",
     "play.truncated": "Texte coupé à la limite du bac à sable.",
-    "play.unsupported": "Non exécuté ici, demande un modèle :",
+    "play.unsupported": "Non exécuté ici, demande un modèle\u00a0:",
     "play.empty": "Lancez pour voir les détections.",
     "play.nothing": "Aucune détection.",
     "play.privacy":
@@ -402,7 +393,7 @@ const STRINGS = {
     "compare.go": "Comparer",
 
     "chat.lede":
-      "Votre message est dé-identifié avant que l'assistant le voie ; la réponse est restaurée avant que vous la lisiez. L'assistant est scripté, donc la démo est gratuite et reproductible.",
+      "Votre message est dé-identifié avant que l'assistant le voie\u00a0; la réponse est restaurée avant que vous la lisiez. L'assistant est scripté, donc la démo est gratuite et reproductible.",
     "chat.send": "Envoyer",
     "chat.placeholder": "Un message avec un e-mail ou un téléphone",
     "chat.reveal": "Voir ce que le modèle voit",
@@ -420,7 +411,7 @@ const STRINGS = {
     "draft.tagRemove": "Retirer ce tag",
     "draft.regex": "Regex",
     "draft.regexNote":
-      "Python re, compilé avec re.ASCII. Évitez l'apostrophe droite : elle ferme la chaîne littérale TOML dans laquelle le manifeste l'écrit.",
+      "Python re, compilé avec re.ASCII. Évitez l'apostrophe droite\u00a0: elle ferme la chaîne littérale TOML dans laquelle le manifeste l'écrit.",
     "draft.description": "Description",
     "draft.examples": "Exemples",
     "draft.matches": "Doit être reconnu",
@@ -455,7 +446,7 @@ const STRINGS = {
       "Le regex contient une apostrophe droite, que le manifeste ne peut pas porter.",
     "draft.description.empty": "Une description est obligatoire.",
     "draft.descriptionNote":
-      "En anglais. Le registre et le site sont en anglais.",
+      "En anglais, la langue de tous les manifestes. Une traduction française peut s'ajouter dans la pull request.",
     "draft.description.dash":
       "Remplacez le tiret cadratin par une virgule ou un point.",
     "draft.matches.two":
@@ -473,11 +464,10 @@ const STRINGS = {
     "try.go": "Lancer ici",
     "try.loading": "Chargement du moteur",
     "try.text": "Un texte pour essayer le groupe",
-    "try.caught": "reconnus",
     "try.note": "piighost tourne dans cet onglet. Votre texte reste chez vous.",
     "contribute.lede":
       "Proposez un motif ou un groupe de motifs. Vérifié ici, fusionné par pull request.",
-    "contribute.what": "Que proposez-vous ?",
+    "contribute.what": "Que proposez-vous\u00a0?",
     "contribute.pattern.note": "Un motif et le label qu'il produit.",
     "contribute.group.note": "Un ensemble de motifs réutilisable.",
     "contribute.kind": "Type",
@@ -485,6 +475,8 @@ const STRINGS = {
     "contribute.name": "Nom",
     "contribute.base": "Objet de base",
     "contribute.fork": "Partir de celui-ci",
+    "contribute.fork.draft":
+      "Remplit le formulaire avec lui, exemples compris. Changez la forme et gardez les cas qu'il reconnaît déjà.",
     "contribute.create": "Créer",
     "contribute.path": "Chemin",
     "contribute.ok": "Tous les contrôles passent.",
@@ -492,14 +484,11 @@ const STRINGS = {
     "contribute.findings": "Constats",
 
     "stats.title": "Usage",
-    "stats.lede": "Ce qu'on demande au registre, compté et non journalisé.",
+    "stats.lede": "Ce qu'on demande au catalogue, compté et non journalisé.",
     "stats.window": "Fenêtre",
     "stats.7": "7 jours",
     "stats.30": "30 jours",
     "stats.90": "90 jours",
-    "stats.pulls": "pipelines récupérés",
-    "stats.browses": "objets consultés",
-    "stats.searches": "recherches",
     "stats.perDay": "Récupérations par jour",
     "stats.top": "Les plus récupérés",
     "stats.selectors": "Épinglé ou flottant",
@@ -514,10 +503,10 @@ const STRINGS = {
     "home.configsNote":
       "Motifs et groupes. Les pipelines qui en sont faits sont les",
     "configs.lede":
-      "Des pipelines assemblés à partir des groupes du registre : un détecteur, puis ce qui se passe une fois quelque chose trouvé. Le catalogue, lui, ce sont les regex.",
+      "Des pipelines assemblés à partir des groupes du catalogue\u00a0: un détecteur, puis ce qui se passe une fois quelque chose trouvé. Le catalogue lui-même, ce sont les regex.",
     "configs.link": "Configs piighost",
     "labels.lede":
-      "Tous les labels que ce registre peut émettre, et le motif qui les définit.",
+      "Tous les labels que ce catalogue peut émettre, et le motif qui les définit.",
     "labels.definedBy": "défini par",
 
     "common.loading": "Chargement",
@@ -530,11 +519,17 @@ const STRINGS = {
     "common.copy": "Copier",
     "common.copied": "Copié",
     "common.copyFailed": "Copie impossible",
+    "common.colon": "\u00a0:",
+    "common.unreachable": "la requête n'a pas atteint le serveur",
+    "common.level.error": "erreur",
+    "common.level.warning": "avertissement",
+    "common.level.info": "info",
 
     "footer.tagline":
       "Des regex de dé-identification testés et versionnés pour piighost.",
     "footer.links": "Liens",
     "footer.docs": "Documentation",
+    "footer.chat": "Interroger la documentation",
     "footer.mit": "Licence MIT.",
   },
 } as const;
@@ -542,16 +537,66 @@ const STRINGS = {
 export type Key = keyof (typeof STRINGS)["en"];
 
 /**
- * English, and only English.
+ * The words that follow a count, by plural category.
  *
- * The site was bilingual because it was a showcase. It is a tool now, its
- * registry is written in English and so is everything a contributor submits,
- * and a language switch on a tool is a setting nobody came to change. The
- * French half of the table below is kept rather than deleted: it costs nothing
- * to carry, and reversing this is one line if the site ever faces outward
- * again.
+ * Intl.PluralRules gives the category, so "1 result" and "2 results" in
+ * English, and "0 résultat", "1 résultat", "2 résultats" in French, where zero
+ * takes the singular. French also has a `many` category for round millions,
+ * which falls back to `other`.
  */
+const PLURALS = {
+  en: {
+    results: { one: "result", other: "results" },
+    labels: { one: "label", other: "labels" },
+    uses: { one: "use", other: "uses" },
+    pulls: { one: "pull", other: "pulls" },
+    kept: { one: "kept", other: "kept" },
+    caught: { one: "caught", other: "caught" },
+    coverage: { one: "label covered", other: "labels covered" },
+    pipelinesPulled: { one: "pipeline pulled", other: "pipelines pulled" },
+    objectsBrowsed: { one: "object looked at", other: "objects looked at" },
+    searches: { one: "search", other: "searches" },
+  },
+  fr: {
+    results: { one: "résultat", other: "résultats" },
+    labels: { one: "label", other: "labels" },
+    uses: { one: "usage", other: "usages" },
+    pulls: { one: "récupération", other: "récupérations" },
+    kept: { one: "gardée", other: "gardées" },
+    caught: { one: "reconnue", other: "reconnues" },
+    coverage: { one: "label couvert", other: "labels couverts" },
+    pipelinesPulled: { one: "pipeline récupéré", other: "pipelines récupérés" },
+    objectsBrowsed: { one: "objet consulté", other: "objets consultés" },
+    searches: { one: "recherche", other: "recherches" },
+  },
+} as const;
+
+export type PluralKey = keyof (typeof PLURALS)["en"];
+
+/** A text from the catalog, in English and optionally in French. */
+export type Localized = { en: string; fr?: string | null } | null | undefined;
+
+export const LOCALES: Locale[] = ["en", "fr"];
+
+/** The language a browser asks for: French if it says so first, else English. */
+export function preferredLocale(): Locale {
+  const asked = typeof navigator === "undefined" ? "" : navigator.language;
+  return asked.toLowerCase().startsWith("fr") ? "fr" : "en";
+}
+
+/**
+ * The French typographic spaces, for a text the dictionary does not hold.
+ *
+ * The manifests write `Paneuropéen : IBAN` with a plain space, which a line
+ * break can split from its colon. A no-break space before : ; ? ! and inside
+ * guillemets keeps them together, the rule the dictionary follows by hand.
+ */
+export function frenchSpacing(text: string): string {
+  return text.replace(/ ([:;?!»])/g, "\u00a0$1").replace(/« /g, "«\u00a0");
+}
+
 class I18n {
+  /** Set by the router from the path prefix, never by hand. */
   locale = $state<Locale>("en");
 
   t(key: Key): string {
@@ -559,11 +604,32 @@ class I18n {
     return table[key] ?? STRINGS.en[key] ?? key;
   }
 
-  /** The English side of a text from the registry, where French is optional. */
-  pick(text: { en: string; fr?: string | null } | null | undefined): string {
-    return text?.en ?? "";
+  /** The word for `count` things, without the count itself. */
+  plural(key: PluralKey, count: number): string {
+    const forms = PLURALS[this.locale][key] as Record<string, string>;
+    const category = new Intl.PluralRules(this.locale).select(count);
+    return forms[category] ?? forms.other;
+  }
+
+  /**
+   * A text from the catalog in the page's language, and the language it is
+   * really in: French is optional in a manifest, so a French page shows the
+   * English text where there is none, and says so with `lang`.
+   */
+  localized(text: Localized): { text: string; lang: Locale } {
+    const french = text?.fr;
+    if (this.locale === "fr" && french) return { text: french, lang: "fr" };
+    return { text: text?.en ?? "", lang: "en" };
+  }
+
+  /** The text alone, for an attribute or an option. */
+  pick(text: Localized): string {
+    const { text: value, lang } = this.localized(text);
+    return lang === "fr" ? frenchSpacing(value) : value;
   }
 }
 
 export const i18n = new I18n();
 export const t = (key: Key) => i18n.t(key);
+export const plural = (key: PluralKey, count: number) =>
+  i18n.plural(key, count);

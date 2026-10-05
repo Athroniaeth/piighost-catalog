@@ -106,8 +106,8 @@ class Index:
                         " ".join(entry.tags),
                         " ".join(labels),
                         # `or ""`, not a default: a manifest that declares
-                        # `fr = ` with nothing, or omits it since the site
-                        # stopped being bilingual, carries an explicit None.
+                        # `fr = ` with nothing, or omits it since French is
+                        # optional, carries an explicit None.
                         description.get("en") or "",
                         description.get("fr") or "",
                     ]
@@ -145,7 +145,7 @@ class Index:
         referenced first, ``labels`` widest first, ``pulls`` most fetched first,
         ``name`` alphabetical.
 
-        ``kind`` is a list because the catalogue asks for several at once: the
+        ``kind`` is a list because the catalog asks for several at once: the
         site lists patterns and groups together and keeps the piighost configs
         on their own page. An empty or absent list means every kind.
 

@@ -1,18 +1,20 @@
 # The site
 
 A Svelte application served by nginx, talking to the API under `/api/v1` from a
-single origin. Eight routes, no server-side state, no accounts.
+single origin. Eight routes, no server-side state, no accounts. Every route
+lives under its language, `/en/...` and `/fr/...`; the table names them without
+the prefix.
 
 | Route | What you do there |
 |---|---|
-| `/` | the catalogue: search, sort, object list, tickable facets |
+| `/` | the catalog: search, sort, object list, tickable facets |
 | `/r/:ns/:name[/:selector]` | one object: commit history on the left, the Content, Pipeline file and Use it tabs on the right |
 | `/playground` | run an object or a candidate regex over a text |
 | `/playground/compare` | two to four objects over the same text |
 | `/playground/chat` | the whole round trip, with a scripted assistant |
 | `/contribute` | write a pattern or a group in two columns, try it and check it from the foot of the second |
-| `/labels` | every label the registry can emit, from the footer |
-| `/stats` | how the registry is used, from counters aggregated to the hour |
+| `/labels` | every label the catalog can emit, from the footer |
+| `/stats` | how the catalog is used, from counters aggregated to the hour |
 
 ## Structure, after the LangSmith Hub
 
@@ -24,7 +26,7 @@ distributes prompts as this site distributes configurations, and whose gestures
   registry, `piighost / fr-default`. On the right, the two things a visitor
   does, the playground and contributing, then GitHub, the theme and the
   language.
-- **A centred title and a pill search.** The home page is the catalogue: a
+- **A centred title and a pill search.** The home page is the catalog: a
   title, one line, a wide search field, and the list immediately.
 - **Sort chips.** Widest coverage, relevance, recently updated, most used, name.
   With no query the default is coverage: someone arriving without typing
@@ -89,14 +91,22 @@ from `lib/ui.ts` rather than a component per field.
 ## Choices that show
 
 **Filters live in the URL.** A filtered view has to be shareable, and the back
-button has to undo a filter rather than leave the page. The catalogue therefore
+button has to undo a filter rather than leave the page. The catalog therefore
 reads `q`, `kind`, `tag` (repeatable) and `label` from the query string, and has
 no state of its own.
 
-**Two languages, down to the manifests.** The registry is bilingual by
-construction, every description carrying `en` and `fr`. The language switch also
-writes `document.documentElement.lang`, which is where a screen reader takes its
-voice from.
+**Two languages, down to the manifests.** Every page exists under `/en/` and
+`/fr/`, the scheme every piighost site links to, and the header's language menu
+links to the same page in the other language. A URL without the prefix, `/` or
+`/r/piighost/generic` from before, is sent by nginx to the same path under the
+browser's language (French when `Accept-Language` puts it first, English
+otherwise), with a 302 since the answer depends on who asks; the router does the
+same from `navigator.language` where nginx is not in front. Each page carries its
+`lang`, its canonical URL and its `hreflang` alternates, written by the
+prerenderer and kept true by the router after a navigation; the sitemap lists
+both languages. A description is bilingual in the manifest, `en` required and
+`fr` optional: a French page shows the English one where there is no French, and
+marks it `lang="en"`.
 
 **Two columns, and two dialogs.** The page carried three: identity, content,
 findings. The third earned its place at two moments only, reading the outcome of
@@ -110,7 +120,7 @@ learned twice on this project.
 The "Run here" button flattens the sources through the API, because deciding
 what happens when two sources carry one label is the registry's rule and there
 must be one implementation of it. Then it runs the result with piighost itself,
-compiled to WebAssembly by Pyodide, in the tab. The catalogue is public; the text
+compiled to WebAssembly by Pyodide, in the tab. The catalog is public; the text
 is not, and it goes nowhere.
 
 That is what justifies the CSP's one concession, `wasm-unsafe-eval` in

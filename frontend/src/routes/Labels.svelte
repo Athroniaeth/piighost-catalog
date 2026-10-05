@@ -3,7 +3,7 @@
   import EntityLabel from "../components/EntityLabel.svelte";
   import { api } from "../lib/api";
   import { t } from "../lib/i18n.svelte";
-  import { refPath } from "../lib/router.svelte";
+  import { localize, refPath } from "../lib/router.svelte";
 
   const labels = api.labels();
 </script>
@@ -20,7 +20,7 @@
           >
             <EntityLabel
               label={entry.label}
-              href="/?label={encodeURIComponent(entry.label)}"
+              href={localize(`/?label=${encodeURIComponent(entry.label)}`)}
             />
             <span class="text-xs text-muted-foreground"
               >{t("labels.definedBy")}</span

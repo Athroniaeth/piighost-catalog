@@ -11,15 +11,21 @@
   import { track } from "../lib/analytics";
   import { api } from "../lib/api";
   import { cn } from "../lib/cn";
-  import { t, type Key } from "../lib/i18n.svelte";
-  import { router } from "../lib/router.svelte";
+  import {
+    i18n,
+    plural,
+    t,
+    type Key,
+    type Localized,
+  } from "../lib/i18n.svelte";
+  import { localize, router } from "../lib/router.svelte";
   import { SvelteURLSearchParams } from "svelte/reactivity";
 
   type Kind = "pattern" | "group" | "config";
   type Sort = "relevance" | "updated" | "used" | "labels" | "pulls" | "name";
 
   const PER_PAGE = 15;
-  // The catalogue is the registry of regexes. A piighost configuration is a
+  // The catalog is the regexes. A piighost configuration is a
   // pipeline that happens to carry some, which is a different object with a
   // page of its own; listing it here put 32 of them among 186 regexes and
   // made the catalog look like a config store.
@@ -62,6 +68,18 @@
 
   let draft = $derived(query);
 
+  // A facet row shows the tag's name in the page's language, "Union
+  // européenne" for `eu`, from the closed vocabulary; the slug stays the value.
+  let tagNames = $state<Record<string, Localized>>({});
+  api
+    .vocabulary()
+    .then((result) => {
+      tagNames = Object.fromEntries(
+        result.items.map((entry) => [entry.tag, entry.label]),
+      );
+    })
+    .catch(() => {});
+
   // Which facet sections are open, held here rather than in each section: a
   // filter change builds a new result, which remounts them all, and an
   // expansion kept inside would vanish on the click that used it.
@@ -103,7 +121,13 @@
       group,
       rows: result.facets
         .filter((facet) => facet.kind === group)
-        .map((facet) => ({ value: facet.tag, count: facet.count })),
+        .map((facet) => ({
+          value: facet.tag,
+          label: tagNames[facet.tag]
+            ? i18n.pick(tagNames[facet.tag])
+            : undefined,
+          count: facet.count,
+        })),
     })).filter((section) => section.rows.length > 0);
   }
 
@@ -143,7 +167,7 @@
         event.preventDefault();
         update((params) => params.set("q", draft));
         // The words someone searched for are theirs. What is useful is whether
-        // the catalogue is browsed by filter or by query at all.
+        // the catalog is browsed by filter or by query at all.
         track({ name: "search", props: { sort, kind, tags: tags.length } });
       }}
     >
@@ -165,11 +189,11 @@
       </label>
     </form>
     <!-- The playground left the header for the shared ecosystem menu, so the
-         catalogue points to it from where a visitor starts. -->
+         catalog points to it from where a visitor starts. -->
     <p class="mt-5 text-sm text-balance text-muted-foreground">
       {t("home.playground")}
       <a
-        href="/playground"
+        href={localize("/playground")}
         class="inline-flex items-center gap-1 font-medium text-primary hover:underline"
         >{t("nav.playground").toLowerCase()}<ArrowRight class="size-3.5" /></a
       >
@@ -209,10 +233,10 @@
               <span class="font-medium text-foreground tabular-nums"
                 >{result.total}</span
               >
-              {t("home.results")}
+              {plural("results", result.total)}
             </p>
             {#if filtered}
-              <Button variant="ghost" size="sm" href="/"
+              <Button variant="ghost" size="sm" href={localize("/")}
                 >{t("home.clear")}</Button
               >
             {/if}
@@ -228,8 +252,9 @@
                only regexes, and needs one line telling them where they went. -->
           <p class="mt-3 text-xs text-muted-foreground">
             {t("home.configsNote")}
-            <a href="/configs" class="underline hover:text-foreground"
-              >{t("configs.title")}</a
+            <a
+              href={localize("/configs")}
+              class="underline hover:text-foreground">{t("configs.title")}</a
             >.
           </p>
 
@@ -245,7 +270,7 @@
             {#if paged.pages > 1}
               <nav
                 aria-label={t("home.page")}
-                class="mt-8 flex items-center justify-center gap-1 text-sm"
+                class="mt-8 flex flex-wrap items-center justify-center gap-1 text-sm"
               >
                 <Button
                   variant="ghost"
@@ -263,7 +288,7 @@
                     type="button"
                     aria-current={n === paged.current ? "page" : undefined}
                     class={cn(
-                      "size-8 rounded-md text-sm tabular-nums",
+                      "size-8 shrink-0 rounded-md text-sm tabular-nums",
                       n === paged.current
                         ? "bg-primary text-primary-foreground"
                         : "hover:bg-muted",

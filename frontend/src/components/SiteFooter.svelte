@@ -1,6 +1,7 @@
 <script lang="ts">
   import Wordmark from "./Wordmark.svelte";
-  import { t } from "../lib/i18n.svelte";
+  import { i18n, t } from "../lib/i18n.svelte";
+  import { localize } from "../lib/router.svelte";
 </script>
 
 <footer class="border-t">
@@ -15,8 +16,9 @@
       <p class="text-sm font-semibold">piighost</p>
       <ul class="mt-3 space-y-2 text-sm text-muted-foreground">
         <li>
-          <a class="hover:text-foreground" href="https://piighost.dev"
-            >piighost.dev</a
+          <a
+            class="hover:text-foreground"
+            href="https://piighost.dev/{i18n.locale}/">piighost.dev</a
           >
         </li>
         <li>
@@ -38,9 +40,17 @@
         <li>
           <a
             class="hover:text-foreground"
-            href="https://athroniaeth.github.io/piighost/"
+            href="https://docs.piighost.dev/{i18n.locale}/"
             target="_blank"
             rel="noreferrer">{t("footer.docs")}</a
+          >
+        </li>
+        <li>
+          <a
+            class="hover:text-foreground"
+            href="https://docs-chat.piighost.dev"
+            target="_blank"
+            rel="noreferrer">{t("footer.chat")}</a
           >
         </li>
       </ul>
@@ -49,19 +59,22 @@
       <p class="text-sm font-semibold">{t("footer.links")}</p>
       <ul class="mt-3 space-y-2 text-sm text-muted-foreground">
         <li>
-          <a class="hover:text-foreground" href="/labels">{t("labels.title")}</a
+          <a class="hover:text-foreground" href={localize("/labels")}
+            >{t("labels.title")}</a
           >
         </li>
         <li>
-          <a class="hover:text-foreground" href="/configs"
+          <a class="hover:text-foreground" href={localize("/configs")}
             >{t("configs.title")}</a
           >
         </li>
         <li>
-          <a class="hover:text-foreground" href="/stats">{t("stats.title")}</a>
+          <a class="hover:text-foreground" href={localize("/stats")}
+            >{t("stats.title")}</a
+          >
         </li>
         <li>
-          <a class="hover:text-foreground" href="/contribute"
+          <a class="hover:text-foreground" href={localize("/contribute")}
             >{t("nav.contribute")}</a
           >
         </li>

@@ -22,6 +22,15 @@ map $http_x_forwarded_for $forwarded_for {
     default $http_x_forwarded_for;
 }
 
+# The language a page without one is sent to: French when the browser puts
+# French first, English otherwise, a crawler included since it sends none. The
+# server-side reading of navigator.language, which is the first entry of this
+# header.
+map $http_accept_language $preferred_lang {
+    default en;
+    ~*^fr   fr;
+}
+
 # The catalog's former name. Both hostnames reach this container, and the old
 # one now only redirects, path and query kept, so a link or a bookmark lands on
 # the same page under the new name. piighost 1.x resolves `hub:` references
@@ -53,6 +62,11 @@ server {
     real_ip_header X-Forwarded-For;
     real_ip_recursive on;
     server_name _;
+
+    # A redirect names the path alone. With the default absolute form, nginx
+    # would write its own scheme and port, http://...:8080, behind a proxy that
+    # terminates TLS on 443.
+    absolute_redirect off;
 
     root /usr/share/nginx/html;
     index index.html;
@@ -164,15 +178,32 @@ server {
         access_log off;
     }
 
-    # SPA routing: every other URL returns the app, which routes client-side.
-    # `no-cache` on this HTML, else a browser would keep the old hashed asset names
-    # and never see a deployment.
-    location / {
+    # Every page lives under its language, the scheme the other piighost sites
+    # link to. `no-cache` on this HTML, else a browser would keep the old hashed
+    # asset names and never see a deployment.
+    location ~ ^/(en|fr)(/|$) {
         include /etc/nginx/security-headers.conf;
 
         # $uri/index.html is the prerendered page for this route, written at
-        # build time; /index.html is the application shell for everything else.
+        # build time; /index.html is the application shell for everything else,
+        # routed client-side.
         try_files $uri $uri/index.html /index.html;
         add_header Cache-Control "no-cache" always;
+    }
+
+    # The files beside the bundle (favicon.svg, theme.js, og.png, pyodide/...)
+    # are served as they are. Any other path predates the languages, a link or
+    # a bookmark to /r/piighost/generic: it moves under the browser's language,
+    # path and query kept. A 302, since the answer depends on who asks.
+    location / {
+        include /etc/nginx/security-headers.conf;
+
+        try_files $uri @localize;
+        add_header Cache-Control "no-cache" always;
+    }
+
+    location @localize {
+        add_header Vary "Accept-Language" always;
+        return 302 /$preferred_lang$request_uri;
     }
 }

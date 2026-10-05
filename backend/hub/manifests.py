@@ -23,9 +23,9 @@ LABEL = re.compile(r"^[A-Z][A-Z0-9_]*$")
 class LocalizedText(msgspec.Struct, forbid_unknown_fields=True):
     """A short text, in English and optionally in French.
 
-    The registry was bilingual because the site was, and the site is not any
-    more. The objects written while it was keep their French, which costs
-    nothing and would be a shame to delete; a new one is not asked for it.
+    The site is bilingual, under /en/ and /fr/, and shows the French where a
+    manifest has it and the English otherwise. French is welcome, not
+    required: a contribution written in English alone is accepted as it is.
     """
 
     en: str

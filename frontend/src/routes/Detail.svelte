@@ -9,6 +9,7 @@
   import EntityRow from "../components/EntityRow.svelte";
   import KindIcon from "../components/KindIcon.svelte";
   import BrandIcon from "../components/BrandIcon.svelte";
+  import DataText from "../components/DataText.svelte";
   import Badge from "../components/ui/Badge.svelte";
   import Button from "../components/ui/Button.svelte";
   import Card from "../components/ui/Card.svelte";
@@ -19,9 +20,9 @@
   import { ApiError, api, download } from "../lib/api";
   import { cn } from "../lib/cn";
   import { segments } from "../lib/highlight";
-  import { i18n, t } from "../lib/i18n.svelte";
+  import { i18n, plural, t } from "../lib/i18n.svelte";
   import { assignLabelColors, labelStyle } from "../lib/labels";
-  import { refPath, router } from "../lib/router.svelte";
+  import { localize, refPath, router } from "../lib/router.svelte";
   import { relativeTime } from "../lib/time";
   import { FIELD } from "../lib/ui";
 
@@ -155,15 +156,16 @@
           <!-- The namespace links to its objects, as the header's trail did
                before the shared header replaced it. -->
           <a
-            href="/?q={encodeURIComponent(object.namespace)}"
+            href={localize(`/?q=${encodeURIComponent(object.namespace)}`)}
             class="text-muted-foreground hover:text-foreground hover:underline"
             >{object.namespace}</a
           ><span class="text-muted-foreground">/</span>{object.name}
         </h1>
         <Badge variant="outline">{kindName(object.kind)}</Badge>
         {#each object.tags as tag (tag)}
-          <Badge variant="secondary" href="/?tag={encodeURIComponent(tag)}"
-            >{tag}</Badge
+          <Badge
+            variant="secondary"
+            href={localize(`/?tag=${encodeURIComponent(tag)}`)}>{tag}</Badge
           >
         {/each}
         <div class="no-print ms-auto flex items-center gap-1.5">
@@ -179,14 +181,16 @@
           >
             <Download />
           </Button>
-          <Button href="/playground?ref={encodeURIComponent(object.key)}">
+          <Button
+            href={localize(`/playground?ref=${encodeURIComponent(object.key)}`)}
+          >
             <Play />
             {t("detail.tryIt")}
           </Button>
         </div>
       </div>
       <p class="mx-auto max-w-7xl px-4 pb-4 text-sm text-muted-foreground">
-        {i18n.pick(object.description)}
+        <DataText text={object.description} />
       </p>
     </div>
 
@@ -258,7 +262,7 @@
             >
               <Download class="size-3.5" />
               {object.pulls}
-              {t("home.pullsCount")}
+              {plural("pulls", object.pulls)}
             </span>
           {/if}
         </div>

@@ -70,7 +70,7 @@ curl 'https://catalog.piighost.dev/api/v1/refs/piighost/logs/latest/pipeline.tom
 
 ## Contributing a pattern
 
-The [contribution page](https://catalog.piighost.dev/contribute) runs the maintainers' own checks on a manifest you write in a form, lets you try it against a real text in your browser, and then hands you a prefilled GitHub link. No account, no token, no write access to this repository from the service: the pull request is yours.
+The [contribution page](https://catalog.piighost.dev/en/contribute) runs the maintainers' own checks on a manifest you write in a form, lets you try it against a real text in your browser, and then hands you a prefilled GitHub link. No account, no token, no write access to this repository from the service: the pull request is yours.
 
 Starting from an existing object is one click, which is usually the right move — a pattern that already passes composition is a better base than a blank field.
 

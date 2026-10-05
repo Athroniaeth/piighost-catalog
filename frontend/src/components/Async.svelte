@@ -28,7 +28,10 @@
   {@render children(value)}
 {:catch error}
   <div class="rounded-lg border bg-muted/30 p-4 text-sm" role="alert">
-    <p class="text-destructive">{t("common.error")}: {error.message}</p>
+    <p class="text-destructive">
+      {t("common.error")}{t("common.colon")}
+      {error.message}
+    </p>
     {#if onretry}
       <Button variant="outline" size="sm" class="mt-3" onclick={onretry}
         >{t("common.retry")}</Button

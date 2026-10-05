@@ -49,7 +49,7 @@ export const PLACEHOLDER = {
       value: "john.doe@example.com",
     },
     {
-      text: "Contact : support+billing@mail.example.org",
+      text: "Contact: support+billing@mail.example.org",
       value: "support+billing@mail.example.org",
     },
   ],

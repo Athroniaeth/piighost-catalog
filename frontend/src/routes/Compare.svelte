@@ -10,7 +10,7 @@
   import Button from "../components/ui/Button.svelte";
   import Region from "../components/ui/Region.svelte";
   import { ApiError, api } from "../lib/api";
-  import { t } from "../lib/i18n.svelte";
+  import { plural, t } from "../lib/i18n.svelte";
   import { parseRef, refPath } from "../lib/router.svelte";
   import { assignLabelColors } from "../lib/labels";
   import { EYEBROW, TEXTAREA } from "../lib/ui";
@@ -146,7 +146,8 @@
           <p class="mb-1.5 font-mono text-xs text-muted-foreground">
             {run.ref} ·
             <span class="tabular-nums"
-              >{run.hits.filter((h) => h.kept).length} {t("play.kept")}</span
+              >{run.hits.filter((h) => h.kept).length}
+              {plural("kept", run.hits.filter((h) => h.kept).length)}</span
             >
           </p>
           <div class="rounded-lg border bg-muted/30 p-3">

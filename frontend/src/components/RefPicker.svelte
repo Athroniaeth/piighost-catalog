@@ -5,7 +5,7 @@
   import type { SearchHit, SearchOut } from "../generated/api";
   import { api } from "../lib/api";
   import { cn } from "../lib/cn";
-  import { t, type Key } from "../lib/i18n.svelte";
+  import { plural, t, type Key } from "../lib/i18n.svelte";
   import KindIcon from "./KindIcon.svelte";
 
   /**
@@ -97,7 +97,7 @@
   /** The whole key and what the bare number means, for the title on hover. */
   function countLabel(item: SearchHit): string {
     const kindName = t(`kind.${item.kind}` as Key);
-    return `${item.key} • ${kindName} • ${item.labels.length} ${t("pick.coverage")}`;
+    return `${item.key} • ${kindName} • ${item.labels.length} ${plural("coverage", item.labels.length)}`;
   }
 
   /** Put the panel under its trigger, or above it when the room is below. */

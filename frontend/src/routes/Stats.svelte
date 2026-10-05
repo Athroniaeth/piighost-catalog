@@ -5,7 +5,7 @@
   import Card from "../components/ui/Card.svelte";
   import Segmented from "../components/ui/Segmented.svelte";
   import { api } from "../lib/api";
-  import { t } from "../lib/i18n.svelte";
+  import { plural, t } from "../lib/i18n.svelte";
   import { refPath } from "../lib/router.svelte";
 
   let days = $state("30");
@@ -30,11 +30,11 @@
   <Async promise={stats}>
     {#snippet children(report)}
       <div class="grid gap-3 sm:grid-cols-3">
-        {#each [["stats.pulls", report.pulls], ["stats.browses", report.browses], ["stats.searches", report.searches]] as const as [key, value] (key)}
+        {#each [["pipelinesPulled", report.pulls], ["objectsBrowsed", report.browses], ["searches", report.searches]] as const as [key, value] (key)}
           <div class="rounded-xl border bg-card p-4">
             <p class="text-2xl font-semibold tabular-nums">{value}</p>
             <p class="mt-0.5 text-sm text-muted-foreground">
-              {t(key)}
+              {plural(key, value)}
             </p>
           </div>
         {/each}

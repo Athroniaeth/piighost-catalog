@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("the catalogue", () => {
+test.describe("the catalog", () => {
   test("opens on the widest coverage, not the most recent", async ({
     page,
   }) => {
@@ -51,7 +51,7 @@ test.describe("the catalogue", () => {
     ).toBeVisible();
   });
 
-  test("filters the catalogue from a facet", async ({ page }) => {
+  test("filters the catalog from a facet", async ({ page }) => {
     await page.goto("/");
     const before = await page.getByText(/results/).innerText();
     await page
@@ -61,5 +61,33 @@ test.describe("the catalogue", () => {
       .check();
     await expect(page.getByText(/results/)).not.toHaveText(before);
     await expect(page).toHaveURL(/kind=pattern/);
+  });
+});
+
+test.describe("the two languages", () => {
+  test("moves a URL that predates them under the browser's", async ({
+    page,
+  }) => {
+    await page.goto("/r/piighost/generic?x=1");
+    await expect(page).toHaveURL(/\/en\/r\/piighost\/generic\?x=1$/);
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  });
+
+  test("serves French under /fr/, and the menu keeps the page", async ({
+    page,
+  }) => {
+    await page.goto("/fr/r/piighost/generic");
+    await expect(page.locator("html")).toHaveAttribute("lang", "fr");
+    await expect(page.getByRole("tab", { name: "Contenu" })).toBeVisible();
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      /\/fr\/r\/piighost\/generic$/,
+    );
+
+    await page.getByLabel("Changer de langue").first().click();
+    await page.getByRole("link", { name: "English" }).first().click();
+    await expect(page).toHaveURL(/\/en\/r\/piighost\/generic$/);
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    await expect(page.getByRole("tab", { name: "Content" })).toBeVisible();
   });
 });

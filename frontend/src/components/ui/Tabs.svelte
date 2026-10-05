@@ -1,14 +1,17 @@
 <script lang="ts">
   import { cn } from "../../lib/cn";
-  import { router } from "../../lib/router.svelte";
+  import { localize, router } from "../../lib/router.svelte";
 
-  /** Link tabs between sibling pages, the studio's PlaygroundTabs pattern. */
+  /**
+   * Link tabs between sibling pages, the studio's PlaygroundTabs pattern. The
+   * hrefs are written without the language, which is added here.
+   */
   let {
     tabs,
     label,
   }: { tabs: { href: string; label: string }[]; label: string } = $props();
 
-  const current = $derived(router.path.replace(/\/+$/, "") || "/");
+  const current = $derived(router.local.replace(/\/+$/, "") || "/");
 </script>
 
 <nav
@@ -18,7 +21,7 @@
   {#each tabs as tab (tab.href)}
     {@const active = current === tab.href}
     <a
-      href={tab.href}
+      href={localize(tab.href)}
       aria-current={active ? "page" : undefined}
       class={cn(
         "rounded-md px-3 py-1.5 font-medium transition-colors",

@@ -85,7 +85,7 @@
   /**
    * What the try panel runs, per kind.
    *
-   * A pattern is its own catalogue and needs nothing from the server. A group
+   * A pattern is its own catalog and needs nothing from the server. A group
    * is a list of references, and only the registry knows how to flatten it.
    */
   async function catalogue(): Promise<Record<string, string>> {
@@ -355,7 +355,7 @@
                         : "text-muted-foreground",
                     )}
                   >
-                    {finding.level}
+                    {t(`common.level.${finding.level}` as Key)}
                   </span>
                   {finding.message}
                 </li>

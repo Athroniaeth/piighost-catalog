@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { CHAT_ENABLED, parseRef, refPath, router } from "./router.svelte";
+import { i18n } from "./i18n.svelte";
+import {
+  CHAT_ENABLED,
+  localize,
+  parseRef,
+  refPath,
+  router,
+  splitLocale,
+} from "./router.svelte";
 
 describe("parseRef", () => {
   it("splits a bare key, defaulting the selector to latest", () => {
@@ -29,16 +37,61 @@ describe("parseRef", () => {
 
 describe("refPath", () => {
   it("leaves latest out of the URL, since the bare name means latest", () => {
-    expect(refPath("piighost/fr-default")).toBe("/r/piighost/fr-default");
+    expect(refPath("piighost/fr-default")).toBe("/en/r/piighost/fr-default");
     expect(refPath("piighost/fr-default:latest")).toBe(
-      "/r/piighost/fr-default",
+      "/en/r/piighost/fr-default",
     );
   });
 
   it("keeps a commit in the URL", () => {
     expect(refPath("piighost/fr-default:3fa9c2e1")).toBe(
-      "/r/piighost/fr-default/3fa9c2e1",
+      "/en/r/piighost/fr-default/3fa9c2e1",
     );
+  });
+});
+
+describe("languages", () => {
+  it("reads the language off the path, and the path the routes match", () => {
+    expect(splitLocale("/fr/r/piighost/jwt")).toEqual({
+      locale: "fr",
+      rest: "/r/piighost/jwt",
+    });
+    expect(splitLocale("/en")).toEqual({ locale: "en", rest: "/" });
+    expect(splitLocale("/en/?q=iban")).toEqual({
+      locale: "en",
+      rest: "/?q=iban",
+    });
+    // A path that merely starts with the letters is not under a language.
+    expect(splitLocale("/frobnicate").locale).toBeNull();
+  });
+
+  it("puts a site path under a language, and leaves the rest alone", () => {
+    expect(localize("/", "fr")).toBe("/fr/");
+    expect(localize("/?tag=fr", "fr")).toBe("/fr/?tag=fr");
+    expect(localize("/configs", "en")).toBe("/en/configs");
+    expect(localize("/fr/configs", "en")).toBe("/fr/configs");
+    expect(localize("https://piighost.dev/fr/", "en")).toBe(
+      "https://piighost.dev/fr/",
+    );
+    expect(localize("//example.com/", "en")).toBe("//example.com/");
+  });
+
+  it("moved the unprefixed page it started on under the browser's language", () => {
+    // jsdom starts on / and says en-US.
+    expect(router.path.startsWith("/en")).toBe(true);
+  });
+
+  it("follows the language of the path, and keeps the page across a switch", () => {
+    router.go("/fr/configs?x=1");
+    expect(i18n.locale).toBe("fr");
+    expect(router.route.name).toBe("configs");
+    expect(router.alternate("en")).toBe("/en/configs?x=1");
+    // A link written without a language stays in the page's.
+    router.go("/contribute");
+    expect(router.path).toBe("/fr/contribute");
+    router.go(router.alternate("en"));
+    expect(i18n.locale).toBe("en");
+    expect(router.path).toBe("/en/contribute");
   });
 });
 

@@ -8,7 +8,7 @@
   import type { SampleOut } from "../generated/api";
   import { ApiError } from "../lib/api";
   import { assignLabelColors } from "../lib/labels";
-  import { t } from "../lib/i18n.svelte";
+  import { plural, t } from "../lib/i18n.svelte";
   import { engine, run, type Hit } from "../lib/pyodide.svelte";
   import { TEXTAREA } from "../lib/ui";
 
@@ -16,7 +16,7 @@
    * Try what is being written, without publishing it and without sending the
    * text anywhere.
    *
-   * The caller supplies the catalogue, because where it comes from differs and
+   * The caller supplies the catalog, because where it comes from differs and
    * the difference matters. A pattern already holds its own regex, so nothing
    * leaves the browser at all. A group is a list of references, and flattening
    * it is the registry's own rule, so the API does that and there is one
@@ -107,7 +107,7 @@
     </div>
     <p class="text-xs text-muted-foreground tabular-nums">
       {hits.length}
-      {t("try.caught")} · {elapsed.toFixed(1)} ms
+      {plural("caught", hits.length)} · {elapsed.toFixed(1)} ms
     </p>
     <ul class="space-y-1.5 overflow-y-auto">
       {#each hits as hit, index (index)}

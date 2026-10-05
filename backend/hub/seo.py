@@ -4,7 +4,11 @@ Two things stand between a registry object and someone finding it: a crawler
 has to be allowed in, and it has to be told the page exists. The site is a
 single page application, so no link on it survives without JavaScript, which
 makes the sitemap the only reliable way a search engine learns that
-`/r/piighost/fr-default` is a page at all.
+`/en/r/piighost/fr-default` is a page at all.
+
+Every page exists in English and in French, under `/en/` and `/fr/`. The
+sitemap lists both and ties each pair with `xhtml:link` alternates, plus
+`x-default` on the English one, the same set the pages carry in their head.
 
 Both are generated rather than written by hand, for the same reason the site
 is: the registry grows, and a list of 218 URLs maintained by a human is a list
@@ -29,6 +33,9 @@ from backend.hub.store import Snapshot
 
 XML_MEDIA_TYPE = "application/xml"
 TEXT_MEDIA_TYPE = "text/plain"
+
+# The languages every page exists in, as the path prefix the site uses.
+LOCALES = ("en", "fr")
 
 # The pages a crawler should know about that are not a registry object.
 STATIC_PATHS = (
@@ -91,17 +98,20 @@ async def sitemap(request: Request, state: State) -> Response[str]:
     origin = origin_of(request)
     today = datetime.now(UTC).date().isoformat()
 
-    entries = [f"<url><loc>{origin}{path}</loc></url>" for path in STATIC_PATHS]
+    pages: list[tuple[str, str | None]] = [(path, None) for path in STATIC_PATHS]
     for key, head in sorted(registry.heads.items()):
         recorded = head.recorded_at[:10] if head.recorded_at else today
-        entries.append(
-            f"<url><loc>{origin}/r/{escape(key)}</loc>"
-            f"<lastmod>{recorded}</lastmod></url>"
-        )
+        pages.append((f"/r/{escape(key)}", recorded))
 
+    entries = [
+        _entry(origin, lang, path, lastmod)
+        for path, lastmod in pages
+        for lang in LOCALES
+    ]
     body = (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+        'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
         + "\n".join(entries)
         + "\n</urlset>\n"
     )
@@ -121,7 +131,7 @@ async def llms(request: Request, state: State) -> Response[str]:
     it holds and where. It matters more here than on most sites: the pages are
     rendered by JavaScript, and the assistants that answer "how do I redact PII
     before a prompt" read raw HTML. This file is the one place where the whole
-    catalogue is legible without running anything.
+    catalog is legible without running anything.
 
     Generated, like the sitemap, because a hand-written list of 226 objects is a
     list of 180 three weeks later. Groups lead: a group is the set of regexes
@@ -138,7 +148,7 @@ async def llms(request: Request, state: State) -> Response[str]:
             labels = _labels_of(registry, head)
             summary = _one_line(head.content.get("description", {}).get("en", ""))
             count = f" ({labels} labels)" if labels else ""
-            rows.append(f"- [{key}]({origin}/r/{key}){count}: {summary}")
+            rows.append(f"- [{key}]({origin}/en/r/{key}){count}: {summary}")
         if not rows:
             return []
         return [f"\n## {title}\n", note, ""] + rows
@@ -147,7 +157,7 @@ async def llms(request: Request, state: State) -> Response[str]:
         "# piighost catalog",
         "",
         (
-            "> A registry of tested de-identification regexes for piighost, a Python "
+            "> A catalog of tested de-identification regexes for piighost, a Python "
             "library that keeps personal data out of LLM prompts and puts it back in "
             "the response. Every pattern carries the cases it must catch, the cases it "
             "must leave alone, and a bound on its backtracking; every group is checked "
@@ -170,7 +180,7 @@ async def llms(request: Request, state: State) -> Response[str]:
         "",
         "## How to read an object",
         "",
-        f"- Its page: {origin}/r/NAMESPACE/NAME",
+        f"- Its page: {origin}/en/r/NAMESPACE/NAME, in French under /fr/",
         (
             f"- Its detector, as TOML: {origin}/api/v1/refs/NAMESPACE/NAME/latest"
             "/pipeline.toml?part=detector"
@@ -179,7 +189,7 @@ async def llms(request: Request, state: State) -> Response[str]:
             f"- Its full pipeline: {origin}/api/v1/refs/NAMESPACE/NAME/latest"
             "/pipeline.toml"
         ),
-        f"- Search the catalogue: {origin}/api/v1/search?q=QUERY",
+        f"- Search the catalog: {origin}/api/v1/search?q=QUERY",
     ]
     lines += section(
         "group",
@@ -203,8 +213,8 @@ async def llms(request: Request, state: State) -> Response[str]:
         "## Elsewhere",
         "",
         "- [piighost, the library](https://github.com/Athroniaeth/piighost)",
-        "- [piighost documentation](https://piighost.dev/)",
-        f"- [This registry, on GitHub]({_REPO})",
+        "- [piighost documentation](https://docs.piighost.dev/en/)",
+        f"- [This catalog, on GitHub]({_REPO})",
         "",
     ]
     return Response(
@@ -212,6 +222,17 @@ async def llms(request: Request, state: State) -> Response[str]:
         media_type=TEXT_MEDIA_TYPE,
         headers={"Cache-Control": CACHE},
     )
+
+
+def _entry(origin: str, lang: str, path: str, lastmod: str | None) -> str:
+    """One page in one language, with the alternates that name the other."""
+    alternates = "".join(
+        f'<xhtml:link rel="alternate" hreflang="{code}" '
+        f'href="{origin}/{target}{path}"/>'
+        for code, target in [*((code, code) for code in LOCALES), ("x-default", "en")]
+    )
+    modified = f"<lastmod>{lastmod}</lastmod>" if lastmod else ""
+    return f"<url><loc>{origin}/{lang}{path}</loc>{modified}{alternates}</url>"
 
 
 def _labels_of(registry: Registry, head: Snapshot) -> int:

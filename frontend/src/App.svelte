@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { GithubIcon, SiteNav, ecosystemLinks } from "@piighost/ui";
+  import { GithubIcon, LangMenu, SiteNav, ecosystemLinks } from "@piighost/ui";
   import SiteFooter from "./components/SiteFooter.svelte";
   import ThemeToggle from "./components/ThemeToggle.svelte";
   import Button from "./components/ui/Button.svelte";
@@ -13,8 +13,9 @@
   import NotFound from "./routes/NotFound.svelte";
   import Playground from "./routes/Playground.svelte";
   import Stats from "./routes/Stats.svelte";
+  import { syncHead } from "./lib/head";
   import { i18n, t, type Key } from "./lib/i18n.svelte";
-  import { interceptLinks, router } from "./lib/router.svelte";
+  import { interceptLinks, localize, router } from "./lib/router.svelte";
 
   const route = $derived(router.route);
 
@@ -25,9 +26,15 @@
    */
   const links = $derived(
     ecosystemLinks("catalog", i18n.locale).map((link) =>
-      link.current ? { ...link, href: "/" } : link,
+      link.current ? { ...link, href: localize("/") } : link,
     ),
   );
+
+  /** Each language links to this same page in it, query kept. */
+  const locales = $derived([
+    { code: "fr" as const, name: "Français", href: router.alternate("fr") },
+    { code: "en" as const, name: "English", href: router.alternate("en") },
+  ]);
 
   // One title per route. Without this every tab, every bookmark and every
   // shared link read "piighost catalog", which is useless once you have three of
@@ -51,10 +58,10 @@
     return `${t(key)} · ${suffix}`;
   });
 
-  // The document language follows the switcher: a screen reader picks its voice
-  // from it, and it is the one piece of the page Svelte does not own.
+  // The document language follows the path: a screen reader picks its voice
+  // from it, and a crawler that renders the page reads the alternates.
   $effect(() => {
-    document.documentElement.lang = i18n.locale;
+    syncHead(i18n.locale, router.local);
   });
 
   $effect(() => {
@@ -66,11 +73,9 @@
 
 <a class="skip-link" href="#content">{t("nav.skip")}</a>
 
-<!-- The library's ThemeToggle writes the ecosystem key (piighost-theme), and
-     public/theme.js reads the catalog's (piighost-hub-theme): the catalog keeps
-     its own button, so the two never disagree. No language menu: the interface
-     is English only (lib/i18n.svelte.ts), and a menu that switched nothing
-     would be a lie. -->
+<!-- The catalog keeps its own theme button, which says whether it is pressed,
+     on the ecosystem's storage key. The language menu is the library's: each
+     entry is a real link to this page in that language. -->
 {#snippet controls()}
   <Button
     variant="ghost"
@@ -85,8 +90,13 @@
   <ThemeToggle />
 {/snippet}
 
+{#snippet language()}
+  <LangMenu current={i18n.locale} label={t("nav.language")} {locales} />
+{/snippet}
+
 <div class="flex min-h-dvh flex-col">
   <SiteNav
+    homeHref={localize("/")}
     surface="catalog"
     {links}
     mainNavigationLabel={t("nav.main")}
@@ -95,20 +105,30 @@
     {#snippet actions()}
       <!-- A wrapper carries the breakpoint: Button always sets inline-flex. -->
       <span class="me-1 hidden sm:inline-flex">
-        <Button variant="outline" size="sm" href="/contribute"
+        <Button variant="outline" size="sm" href={localize("/contribute")}
           >{t("nav.contribute")}</Button
         >
       </span>
-      <span class="hidden items-center gap-1 lg:flex">{@render controls()}</span
+      <span class="hidden items-center gap-1 lg:flex"
+        >{@render controls()}{@render language()}</span
       >
     {/snippet}
+    <!-- In the phone menu the language comes first: its list opens rightwards
+         from where it sits, and at the far end of the row it ran off the
+         screen. It also opens upwards: the menu scrolls, and a list below its
+         last row was cut by the menu's own edge. Contribute, which the bar
+         hides below 640px, goes last. -->
     {#snippet menuActions()}
-      <span class="me-auto inline-flex sm:hidden">
-        <Button variant="outline" href="/contribute"
+      <span
+        class="inline-flex [&_details>ul]:bottom-full [&_details>ul]:mt-0 [&_details>ul]:mb-1.5"
+        >{@render language()}</span
+      >
+      {@render controls()}
+      <span class="ms-auto inline-flex sm:hidden">
+        <Button variant="outline" href={localize("/contribute")}
           >{t("nav.contribute")}</Button
         >
       </span>
-      {@render controls()}
     {/snippet}
   </SiteNav>
   <main id="content" class="flex-1">
@@ -131,7 +151,7 @@
     {:else if route.name === "contribute"}
       <Contribute />
     {:else if route.name === "detail"}
-      {#key router.path}
+      {#key router.local}
         <Detail
           namespace={route.params.namespace}
           name={route.params.name}

@@ -3,7 +3,9 @@
 *[English version](en/site.md).*
 
 Une application Svelte servie par nginx, qui parle à l'API sous `/api/v1` en
-origine unique. Huit routes, aucun état côté serveur, aucun compte.
+origine unique. Huit routes, aucun état côté serveur, aucun compte. Chaque route
+vit sous sa langue, `/en/...` et `/fr/...`. Le tableau les nomme sans le
+préfixe.
 
 | Route | Ce qu'on y fait |
 |---|---|
@@ -13,8 +15,8 @@ origine unique. Huit routes, aucun état côté serveur, aucun compte.
 | `/playground/compare` | deux à quatre objets sur le même texte |
 | `/playground/chat` | l'aller-retour complet, avec un assistant scripté |
 | `/contribute` | rédiger un motif ou un groupe en deux colonnes, l'essayer et le vérifier depuis le pied de la seconde |
-| `/labels` | les labels que le registre peut émettre, depuis le pied de page |
-| `/stats` | comment le registre est utilisé, depuis des compteurs agrégés à l'heure |
+| `/labels` | les labels que le catalogue peut émettre, depuis le pied de page |
+| `/stats` | comment le catalogue est utilisé, depuis des compteurs agrégés à l'heure |
 
 ## Structure, d'après le LangSmith Hub
 
@@ -100,10 +102,18 @@ bouton retour doit défaire un filtre plutôt que quitter la page. Le catalogue 
 donc `q`, `kind`, `tag` (répétable) et `label` depuis la query, et n'a pas d'état
 propre.
 
-**Deux langues, jusque dans les manifestes.** Le registre est bilingue par
-construction, chaque description portant `en` et `fr`. Le sélecteur de langue
-écrit aussi `document.documentElement.lang`, dont un lecteur d'écran tire sa
-voix.
+**Deux langues, jusque dans les manifestes.** Chaque page existe sous `/en/` et
+`/fr/`, le schéma vers lequel pointent tous les sites piighost, et le menu de
+langue de l'en-tête mène à la même page dans l'autre langue. Une URL sans
+préfixe, `/` ou l'ancien `/r/piighost/generic`, est envoyée par nginx vers le même
+chemin sous la langue du navigateur (le français quand `Accept-Language` le met
+en premier, l'anglais sinon), par une 302 puisque la réponse dépend de qui
+demande. Le routeur fait de même depuis `navigator.language` là où nginx n'est
+pas devant. Chaque page porte son `lang`, son URL canonique et ses alternates
+`hreflang`, écrits par le prérendu et tenus à jour par le routeur après une
+navigation, et le sitemap liste les deux langues. Une description est bilingue dans
+le manifeste, `en` obligatoire et `fr` facultatif : une page française montre
+l'anglaise là où il n'y a pas de français, et la marque `lang="en"`.
 
 **Deux colonnes, et deux dialogues.** La page en a porté trois : identité,
 contenu, constats. La troisième ne servait qu'à deux moments, lire le résultat

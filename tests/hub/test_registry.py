@@ -10,7 +10,7 @@ from tests.hub.fixtures import EMAIL, write, write_config, write_group, write_pa
 
 class TestEnglishOnly:
     def test_an_object_without_a_french_description_indexes(self, root: Path) -> None:
-        """The site stopped being bilingual, so `fr` is optional everywhere.
+        """French is optional everywhere, `fr` may be missing.
 
         It was optional in the manifest model and required by the index, which
         joined both translations into the haystack and tripped over the None.

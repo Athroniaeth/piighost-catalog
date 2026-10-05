@@ -7,13 +7,14 @@
   import type { SearchHit } from "../generated/api";
   import Badge from "./ui/Badge.svelte";
   import Button from "./ui/Button.svelte";
+  import DataText from "./DataText.svelte";
   import KindIcon from "./KindIcon.svelte";
-  import { i18n, t } from "../lib/i18n.svelte";
-  import { refPath } from "../lib/router.svelte";
+  import { i18n, plural, t } from "../lib/i18n.svelte";
+  import { localize, refPath } from "../lib/router.svelte";
   import { relativeTime } from "../lib/time";
 
   /**
-   * One row of the catalogue, the LangSmith Hub card: pills on top, the
+   * One row of the catalog, the LangSmith Hub card: pills on top, the
    * reference as title, one line of description, then a metadata line.
    */
   let { item }: { item: SearchHit } = $props();
@@ -34,15 +35,16 @@
   <div class="flex flex-wrap items-center gap-1.5 pe-12">
     <Badge variant="outline">{kind}</Badge>
     {#each item.tags as tag (tag)}
-      <Badge variant="secondary" href="/?tag={encodeURIComponent(tag)}"
-        >{tag}</Badge
+      <Badge
+        variant="secondary"
+        href={localize(`/?tag=${encodeURIComponent(tag)}`)}>{tag}</Badge
       >
     {/each}
   </div>
   <Button
     variant="outline"
     size="icon"
-    href="/playground?ref={encodeURIComponent(item.key)}"
+    href={localize(`/playground?ref=${encodeURIComponent(item.key)}`)}
     aria-label={t("home.tryIt")}
     class="absolute end-4 top-4"
   >
@@ -54,7 +56,7 @@
     </a>
   </h3>
   <p class="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
-    {i18n.pick(item.description)}
+    <DataText text={item.description} />
   </p>
   <p
     class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground"
@@ -67,7 +69,7 @@
     <span aria-hidden="true">•</span>
     <span class="inline-flex items-center gap-1 text-primary"
       ><Tag class="size-3.5" />{item.labels.length}
-      {t("home.labelsCount")}</span
+      {plural("labels", item.labels.length)}</span
     >
     <span aria-hidden="true">•</span>
     <span class="inline-flex items-center gap-1 text-primary"
@@ -76,14 +78,14 @@
     <span aria-hidden="true">•</span>
     <span class="inline-flex items-center gap-1 text-primary"
       ><Link class="size-3.5" />{item.used_by.length}
-      {t("home.usedCount")}</span
+      {plural("uses", item.used_by.length)}</span
     >
     <!-- Only once someone has: a row of zeroes is noise on a young registry. -->
     {#if item.pulls > 0}
       <span aria-hidden="true">•</span>
       <span class="inline-flex items-center gap-1 text-primary"
         ><Download class="size-3.5" />{item.pulls}
-        {t("home.pullsCount")}</span
+        {plural("pulls", item.pulls)}</span
       >
     {/if}
   </p>

@@ -13,7 +13,7 @@
   import Segmented from "../components/ui/Segmented.svelte";
   import { track } from "../lib/analytics";
   import { ApiError, api } from "../lib/api";
-  import { t } from "../lib/i18n.svelte";
+  import { plural, t } from "../lib/i18n.svelte";
   import { assignLabelColors } from "../lib/labels";
   import { refPath, router } from "../lib/router.svelte";
   import { EYEBROW, FIELD_MONO, TEXTAREA } from "../lib/ui";
@@ -148,7 +148,7 @@
           <p class="tabular-nums">
             {run.elapsed_ms.toFixed(1)}
             {t("play.elapsed")} · {kept.length}
-            {t("play.kept")}
+            {plural("kept", kept.length)}
           </p>
           {#if run.truncated}<p>{t("play.truncated")}</p>{/if}
           {#if run.unsupported.length > 0}
