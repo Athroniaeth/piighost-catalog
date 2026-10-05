@@ -8,6 +8,7 @@ regex = '\b\d{3}[\s-]?\d{3}[\s-]?\d{3}\b(?![\s-]?\d)'
 
 [pattern.description]
 en = "French company identifier, nine digits in groups of three. The lookahead is what makes it composable: a SIRET is a SIREN followed by five more digits, and without it the shorter SIREN wins the shared start and shreds every SIRET. Declare fr-siret first all the same, so an establishment number is read as one."
+fr = "Identifiant d'entreprise français, neuf chiffres en groupes de trois. Le lookahead le rend composable : un SIRET est un SIREN suivi de cinq chiffres de plus, et sans lui le SIREN, plus court, gagne le début commun et découpe chaque SIRET. Déclarez tout de même fr-siret en premier, pour qu'un numéro d'établissement soit lu d'un seul tenant."
 
 # SIREN inventé, en groupes.
 [[examples.match]]

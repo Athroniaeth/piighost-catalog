@@ -8,6 +8,7 @@ regex = '\bdop_v1_[a-f0-9]{64}\b'
 
 [pattern.description]
 en = "DigitalOcean personal access token: dop_v1_ then sixty-four lowercase hex characters. The version in the prefix is part of the format, so a future dop_v2_ is a different pattern rather than a silent widening here."
+fr = "Jeton d'accès personnel DigitalOcean : dop_v1_ puis soixante-quatre caractères hexadécimaux en minuscules. La version du préfixe fait partie du format, donc un futur dop_v2_ sera un autre motif plutôt qu'un élargissement silencieux de celui-ci."
 
 # Jeton inventé, soixante-quatre hex.
 [[examples.match]]

@@ -7,8 +7,8 @@ tags = ["nl", "location", "contact"]
 regex = '(?<!\w)\d{4}\s?[A-Z]{2}(?!\w)'
 
 [pattern.description]
-en = "Dutch postal code: four digits then two letters, the shape that makes it unmistakable. It collides with nothing else in the registry, which is what a well-designed postal code looks like."
-fr = "Code postal néerlandais : quatre chiffres puis deux lettres, la forme qui le rend reconnaissable sans ambiguïté. Il n'entre en collision avec rien d'autre dans le registre, ce à quoi ressemble un code postal bien conçu."
+en = "Dutch postal code: four digits then two letters, the shape that makes it unmistakable. It collides with nothing else in the catalog, which is what a well-designed postal code looks like."
+fr = "Code postal néerlandais : quatre chiffres puis deux lettres, la forme qui le rend reconnaissable sans ambiguïté. Il n'entre en collision avec rien d'autre dans le catalogue, ce à quoi ressemble un code postal bien conçu."
 
 [[examples.match]]
 text = "Amsterdam, 1012 AB bij de gracht."

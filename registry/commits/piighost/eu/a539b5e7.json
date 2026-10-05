@@ -1,0 +1,26 @@
+{
+  "digest": "a539b5e7664d9fba6be9b887346aeb5731eb86baae8dd080542f70a8f15ac3ac",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "eu",
+    "schema_version": 1,
+    "description": {
+      "en": "Pan-European: IBAN alone, the smallest European set.",
+      "fr": "Paneuropéen : l'IBAN seul, le plus petit ensemble européen."
+    },
+    "tags": [
+      "eu",
+      "finance"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/iban",
+        "commit": "cbfafeb7",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

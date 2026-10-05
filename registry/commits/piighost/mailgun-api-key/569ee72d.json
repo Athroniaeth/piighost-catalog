@@ -1,0 +1,43 @@
+{
+  "digest": "569ee72df4052f6301e348b8f5e4f56a5aed258d7222c724844e93cafc721c97",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "mailgun-api-key",
+    "schema_version": 1,
+    "label": "MAILGUN_API_KEY",
+    "regex": "\\bkey-[0-9a-f]{32}\\b",
+    "description": {
+      "en": "Mailgun private API key: key- then thirty-two lowercase hex characters. Restricted to hex on purpose: the wider alphanumeric form matches any key- prefixed identifier, and hex is what Mailgun emits. A bare thirty-two hex run without the prefix is not covered, because it is also an MD5 digest and a Twilio SID.",
+      "fr": "Clé d'API privée Mailgun : key- puis trente-deux caractères hexadécimaux en minuscules. Limitée à l'hexadécimal à dessein : la forme alphanumérique plus large reconnaît n'importe quel identifiant préfixé par key-, et Mailgun émet de l'hexadécimal. Une suite nue de trente-deux caractères hexadécimaux sans le préfixe n'est pas couverte, car c'est aussi une empreinte MD5 et un SID Twilio."
+    },
+    "tags": [
+      "international",
+      "secrets",
+      "software-dev"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Le connecteur utilise encore key-3a06f0d129fd6fd54cc373599f47e016 dans la configuration.",
+          "value": "key-3a06f0d129fd6fd54cc373599f47e016"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "key-3a06f0d129fd6fd54cc373599f47e0"
+        },
+        {
+          "text": "key-ZZZZf0d129fd6fd54cc373599f47e016"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "key-",
+      "filler": "a",
+      "suffix": "!"
+    }
+  }
+}

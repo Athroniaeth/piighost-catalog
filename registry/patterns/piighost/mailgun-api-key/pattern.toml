@@ -8,6 +8,7 @@ regex = '\bkey-[0-9a-f]{32}\b'
 
 [pattern.description]
 en = "Mailgun private API key: key- then thirty-two lowercase hex characters. Restricted to hex on purpose: the wider alphanumeric form matches any key- prefixed identifier, and hex is what Mailgun emits. A bare thirty-two hex run without the prefix is not covered, because it is also an MD5 digest and a Twilio SID."
+fr = "Clé d'API privée Mailgun : key- puis trente-deux caractères hexadécimaux en minuscules. Limitée à l'hexadécimal à dessein : la forme alphanumérique plus large reconnaît n'importe quel identifiant préfixé par key-, et Mailgun émet de l'hexadécimal. Une suite nue de trente-deux caractères hexadécimaux sans le préfixe n'est pas couverte, car c'est aussi une empreinte MD5 et un SID Twilio."
 
 # Clé inventée, trente-deux hex.
 [[examples.match]]

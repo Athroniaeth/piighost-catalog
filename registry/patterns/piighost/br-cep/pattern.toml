@@ -7,8 +7,8 @@ tags = ["br", "location", "contact"]
 regex = '(?<!\d)\d{5}-\d{3}(?!\d)'
 
 [pattern.description]
-en = "Brazilian postal code (CEP), five digits, a hyphen, then three. The hyphen makes it distinctive: unlike the five-digit European codes it does not collide with anything else in the registry."
-fr = "Code postal brésilien (CEP), cinq chiffres, un tiret, puis trois. Le tiret le rend distinctif : contrairement aux codes européens à cinq chiffres, il n'entre en collision avec rien d'autre dans le registre."
+en = "Brazilian postal code (CEP), five digits, a hyphen, then three. The hyphen makes it distinctive: unlike the five-digit European codes it does not collide with anything else in the catalog."
+fr = "Code postal brésilien (CEP), cinq chiffres, un tiret, puis trois. Le tiret le rend distinctif : contrairement aux codes européens à cinq chiffres, il n'entre en collision avec rien d'autre dans le catalogue."
 
 [[examples.match]]
 text = "Avenida Paulista, 01310-100 em Sao Paulo."

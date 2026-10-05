@@ -8,6 +8,7 @@ regex = '\b\d{6,}-[a-z0-9]{10,}\.apps\.googleusercontent\.com\b'
 
 [pattern.description]
 en = "Google OAuth client identifier, the project number then the client hash under apps.googleusercontent.com. Not a secret on its own, since a web client ships it to the browser, but it names the project and travels with the client secret that is one."
+fr = "Identifiant de client OAuth Google, le numéro de projet puis l'empreinte du client sous apps.googleusercontent.com. Pas un secret en soi, puisqu'un client web l'envoie au navigateur, mais il nomme le projet et voyage avec le secret client, qui en est un."
 
 # Client inventé.
 [[examples.match]]

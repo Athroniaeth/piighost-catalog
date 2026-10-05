@@ -1,0 +1,57 @@
+{
+  "digest": "b7b1f7cba48b9ae5357da150fd10b6b455e79e4ab21477f60fe39915398ea4e9",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "in-default",
+    "schema_version": 1,
+    "description": {
+      "en": "India without a model: phone, PIN code, the PAN tax number, the Aadhaar number and the GST number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Inde sans modèle : téléphone, code PIN, le numéro fiscal PAN, le numéro Aadhaar et le numéro GST, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "in"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-in",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/in",
+            "commit": "ac86dc1b"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

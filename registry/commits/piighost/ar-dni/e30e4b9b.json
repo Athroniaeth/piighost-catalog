@@ -1,0 +1,50 @@
+{
+  "digest": "e30e4b9be95c40d7bd27d5a2449ec9d6849f71871eafb14f2c08455ec7e47d0f",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "ar-dni",
+    "schema_version": 1,
+    "label": "AR_DNI",
+    "regex": "(?<!\\w)\\d{2}\\.?\\d{3}\\.?\\d{3}(?!\\w)",
+    "description": {
+      "en": "Argentine national identity document number, the DNI: eight digits, written solid or with a period after the second and the fifth digit, per the Purview Argentina national identity definition. No checksum. Older holders carry seven digit numbers, which this shape does not match. Reproduced collision: written solid, a value that begins with a three is matched whole by IT_PHONE, for instance 30123456, and one that begins with a zero is matched whole by both DE_PHONE and IT_PHONE, since eight digits fit their trunk and subscriber ranges. The dotted form was claimed by no catalog label.",
+      "fr": "Numéro du document national d'identité argentin, le DNI : huit chiffres, écrits d'un bloc ou avec un point après le deuxième et le cinquième chiffre, selon la définition Purview de l'identité nationale argentine. Pas de somme de contrôle. Les titulaires les plus âgés portent des numéros à sept chiffres, que cette forme ne reconnaît pas. Collision reproduite : écrite d'un bloc, une valeur commençant par trois est reconnue en entier par IT_PHONE, par exemple 30123456, et une valeur commençant par zéro est reconnue en entier par DE_PHONE et par IT_PHONE, huit chiffres entrant dans leurs plages de préfixe et d'abonné. La forme pointée n'a été revendiquée par aucun label du catalogue."
+    },
+    "tags": [
+      "ar",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "El DNI 12.345.678 figura en el documento.",
+          "value": "12.345.678"
+        },
+        {
+          "text": "The number 30123456 is the same value without periods.",
+          "value": "30123456"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "1234567"
+        },
+        {
+          "text": "123456789"
+        },
+        {
+          "text": "12.345.67"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "12.345.67",
+      "suffix": "x"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "digest": "db052698c0bfe58fef79ef4f35c7f33a246b82410039a83359e15650a9cdad36",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "basic-auth-url",
+    "schema_version": 1,
+    "label": "BASIC_AUTH_URL",
+    "regex": "\\bhttps?://[^\\s:/@]+:[^\\s@/]+@[^\\s/]*[^\\s/.,;:!?)\\]]",
+    "description": {
+      "en": "A URL carrying HTTP basic credentials, user:password before the host. The password is in the path a proxy logs and a browser history keeps, which is what makes the whole span worth taking rather than the password alone. Collides with URL on the same start; a group carrying both must declare this one first.",
+      "fr": "Une URL qui porte des identifiants HTTP basic, utilisateur:mot de passe avant l'hôte. Le mot de passe est dans le chemin qu'un proxy journalise et qu'un historique de navigateur garde, ce qui justifie de prendre tout le span plutôt que le seul mot de passe. Entre en collision avec URL sur le même début : un groupe qui porte les deux doit déclarer celui-ci en premier."
+    },
+    "tags": [
+      "international",
+      "secrets",
+      "network",
+      "software-dev"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Le flux est accessible via https://admin:S3cr3tPass@intranet.exemple.com/feed sans configuration.",
+          "value": "https://admin:S3cr3tPass@intranet.exemple.com"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "https://intranet.exemple.com/feed"
+        },
+        {
+          "text": "mailto:admin@exemple.com"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "https://user:",
+      "filler": "a",
+      "suffix": " "
+    }
+  }
+}

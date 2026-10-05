@@ -2,7 +2,7 @@ schema_version = 1
 
 [group]
 name = "driving-licences"
-description = { en = "Driving licence numbers, the shape every commercial catalogue implements and the registry lacked longest. Formats are national and sometimes regional: the Canadian and Australian patterns cover only the provinces and states whose layout mixes letters and digits, since a bare digit run is indistinguishable from any other number.", fr = "Numéros de permis de conduire, la forme que tous les catalogues commerciaux implémentent et qui manquait le plus longtemps au registre. Les formats sont nationaux et parfois régionaux : les motifs canadien et australien ne couvrent que les provinces et États dont la disposition mêle lettres et chiffres, une suite de chiffres nus étant indiscernable de n'importe quel autre nombre." }
+description = { en = "Driving licence numbers, the shape every commercial catalog implements and the catalog lacked longest. Formats are national and sometimes regional: the Canadian and Australian patterns cover only the provinces and states whose layout mixes letters and digits, since a bare digit run is indistinguishable from any other number.", fr = "Numéros de permis de conduire, la forme que tous les catalogues commerciaux implémentent et qui manquait le plus longtemps au catalogue. Les formats sont nationaux et parfois régionaux : les motifs canadien et australien ne couvrent que les provinces et États dont la disposition mêle lettres et chiffres, une suite de chiffres nus étant indiscernable de n'importe quel autre nombre." }
 tags = ["international", "government-id", "identity", "legal"]
 
 [[sources]]

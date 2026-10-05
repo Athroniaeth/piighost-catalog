@@ -7,8 +7,8 @@ tags = ["cl", "contact"]
 regex = '(?<![\w+])\+56(?:[\s.-]?\d){8,9}(?!\w)'
 
 [pattern.description]
-en = "Chilean phone number. The +56 country code is required rather than optional, because a Chilean number written without it is nine bare digits, a shape that several other identifiers in the registry already claim."
-fr = "Numéro de téléphone chilien. L'indicatif +56 est exigé plutôt qu'optionnel, car un numéro chilien écrit sans lui se réduit à neuf chiffres nus, une forme que plusieurs autres identifiants du registre revendiquent déjà."
+en = "Chilean phone number. The +56 country code is required rather than optional, because a Chilean number written without it is nine bare digits, a shape that several other identifiers in the catalog already claim."
+fr = "Numéro de téléphone chilien. L'indicatif +56 est exigé plutôt qu'optionnel, car un numéro chilien écrit sans lui se réduit à neuf chiffres nus, une forme que plusieurs autres identifiants du catalogue revendiquent déjà."
 
 [[examples.match]]
 text = "Escríbeme al +56 9 6123 4567 por WhatsApp."

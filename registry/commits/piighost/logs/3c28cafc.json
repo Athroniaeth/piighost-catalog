@@ -1,0 +1,41 @@
+{
+  "digest": "3c28cafc9d0bf01091358000b90a28cf4588de41b4231a7a5b9fa6f223b2b5bc",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "logs",
+    "schema_version": 1,
+    "description": {
+      "en": "What a server log or a traceback carries: addresses, machine identifiers, and the credentials that end up in them by accident. Assembled for pasting an incident into a model, where the log is the payload and the secret is the accident. The URL is left out for that reason: a token inside a URL sits within the URL span, the URL starts first, and no ordering saves the token. Losing the URL costs less than leaking the key.",
+      "fr": "Ce qu'un journal de serveur ou une trace d'erreur porte : adresses, identifiants de machine, et les secrets qui s'y retrouvent par accident. Assemblé pour coller un incident dans un modèle, où le journal est la charge utile et le secret l'accident. L'URL en est écartée pour cette raison : un jeton dans une URL se trouve à l'intérieur du span de l'URL, l'URL commence avant, et aucun ordre ne sauve le jeton. Perdre l'URL coûte moins que laisser fuir la clé."
+    },
+    "tags": [
+      "international",
+      "network",
+      "secrets",
+      "software-dev",
+      "logs"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/secrets-extended",
+        "commit": "0b31c08d",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/network",
+        "commit": "cc345d37",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/email",
+        "commit": "d42edae7",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

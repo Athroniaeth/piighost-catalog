@@ -1,0 +1,49 @@
+{
+  "digest": "472020b0afd0fd26683717c04281bd2e11c0064aba700aacb23dc742142af772",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "ipv4",
+    "schema_version": 1,
+    "label": "IPV4",
+    "regex": "(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)",
+    "description": {
+      "en": "Dotted-quad IPv4 address with each octet bounded to 0-255 and leading zeros refused. Refusing them is not cosmetic: a leading zero means octal to inet_aton and Python's ipaddress module rejects it, and allowing it made 01.99.00.12 an address, which stole the span of the dotted French phone number 01.99.00.12.34. This is the one place where the pattern departs from the one piighost 1.x shipped. No word boundaries, so it still fires on version strings such as 1.2.3.4.",
+      "fr": "Adresse IPv4 en notation pointée, chaque octet borné à 0-255 et les zéros en tête refusés. Les refuser n'est pas cosmétique : un zéro en tête signifie octal pour inet_aton et le module ipaddress de Python le rejette, et l'autoriser faisait de 01.99.00.12 une adresse, qui volait le span du numéro de téléphone français pointé 01.99.00.12.34. C'est le seul endroit où le motif s'écarte de celui que livrait piighost 1.x. Sans limite de mot, elle se déclenche toujours sur des numéros de version comme 1.2.3.4."
+    },
+    "tags": [
+      "international",
+      "network"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Server at 192.0.2.10 is unreachable.",
+          "value": "192.0.2.10"
+        },
+        {
+          "text": "Blocked 203.0.113.254 after three failed logins.",
+          "value": "203.0.113.254"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "version 1.2.3"
+        },
+        {
+          "text": "999.999.999.999"
+        },
+        {
+          "text": "01.99.00.12.34"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "192.0.2.1 ",
+      "filler": "9999.",
+      "suffix": "x"
+    }
+  }
+}

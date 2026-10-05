@@ -1,0 +1,50 @@
+{
+  "digest": "4dfc351ea462fb7339d53723e6df9ed1edfc23513f996a0529a3ec33211a37b7",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "nl-passport",
+    "schema_version": 1,
+    "label": "NL_PASSPORT",
+    "regex": "(?<!\\w)[A-NP-Z]{2}[A-NP-Z0-9]{6}\\d(?!\\w)",
+    "description": {
+      "en": "Dutch travel document number, nine characters. RvIG, the issuing authority, states that positions one and two are letters, positions three to eight are letters or digits and position nine is a digit, and that the letter O is never used so it cannot be confused with the digit zero; the digit zero itself has been dropped from documents issued since December 2019 but older documents still carry it, so zero is still accepted here. Purview only says nine letters or digits, which would match any nine character token, so the authority reading is used instead. No catalog label fired on the examples.",
+      "fr": "Numéro de document de voyage néerlandais, neuf caractères. La RvIG, autorité émettrice, indique que les positions un et deux sont des lettres, les positions trois à huit des lettres ou des chiffres et la position neuf un chiffre, et que la lettre O n'est jamais utilisée pour éviter la confusion avec le chiffre zéro ; le chiffre zéro lui-même a disparu des documents émis depuis décembre 2019, mais les documents anciens en portent encore, donc il reste accepté ici. Purview se contente de neuf caractères alphanumériques, ce qui reconnaîtrait n'importe quel jeton de neuf caractères, donc la lecture de l'autorité est préférée. Aucun label du catalogue ne s'est déclenché sur les exemples."
+    },
+    "tags": [
+      "nl",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Het documentnummer BK12AB345 staat naast de naam.",
+          "value": "BK12AB345"
+        },
+        {
+          "text": "The travel document NX9F2C7J8 was replaced last year.",
+          "value": "NX9F2C7J8"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "OK12AB345"
+        },
+        {
+          "text": "BK12AB34"
+        },
+        {
+          "text": "bk12ab345"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "BK12AB34",
+      "suffix": "!"
+    }
+  }
+}

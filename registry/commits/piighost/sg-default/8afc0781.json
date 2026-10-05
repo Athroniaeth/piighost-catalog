@@ -1,0 +1,57 @@
+{
+  "digest": "8afc0781eb049467871cd73804191c6d5986cd2817b2e3ee96072ef3618fe2c2",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "sg-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Singapore without a model: phone and the NRIC or FIN identity number. No postal code: six bare digits are not safe beside a phone number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Singapour sans modèle : téléphone et le numéro d'identité NRIC ou FIN. Pas de code postal : six chiffres nus ne sont pas sûrs à côté d'un téléphone, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "sg"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-sg",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/sg",
+            "commit": "12c80121"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

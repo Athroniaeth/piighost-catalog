@@ -8,6 +8,7 @@ regex = '\bhttps?://[^\s:/@]+:[^\s@/]+@[^\s/]*[^\s/.,;:!?)\]]'
 
 [pattern.description]
 en = "A URL carrying HTTP basic credentials, user:password before the host. The password is in the path a proxy logs and a browser history keeps, which is what makes the whole span worth taking rather than the password alone. Collides with URL on the same start; a group carrying both must declare this one first."
+fr = "Une URL qui porte des identifiants HTTP basic, utilisateur:mot de passe avant l'hôte. Le mot de passe est dans le chemin qu'un proxy journalise et qu'un historique de navigateur garde, ce qui justifie de prendre tout le span plutôt que le seul mot de passe. Entre en collision avec URL sur le même début : un groupe qui porte les deux doit déclarer celui-ci en premier."
 
 # Identifiants inventés.
 [[examples.match]]

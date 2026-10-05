@@ -1,0 +1,50 @@
+{
+  "digest": "89e62adcef39ee68bd953f63176c182947cac72f3d4c47ec27f26a1ee6049feb",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "uk-driving-licence",
+    "schema_version": 1,
+    "label": "UK_DRIVING_LICENCE",
+    "regex": "(?<!\\w)[A-Z9]{5}\\d(?:0[1-9]|1[0-2]|5[1-9]|6[0-2])(?:0[1-9]|[12]\\d|3[01])\\d[A-Z9]{2}[A-Z0-9][A-Z]{2}(?!\\w)",
+    "description": {
+      "en": "DVLA driver number, sixteen characters that encode the holder: five characters of surname padded with nines, the decade digit of the birth year, the birth month raised by fifty for a female holder, the birth day, the last year digit, two initials or nines, one arbitrary character and two check letters. Taken from the Presidio UK driving licence recognizer, which follows the DVLA layout; Purview describes the same run plus the two digit issue number that the card prints after it, and those eighteen character forms are deliberately not matched here. The embedded month and day ranges make this one of the most selective shapes in the batch. No catalog label was seen to fire on the examples.",
+      "fr": "Numéro de conducteur DVLA, seize caractères qui encodent le titulaire : cinq caractères de nom complété par des neuf, le chiffre de la décennie de naissance, le mois de naissance augmenté de cinquante pour une femme, le jour, le dernier chiffre de l'année, deux initiales ou des neuf, un caractère arbitraire et deux lettres de contrôle. Repris du recognizer Presidio du permis britannique, conforme à la mise en page de la DVLA ; Purview décrit la même suite suivie du numéro d'émission à deux chiffres imprimé sur la carte, et ces formes à dix-huit caractères ne sont volontairement pas reconnues ici. Les plages de mois et de jour incorporées en font l'une des formes les plus sélectives du lot. Aucun label du catalogue ne s'est déclenché sur les exemples."
+    },
+    "tags": [
+      "uk",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "The DVLA driver number DOE99901015AB9CD sits in field five of the card.",
+          "value": "DOE99901015AB9CD"
+        },
+        {
+          "text": "Record DOE99651015AB9CD raises the month by fifty for a female holder.",
+          "value": "DOE99651015AB9CD"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "DOE99901015AB9C"
+        },
+        {
+          "text": "DOE99913015AB9CD"
+        },
+        {
+          "text": "doe99901015ab9cd"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "DOE999010",
+      "suffix": "!"
+    }
+  }
+}

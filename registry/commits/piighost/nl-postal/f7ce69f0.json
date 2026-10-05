@@ -1,0 +1,47 @@
+{
+  "digest": "f7ce69f016b5a9f437e6b72d25a2eaed456fd7ad226766520775ffcfc30d414f",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "nl-postal",
+    "schema_version": 1,
+    "label": "NL_POSTAL",
+    "regex": "(?<!\\w)\\d{4}\\s?[A-Z]{2}(?!\\w)",
+    "description": {
+      "en": "Dutch postal code: four digits then two letters, the shape that makes it unmistakable. It collides with nothing else in the catalog, which is what a well-designed postal code looks like.",
+      "fr": "Code postal néerlandais : quatre chiffres puis deux lettres, la forme qui le rend reconnaissable sans ambiguïté. Il n'entre en collision avec rien d'autre dans le catalogue, ce à quoi ressemble un code postal bien conçu."
+    },
+    "tags": [
+      "nl",
+      "location",
+      "contact"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Amsterdam, 1012 AB bij de gracht.",
+          "value": "1012 AB"
+        },
+        {
+          "text": "Postcode 3011AA in Rotterdam.",
+          "value": "3011AA"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "Postcode 1012"
+        },
+        {
+          "text": "Postcode AB 1012"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "1012",
+      "suffix": "x"
+    }
+  }
+}

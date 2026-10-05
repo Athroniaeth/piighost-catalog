@@ -2,7 +2,7 @@ schema_version = 1
 
 [sample]
 name = "invoice-eu"
-title = { en = "Cross-border invoice" }
+title = { en = "Cross-border invoice", fr = "Facture transfrontalière" }
 tags = ["eu", "de", "lang-en", "accounting", "document"]
 text = """
 INVOICE 2026-0042

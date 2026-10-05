@@ -1,0 +1,65 @@
+{
+  "digest": "7d7d667fdc1269b90eb8c55a26f950ee527ae4f9444d2a1d53350f65e1700bba",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-phone",
+    "schema_version": 1,
+    "label": "FR_PHONE",
+    "regex": "(?<![\\w+])(?:\\+33[   ]?(?:\\(0\\)[   ]?)?|0)[1-9](?:[\\s  .-]?\\d{2}){4}(?!\\w)",
+    "description": {
+      "en": "French phone number: +33 or a leading 0, one non-zero digit, then four pairs of digits separated by optional spaces, dots or hyphens. Lookarounds replace \\b so the + prefix anchors properly, and they guard the whole word rather than digits alone: otherwise ten digits in the middle of an API key get tokenised, cutting the key in two. This is the one departure from the pattern piighost 1.x shipped. The patterns compile under re.ASCII, where \\s misses the no-break spaces (U+00A0, U+202F) French typography puts between the pairs, so both are listed. The written international forms +33 6 39... and +33 (0)6 39... are matched.",
+      "fr": "Numéro de téléphone français : +33 ou un 0 initial, un chiffre non nul, puis quatre paires de chiffres séparées par des espaces, points ou tirets optionnels. Des lookarounds remplacent \\b pour ancrer correctement le préfixe +, et ils portent sur le mot entier et non sur les seuls chiffres : autrement dix chiffres au milieu d'une clé d'API se font tokeniser, ce qui coupe la clé en deux. C'est le seul écart avec le motif que livrait piighost 1.x. Les motifs sont compilés sous re.ASCII, où \\s ne reconnaît pas les espaces insécables (U+00A0, U+202F) que la typographie française place entre les paires, donc les deux sont listées. Les formes internationales écrites +33 6 39... et +33 (0)6 39... sont reconnues."
+    },
+    "tags": [
+      "fr",
+      "contact"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Appelez le 06 39 98 12 34 demain.",
+          "value": "06 39 98 12 34"
+        },
+        {
+          "text": "Joignable au +33639981234 en journée.",
+          "value": "+33639981234"
+        },
+        {
+          "text": "Standard : 01.99.00.12.34",
+          "value": "01.99.00.12.34"
+        },
+        {
+          "text": "Tél. 06 39 98 12 34 en journée.",
+          "value": "06 39 98 12 34"
+        },
+        {
+          "text": "Depuis l'étranger : +33 6 39 98 12 34.",
+          "value": "+33 6 39 98 12 34"
+        },
+        {
+          "text": "Ou le +33 (0)1 99 00 12 34 pour le standard.",
+          "value": "+33 (0)1 99 00 12 34"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "06 39 98 12"
+        },
+        {
+          "text": "0639981234567"
+        },
+        {
+          "text": "sk-proj-abcdefghijklmnopqrstuvwxyz0123456789ABCD"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "06 39 98 ",
+      "filler": "1 ",
+      "suffix": "x"
+    }
+  }
+}

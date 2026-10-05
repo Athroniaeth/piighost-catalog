@@ -1,0 +1,89 @@
+{
+  "digest": "79be5b6e7556510de3db404272f6764dcbf27f8df7e14db9d2cc1f538d72241a",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "business",
+    "schema_version": 1,
+    "description": {
+      "en": "Company and tax numbers across the countries the catalog covers: the British VAT number, the European VAT number, the French SIRET, the Spanish CIF, the Brazilian CNPJ, the Indian PAN, the Australian ABN, the American EIN, the Indian GST number and the Mexican RFC. Useful on an invoice or a contract, where the company identifies more reliably than the signatory. The British number goes first: a GB VAT number written solid also matches the European pattern, and the United Kingdom left that system. Two are deliberately absent: the Portuguese NIF and the Italian VAT number are nine and eleven bare digits, which the other members already claim.",
+      "fr": "Numéros d'entreprise et numéros fiscaux des pays couverts par le catalogue : le numéro de TVA britannique, le numéro de TVA européen, le SIRET français, le CIF espagnol, le CNPJ brésilien, le PAN indien, l'ABN australien, l'EIN américain, le numéro GST indien et le RFC mexicain. Utile sur une facture ou un contrat, où l'entreprise identifie plus sûrement que le signataire. Le numéro britannique passe en premier : un numéro de TVA GB écrit d'un bloc correspond aussi au motif européen, et le Royaume-Uni a quitté ce système. Deux sont volontairement absents : le NIF portugais et la partita IVA italienne font neuf et onze chiffres nus, que les autres membres revendiquent déjà."
+    },
+    "tags": [
+      "international",
+      "business",
+      "accounting",
+      "finance",
+      "document"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/uk-vat",
+        "commit": "890acebb",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/eu-vat",
+        "commit": "4dca3529",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-siret",
+        "commit": "fe9145c5",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-siren",
+        "commit": "4b6a6ea7",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/es-nif-cif",
+        "commit": "be231dec",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/br-cnpj",
+        "commit": "5f4fef84",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/in-pan",
+        "commit": "39352a4c",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/au-abn",
+        "commit": "b8223ebd",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/us-ein",
+        "commit": "456819f3",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/in-gstin",
+        "commit": "2b9b59d4",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/mx-rfc",
+        "commit": "4bc928d2",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

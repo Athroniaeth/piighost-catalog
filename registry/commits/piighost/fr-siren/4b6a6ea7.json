@@ -1,0 +1,48 @@
+{
+  "digest": "4b6a6ea740574e3ce86b9d6f7b458ed7c8c8d3493488970aaf7efb695a3c0f8b",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-siren",
+    "schema_version": 1,
+    "label": "FR_SIREN",
+    "regex": "\\b\\d{3}[\\s-]?\\d{3}[\\s-]?\\d{3}\\b(?![\\s-]?\\d)",
+    "description": {
+      "en": "French company identifier, nine digits in groups of three. The lookahead is what makes it composable: a SIRET is a SIREN followed by five more digits, and without it the shorter SIREN wins the shared start and shreds every SIRET. Declare fr-siret first all the same, so an establishment number is read as one.",
+      "fr": "Identifiant d'entreprise français, neuf chiffres en groupes de trois. Le lookahead le rend composable : un SIRET est un SIREN suivi de cinq chiffres de plus, et sans lui le SIREN, plus court, gagne le début commun et découpe chaque SIRET. Déclarez tout de même fr-siret en premier, pour qu'un numéro d'établissement soit lu d'un seul tenant."
+    },
+    "tags": [
+      "fr",
+      "business",
+      "accounting",
+      "finance"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Le numéro SIREN 732 829 320 permet de retrouver la société sur l'annuaire.",
+          "value": "732 829 320"
+        },
+        {
+          "text": "SIREN 552081317 pour la société mère.",
+          "value": "552081317"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "732 829 320 00074"
+        },
+        {
+          "text": "12 345"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "732 829 ",
+      "filler": "3",
+      "suffix": "x"
+    }
+  }
+}

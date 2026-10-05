@@ -1,0 +1,54 @@
+{
+  "digest": "b82b9f754fe2772688ca37c6f0d08253edc50c5c61f635a188052317034b0fda",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "br",
+    "schema_version": 1,
+    "description": {
+      "en": "Brazil: phone, CEP postal code, the CPF for a person, the CNPJ for a company and the CNS health card number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.",
+      "fr": "Brésil : téléphone, code postal CEP, le CPF pour une personne, le CNPJ pour une entreprise et le numéro de carte de santé CNS. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span."
+    },
+    "tags": [
+      "br",
+      "business",
+      "contact",
+      "government-id",
+      "identity",
+      "location"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/br-phone",
+        "commit": "7d61fb85",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/br-cep",
+        "commit": "b8cb63d0",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/br-cpf",
+        "commit": "b86ef3d4",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/br-cnpj",
+        "commit": "5f4fef84",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/br-cns",
+        "commit": "38ab53fb",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

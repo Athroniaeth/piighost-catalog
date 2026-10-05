@@ -1,0 +1,54 @@
+{
+  "digest": "c468ea8cd290f73b0392650453f8e7281433fe50e0248013e7718c3b2fe76af9",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "uk",
+    "schema_version": 1,
+    "description": {
+      "en": "the United Kingdom: phone, postcode, the National Insurance number, the NHS number and the VAT registration number. The VAT number keeps its GB prefix after the country's departure from the European system, so it is a pattern of its own rather than a case of eu-vat. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.",
+      "fr": "Royaume-Uni : téléphone, code postal, le numéro d'assurance nationale, le numéro NHS et le numéro de TVA. Le numéro de TVA conserve son préfixe GB après la sortie du pays du système européen, donc c'est un motif à part et non un cas de eu-vat. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span."
+    },
+    "tags": [
+      "contact",
+      "government-id",
+      "health",
+      "identity",
+      "location",
+      "uk"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/uk-phone",
+        "commit": "c618cc35",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/uk-postcode",
+        "commit": "0a6bed51",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/uk-nino",
+        "commit": "3f033fc3",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/uk-nhs",
+        "commit": "1bddde79",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/uk-vat",
+        "commit": "890acebb",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

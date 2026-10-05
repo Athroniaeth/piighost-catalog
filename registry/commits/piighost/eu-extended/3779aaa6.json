@@ -1,0 +1,42 @@
+{
+  "digest": "3779aaa6d82fafa302ad443c19c54b28758b65019e9ad5864c1ef4257ca301ed",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "eu-extended",
+    "schema_version": 1,
+    "description": {
+      "en": "What a European document carries regardless of its country: the IBAN, the BIC, and the intra-community VAT number. An invoice between two member states shows all three together, which is why they travel as one group rather than sitting in each country's set. The `eu` group next to it keeps the IBAN alone.",
+      "fr": "Ce qu'un document européen porte quel que soit son pays : l'IBAN, le BIC et le numéro de TVA intracommunautaire. Une facture entre deux États membres montre les trois ensemble, d'où leur voyage en un seul groupe plutôt que dans l'ensemble de chaque pays. Le groupe `eu` à côté garde l'IBAN seul."
+    },
+    "tags": [
+      "eu",
+      "international",
+      "finance",
+      "banking",
+      "business",
+      "accounting"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/eu",
+        "commit": "a539b5e7",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/swift-bic",
+        "commit": "065a7206",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/eu-vat",
+        "commit": "4dca3529",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

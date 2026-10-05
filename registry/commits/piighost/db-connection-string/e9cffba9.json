@@ -1,0 +1,44 @@
+{
+  "digest": "e9cffba91ca92b9ca1d69948c9c5197f5a2a87d3196de33aece61c21de1699c5",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "db-connection-string",
+    "schema_version": 1,
+    "label": "DB_CONNECTION_STRING",
+    "regex": "\\b(?:postgres(?:ql)?|mysql|mongodb(?:\\+srv)?|redis|amqp)://[^\\s:/@]+:[^\\s@/]+@[^\\s/]*[^\\s/.,;:!?)\\]]",
+    "description": {
+      "en": "A database URL carrying its password, the form an application reads from an environment variable and a traceback prints whole. The span stops at the host, so the database name and the query string are left in clear, which is what makes a redacted log still readable.",
+      "fr": "Une URL de base de données qui porte son mot de passe, la forme qu'une application lit dans une variable d'environnement et qu'une traceback imprime en entier. Le span s'arrête à l'hôte, donc le nom de la base et la chaîne de requête restent en clair, ce qui garde lisible un journal dé-identifié."
+    },
+    "tags": [
+      "international",
+      "secrets",
+      "network",
+      "software-dev"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "L'application se connecte via postgres://app_user:MotDePasse123@db.prod.interne:5432/facturation au démarrage.",
+          "value": "postgres://app_user:MotDePasse123@db.prod.interne:5432"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "postgres://db.prod.interne:5432/facturation"
+        },
+        {
+          "text": "https://user:pass@example.com"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "postgres://user:",
+      "filler": "a",
+      "suffix": " "
+    }
+  }
+}

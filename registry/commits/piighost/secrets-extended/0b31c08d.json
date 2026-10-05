@@ -1,0 +1,155 @@
+{
+  "digest": "0b31c08dfe126e760af7df2e19c10aba183504688dd685e8722c9267d32830aa",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "secrets-extended",
+    "schema_version": 1,
+    "description": {
+      "en": "Every credential shape the catalog knows: the four of the `secrets` group plus Anthropic, Google, Slack, Twilio, SendGrid, Azure, npm, PyPI, GitLab, Mailgun, DigitalOcean, the Google OAuth client id, the AWS secret key, JWTs, bearer tokens, SSH public keys, PEM private key blocks and PEM certificate blocks, and the three credentials that live inside a URL: a Slack webhook, a database URL and HTTP basic auth. A certificate is here because it carries the subject's name, organisation and often an email address in clear text. Several of these contain long digit runs, so a phone or card pattern in the same detector claims part of them: declare this group first, or keep it in a detector of its own. The URL-shaped three start where a URL starts and must be declared ahead of it, which is why the `logs` group leaves URL out entirely.",
+      "fr": "Toutes les formes de secrets que connaît le catalogue : les quatre du groupe `secrets` plus Anthropic, Google, Slack, Twilio, SendGrid, Azure, npm, PyPI, la clé secrète AWS, les JWT, les jetons bearer, les blocs de clé privée PEM et les blocs de certificat PEM. Un certificat figure ici parce qu'il porte en clair le nom du sujet, son organisation et souvent une adresse e-mail. Plusieurs contiennent de longues suites de chiffres, donc un motif de téléphone ou de carte dans le même détecteur en revendique une partie : déclarez ce groupe en premier, ou gardez-le dans un détecteur à part."
+    },
+    "tags": [
+      "international",
+      "secrets",
+      "software-dev",
+      "code-assistant",
+      "logs"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/private-key-block",
+        "commit": "edbb8957",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/slack-webhook",
+        "commit": "aad13fb5",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/db-connection-string",
+        "commit": "e9cffba9",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/basic-auth-url",
+        "commit": "db052698",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/jwt",
+        "commit": "ca8e5651",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/secrets",
+        "commit": "d822d04c",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/anthropic-api-key",
+        "commit": "11c6dba6",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/google-api-key",
+        "commit": "1ec91184",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/slack-token",
+        "commit": "85a0e2c7",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/aws-secret-access-key",
+        "commit": "c6be14d9",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/azure-storage-key",
+        "commit": "426cce81",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/sendgrid-api-key",
+        "commit": "62d1ea2d",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/twilio-sid",
+        "commit": "81c3a667",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/npm-token",
+        "commit": "ae84c40a",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/pypi-token",
+        "commit": "00293d3e",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/bearer-token",
+        "commit": "e0f6c610",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/certificate-block",
+        "commit": "ae90a599",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/gitlab-token",
+        "commit": "6d381b09",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/mailgun-api-key",
+        "commit": "569ee72d",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/digitalocean-token",
+        "commit": "9290dad4",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/google-oauth-client-id",
+        "commit": "3f5207d4",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/ssh-public-key",
+        "commit": "210ad62c",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

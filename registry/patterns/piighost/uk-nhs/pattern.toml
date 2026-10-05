@@ -7,8 +7,8 @@ tags = ["uk", "government-id", "health", "healthcare"]
 regex = '\b\d{3}[\s-]?\d{3}[\s-]?\d{4}\b'
 
 [pattern.description]
-en = "NHS patient number, ten digits usually written in three-three-four groups. Health data, so the most sensitive category this registry carries. The shape is also that of a US phone number: the two must not share a detector."
-fr = "Numéro de patient NHS, dix chiffres écrits le plus souvent en groupes de trois, trois et quatre. Donnée de santé, donc la catégorie la plus sensible de ce registre. La forme est aussi celle d'un numéro de téléphone américain : les deux ne doivent pas partager un détecteur."
+en = "NHS patient number, ten digits usually written in three-three-four groups. Health data, so the most sensitive category this catalog carries. The shape is also that of a US phone number: the two must not share a detector."
+fr = "Numéro de patient NHS, dix chiffres écrits le plus souvent en groupes de trois, trois et quatre. Donnée de santé, donc la catégorie la plus sensible de ce catalogue. La forme est aussi celle d'un numéro de téléphone américain : les deux ne doivent pas partager un détecteur."
 
 # 943 476 5919 est le numéro d'exemple de la documentation NHS.
 [[examples.match]]

@@ -2,7 +2,7 @@ schema_version = 1
 
 [sample]
 name = "hr-record-uk"
-title = { en = "HR record (United Kingdom)" }
+title = { en = "HR record (United Kingdom)", fr = "Dossier RH (Royaume-Uni)" }
 tags = ["uk", "lang-en", "hr", "document"]
 text = """
 EMPLOYEE RECORD - ONBOARDING

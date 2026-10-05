@@ -1,0 +1,51 @@
+{
+  "digest": "349667084a1498939b80222da6d581c662310b85d9196bbc22d223c85b5400eb",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "ie-ppsn",
+    "schema_version": 1,
+    "label": "IE_PPSN",
+    "regex": "(?<!\\w)\\d{7}[A-Z][A-IW]?(?!\\w)",
+    "description": {
+      "en": "Irish personal public service number: seven digits, one check letter, and for numbers issued from January 2013 an optional second letter in the range A to I or W. Purview documents both the old form, seven digits and one or two letters, and the new one; Cloudflare publishes 1234567FA as its sample. The check letter is not verified, the match is on shape alone. The seven digit head keeps this clear of the nine and ten digit crowd, and no catalog label fired on the examples.",
+      "fr": "Numéro de service public personnel irlandais : sept chiffres, une lettre de contrôle, et pour les numéros émis depuis janvier 2013 une seconde lettre facultative de A à I ou W. Purview documente l'ancienne forme, sept chiffres et une ou deux lettres, ainsi que la nouvelle ; Cloudflare publie 1234567FA comme exemple. La lettre de contrôle n'est pas vérifiée, la reconnaissance porte sur la forme seule. La tête à sept chiffres tient ce motif à l'écart de la foule des neuf et dix chiffres, et aucun label du catalogue ne s'est déclenché sur les exemples."
+    },
+    "tags": [
+      "ie",
+      "government-id",
+      "identity",
+      "hr"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "The PPS number 1234567FA is printed on the payslip.",
+          "value": "1234567FA"
+        },
+        {
+          "text": "Revenue holds 7654321T for the same person.",
+          "value": "7654321T"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "123456FA"
+        },
+        {
+          "text": "1234567"
+        },
+        {
+          "text": "1234567fa"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "1234567",
+      "suffix": "x"
+    }
+  }
+}

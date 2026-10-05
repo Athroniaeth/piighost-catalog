@@ -2,7 +2,7 @@ schema_version = 1
 
 [sample]
 name = "support-ticket-en"
-title = { en = "Support ticket (United States)" }
+title = { en = "Support ticket (United States)", fr = "Ticket de support (États-Unis)" }
 tags = ["us", "lang-en", "customer-support", "chat"]
 text = """
 Ticket #4821 - payment declined twice, customer escalating

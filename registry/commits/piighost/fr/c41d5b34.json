@@ -1,0 +1,52 @@
+{
+  "digest": "c41d5b34d21a5a786a172df0c0fbe114e29ceb15aad4e3344311c9857c33b410",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "fr",
+    "schema_version": 1,
+    "description": {
+      "en": "France: phone, IBAN, social security number and company registration number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.",
+      "fr": "France : téléphone, IBAN, numéro de sécurité sociale et numéro d'entreprise. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span."
+    },
+    "tags": [
+      "contact",
+      "fr",
+      "government-id",
+      "identity"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/fr-phone",
+        "commit": "7d7d667f",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-iban",
+        "commit": "61f86ceb",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-nir",
+        "commit": "0b19f679",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-siret",
+        "commit": "fe9145c5",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/fr-siren",
+        "commit": "4b6a6ea7",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

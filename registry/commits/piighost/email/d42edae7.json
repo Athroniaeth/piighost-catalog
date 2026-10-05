@@ -1,0 +1,50 @@
+{
+  "digest": "d42edae7c9a29cecf5da6fda03cb288c06e0063f4fb82d5db4ba1371c6ee6707",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "email",
+    "schema_version": 1,
+    "label": "EMAIL",
+    "regex": "(?<![A-Za-z0-9À-ɏ._%+-])[A-Za-z0-9À-ɏ._%+-]+@(?:[A-Za-z0-9À-ɏ-]+\\.)+[A-Za-z]{2,}",
+    "description": {
+      "en": "Email address, simplified RFC 5322. The lookbehind pins the start of the local part and the domain is segmented label by label, which keeps the scan linear. Latin letters with diacritics (U+00C0 to U+024F) belong to the local part and the domain labels, so an accented address is matched whole instead of from its first ASCII run.",
+      "fr": "Adresse e-mail, RFC 5322 simplifiée. Le lookbehind ancre le début de la partie locale et le domaine est segmenté label par label, ce qui garde le balayage linéaire. Les lettres latines accentuées (U+00C0 à U+024F) font partie de la partie locale et des labels du domaine, donc une adresse accentuée est reconnue entière et non à partir de sa première suite ASCII."
+    },
+    "tags": [
+      "international",
+      "contact"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Write to john.doe@example.com for any question.",
+          "value": "john.doe@example.com"
+        },
+        {
+          "text": "Contact: support+billing@mail.example.org",
+          "value": "support+billing@mail.example.org"
+        },
+        {
+          "text": "Répondre à expéditeur@example.fr avant lundi.",
+          "value": "expéditeur@example.fr"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "not an email"
+        },
+        {
+          "text": "john@doe"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "john.doe@example.com ",
+      "filler": "a.",
+      "suffix": "@"
+    }
+  }
+}

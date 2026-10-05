@@ -2,7 +2,7 @@ schema_version = 1
 
 [sample]
 name = "health-record-fr"
-title = { en = "Medical note (France)" }
+title = { en = "Medical note (France)", fr = "Note médicale (France)" }
 tags = ["fr", "lang-en", "healthcare", "document"]
 text = """
 CONSULTATION REPORT

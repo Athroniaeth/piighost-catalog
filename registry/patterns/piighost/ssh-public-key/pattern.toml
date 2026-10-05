@@ -8,6 +8,7 @@ regex = '\bssh-(?:rsa|ed25519|dss) [A-Za-z0-9+/]{40,}={0,3}'
 
 [pattern.description]
 en = "OpenSSH public key line: the algorithm, a space, then the base64 body. A public key is not a secret, and it is a stable identifier of a person and of the machines they reach, which is what puts it here. The trailing comment, usually user@host, is left out: it is an email-shaped value the contact patterns already carry."
+fr = "Ligne de clé publique OpenSSH : l'algorithme, une espace, puis le corps en base64. Une clé publique n'est pas un secret, mais c'est un identifiant stable d'une personne et des machines qu'elle atteint, ce qui la met ici. Le commentaire final, souvent utilisateur@hôte, est laissé de côté : c'est une valeur en forme d'e-mail que les motifs de contact portent déjà."
 
 # Clé inventée, corps tronqué à une longueur plausible.
 [[examples.match]]

@@ -1,0 +1,43 @@
+{
+  "digest": "3f5207d4b5e8b7d1e7ddde23bf2c3df3040339dc7e20f95813445d58205fa4c0",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "google-oauth-client-id",
+    "schema_version": 1,
+    "label": "GOOGLE_OAUTH_CLIENT_ID",
+    "regex": "\\b\\d{6,}-[a-z0-9]{10,}\\.apps\\.googleusercontent\\.com\\b",
+    "description": {
+      "en": "Google OAuth client identifier, the project number then the client hash under apps.googleusercontent.com. Not a secret on its own, since a web client ships it to the browser, but it names the project and travels with the client secret that is one.",
+      "fr": "Identifiant de client OAuth Google, le numéro de projet puis l'empreinte du client sous apps.googleusercontent.com. Pas un secret en soi, puisqu'un client web l'envoie au navigateur, mais il nomme le projet et voyage avec le secret client, qui en est un."
+    },
+    "tags": [
+      "international",
+      "secrets",
+      "software-dev"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Le client OAuth 123456789012-abc123def456ghi789.apps.googleusercontent.com doit être régénéré.",
+          "value": "123456789012-abc123def456ghi789.apps.googleusercontent.com"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "123456789012-abc.apps.googleusercontent.com"
+        },
+        {
+          "text": "www.googleusercontent.com"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "123456789012-",
+      "filler": "a",
+      "suffix": "!"
+    }
+  }
+}

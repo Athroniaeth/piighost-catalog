@@ -7,7 +7,7 @@ tags = ["nl", "government-id", "identity"]
 regex = '(?<!\d)\d{9}(?!\d)'
 
 [pattern.description]
-en = "Dutch citizen service number (BSN): nine digits, with leading zeros allowed since the legacy eight-digit numbers were padded. It is the exact same shape as the US bank routing number already in the registry, so it is only usable in a Dutch detector that excludes it."
+en = "Dutch citizen service number (BSN): nine digits, with leading zeros allowed since the legacy eight-digit numbers were padded. It is the exact same shape as the US bank routing number already in the catalog, so it is only usable in a Dutch detector that excludes it."
 fr = "Numéro de service au citoyen néerlandais (BSN) : neuf chiffres, zéros en tête autorisés puisque les anciens numéros à huit chiffres ont été complétés. C'est exactement la forme du numéro de routage bancaire américain déjà présent, donc il n'est utilisable que dans un détecteur néerlandais qui exclut celui-ci."
 
 [[examples.match]]

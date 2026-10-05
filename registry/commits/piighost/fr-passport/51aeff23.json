@@ -1,0 +1,50 @@
+{
+  "digest": "51aeff23410df91e1e4430aa37019f8bf764902bc5bc27fa392515d83376f822",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "fr-passport",
+    "schema_version": 1,
+    "label": "FR_PASSPORT",
+    "regex": "(?<!\\w)\\d{2}[A-Z]{2}\\d{5}(?!\\w)",
+    "description": {
+      "en": "French passport number, nine characters: two digits, two letters, five digits, per the Purview France passport definition. No checksum. The two letters in the middle make it far more selective than a bare nine digit run, and no catalog label matched the examples whole. Reproduced noise: the trailing five digit group is separately matched by ES_POSTAL and by IT_CAP, which guard with a lookbehind on digits; FR_ZIP, DE_ZIP and US_ZIP guard with a word boundary and do not fire here, because a letter sits right before the five digits.",
+      "fr": "Numéro de passeport français, neuf caractères : deux chiffres, deux lettres, cinq chiffres, selon la définition Purview du passeport français. Pas de somme de contrôle. Les deux lettres centrales le rendent bien plus sélectif qu'une suite de neuf chiffres, et aucun label du catalogue n'a reconnu les exemples en entier. Bruit reproduit : le groupe final de cinq chiffres est reconnu séparément par ES_POSTAL et par IT_CAP, qui se protègent par une anti-recherche sur les chiffres ; FR_ZIP, DE_ZIP et US_ZIP se protègent par une limite de mot et ne se déclenchent pas ici, car une lettre précède immédiatement les cinq chiffres."
+    },
+    "tags": [
+      "fr",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "The passport number 07AB12345 appears on the data page.",
+          "value": "07AB12345"
+        },
+        {
+          "text": "Passeport 19CD54321 délivré à Paris en janvier.",
+          "value": "19CD54321"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "07AB1234"
+        },
+        {
+          "text": "07ABC12345"
+        },
+        {
+          "text": "07ab12345"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "07AB1234",
+      "suffix": "!"
+    }
+  }
+}

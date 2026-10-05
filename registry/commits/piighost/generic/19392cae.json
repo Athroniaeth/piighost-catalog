@@ -1,0 +1,46 @@
+{
+  "digest": "19392caec4a934f8a01bfd0fb735b3c782efb247d390f43312443075d7f5741f",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "generic",
+    "schema_version": 1,
+    "description": {
+      "en": "Country-agnostic shapes: email, URL, IPv4, card number. The group the piighost command line runs by default, since the library ships no pattern of its own.",
+      "fr": "Formes indépendantes du pays : e-mail, URL, IPv4, numéro de carte. Le groupe que la ligne de commande piighost lance par défaut, puisque la bibliothèque n'embarque aucun motif."
+    },
+    "tags": [
+      "international",
+      "contact",
+      "finance",
+      "network"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/email",
+        "commit": "d42edae7",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/url",
+        "commit": "cf209031",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/ipv4",
+        "commit": "472020b0",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/credit-card",
+        "commit": "fc4a1e83",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

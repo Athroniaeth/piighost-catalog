@@ -1,0 +1,47 @@
+{
+  "digest": "6d381b097572ca8ac16c7929e8ff0d0b800b3c1a5f366bb6800b7e961ce06315",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "gitlab-token",
+    "schema_version": 1,
+    "label": "GITLAB_TOKEN",
+    "regex": "\\bglpat-[A-Za-z0-9_-]{20,}(?![A-Za-z0-9_-])",
+    "description": {
+      "en": "GitLab personal, project or group access token: glpat- then at least twenty characters of the token alphabet. The lookahead pins the end so a longer token is taken whole rather than truncated to twenty. GitLab's other prefixes (gldt-, glrt-, glsoat-) are different objects and are not covered.",
+      "fr": "Jeton d'accès GitLab personnel, de projet ou de groupe : glpat- puis au moins vingt caractères de l'alphabet du jeton. Le lookahead ancre la fin, donc un jeton plus long est pris en entier plutôt que tronqué à vingt. Les autres préfixes de GitLab (gldt-, glrt-, glsoat-) sont d'autres objets et ne sont pas couverts."
+    },
+    "tags": [
+      "international",
+      "secrets",
+      "software-dev"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Le pipeline échoue avec glpat-AbCdEfGhIjKlMnOpQrSt dans les variables.",
+          "value": "glpat-AbCdEfGhIjKlMnOpQrSt"
+        },
+        {
+          "text": "GITLAB_TOKEN=glpat-0123456789abcdefghij0123456789",
+          "value": "glpat-0123456789abcdefghij0123456789"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "glpat-court"
+        },
+        {
+          "text": "glpat_AbCdEfGhIjKlMnOpQrSt"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "glpat-",
+      "filler": "a",
+      "suffix": "!"
+    }
+  }
+}

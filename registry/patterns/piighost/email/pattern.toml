@@ -21,7 +21,7 @@ text = "Write to john.doe@example.com for any question."
 value = "john.doe@example.com"
 
 [[examples.match]]
-text = "Contact : support+billing@mail.example.org"
+text = "Contact: support+billing@mail.example.org"
 value = "support+billing@mail.example.org"
 
 # Une adresse accentuée est reconnue entière : sans les lettres accentuées,

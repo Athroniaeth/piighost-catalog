@@ -1,0 +1,79 @@
+{
+  "digest": "a19dd98e504051763d4f5301b1c092d8b357f9564344728b39767423d1ebc62d",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "support-en",
+    "schema_version": 1,
+    "description": {
+      "en": "English support conversations: US and international shapes with a local model for names and companies, and a guard that refuses a reply still holding a clear email address. The guard costs a second detection pass and is worth it on a channel an agent forwards.",
+      "fr": "Conversations de support en anglais : formes américaines et internationales avec un modèle local pour les noms et sociétés, et un guard qui refuse une réponse contenant encore une adresse e-mail en clair. Le guard coûte une seconde passe de détection et le vaut sur un canal qu'un agent transfère."
+    },
+    "tags": [
+      "us",
+      "international",
+      "lang-en",
+      "customer-support",
+      "chat",
+      "tool-agent"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "ner",
+        "type": "gliner2",
+        "model": "fastino/gliner2-multi-v1",
+        "labels": [
+          "PERSON",
+          "ADDRESS",
+          "ORGANIZATION"
+        ],
+        "threshold": 0.5
+      },
+      {
+        "name": "regex-us",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/us-extended",
+            "commit": "29ad6889"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "guard": {
+        "type": "detector",
+        "detector": {
+          "type": "regex",
+          "patterns": {
+            "EMAIL": "(?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\\.)+[A-Za-z]{2,}"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "digest": "31b192e3269772aa00a2f505064cb9dcea1d5109791f3f087e5f41f6563bcf63",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "group",
+    "namespace": "piighost",
+    "name": "cl",
+    "schema_version": 1,
+    "description": {
+      "en": "Chile: phone and the RUT, which serves as both the personal and the company identifier. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.",
+      "fr": "Chili : téléphone et le RUT, qui sert d'identifiant à la fois personnel et d'entreprise. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span."
+    },
+    "tags": [
+      "business",
+      "cl",
+      "contact",
+      "government-id",
+      "identity"
+    ],
+    "sources": [
+      {
+        "ref": "piighost/cl-phone",
+        "commit": "7c37215f",
+        "exclude": [],
+        "only": []
+      },
+      {
+        "ref": "piighost/cl-rut",
+        "commit": "ea3303a1",
+        "exclude": [],
+        "only": []
+      }
+    ]
+  }
+}

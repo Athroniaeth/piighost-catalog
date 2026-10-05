@@ -1,0 +1,57 @@
+{
+  "digest": "d9b30baa1993eb5b04d9aedf51cdbf8d3d7dcd289b2b8976c19c95f2fccbfe5e",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "mx-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Mexico without a model: phone, the CURP population identifier and the RFC tax number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.",
+      "fr": "Mexique sans modèle : téléphone, l'identifiant de population CURP et le numéro fiscal RFC, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois."
+    },
+    "tags": [
+      "chat",
+      "customer-support",
+      "document",
+      "mx"
+    ],
+    "piighost": ">=1.7,<2",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-mx",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/mx",
+            "commit": "aeb1db74"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "expander": {
+        "type": "word_boundary"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}

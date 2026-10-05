@@ -8,6 +8,7 @@ regex = '\bhttps://hooks\.slack\.com/services/T[A-Z0-9]{8,12}/B[A-Z0-9]{8,12}/[A
 
 [pattern.description]
 en = "Slack incoming webhook URL, whose path is the credential: anyone holding it can post to the channel. Collides with URL, which starts at the same character and covers the same span, so a group carrying both must declare this one first. The `logs` group leaves URL out for exactly this reason."
+fr = "URL de webhook entrant Slack, dont le chemin est l'identifiant : quiconque la détient peut poster dans le canal. Entre en collision avec URL, qui commence au même caractère et couvre le même span, donc un groupe qui porte les deux doit déclarer celui-ci en premier. Le groupe `logs` laisse URL de côté exactement pour cette raison."
 
 # Identifiants inventés, longueurs exactes.
 [[examples.match]]

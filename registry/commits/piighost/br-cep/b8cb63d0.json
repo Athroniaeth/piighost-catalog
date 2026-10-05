@@ -1,0 +1,47 @@
+{
+  "digest": "b8cb63d0d28d4c6d3ab46848341f7d66659939c485b44aaa1a72d423c61b7245",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "br-cep",
+    "schema_version": 1,
+    "label": "BR_CEP",
+    "regex": "(?<!\\d)\\d{5}-\\d{3}(?!\\d)",
+    "description": {
+      "en": "Brazilian postal code (CEP), five digits, a hyphen, then three. The hyphen makes it distinctive: unlike the five-digit European codes it does not collide with anything else in the catalog.",
+      "fr": "Code postal brésilien (CEP), cinq chiffres, un tiret, puis trois. Le tiret le rend distinctif : contrairement aux codes européens à cinq chiffres, il n'entre en collision avec rien d'autre dans le catalogue."
+    },
+    "tags": [
+      "br",
+      "location",
+      "contact"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "Avenida Paulista, 01310-100 em Sao Paulo.",
+          "value": "01310-100"
+        },
+        {
+          "text": "CEP 20040-020 no Rio de Janeiro.",
+          "value": "20040-020"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "CEP 01310100"
+        },
+        {
+          "text": "CEP 0131-100"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "01310-",
+      "suffix": "x"
+    }
+  }
+}

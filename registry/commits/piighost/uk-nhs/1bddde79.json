@@ -1,0 +1,48 @@
+{
+  "digest": "1bddde794a6d2198bf78d0554e654f92b2cbf5afb649d60ad24388c457aad836",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "uk-nhs",
+    "schema_version": 1,
+    "label": "UK_NHS",
+    "regex": "\\b\\d{3}[\\s-]?\\d{3}[\\s-]?\\d{4}\\b",
+    "description": {
+      "en": "NHS patient number, ten digits usually written in three-three-four groups. Health data, so the most sensitive category this catalog carries. The shape is also that of a US phone number: the two must not share a detector.",
+      "fr": "Numéro de patient NHS, dix chiffres écrits le plus souvent en groupes de trois, trois et quatre. Donnée de santé, donc la catégorie la plus sensible de ce catalogue. La forme est aussi celle d'un numéro de téléphone américain : les deux ne doivent pas partager un détecteur."
+    },
+    "tags": [
+      "uk",
+      "government-id",
+      "health",
+      "healthcare"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "NHS number 943 476 5919 verified.",
+          "value": "943 476 5919"
+        },
+        {
+          "text": "Patient 4857773456 admitted.",
+          "value": "4857773456"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "943 476 591"
+        },
+        {
+          "text": "94347659199"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "943 476 ",
+      "filler": "5",
+      "suffix": "x"
+    }
+  }
+}

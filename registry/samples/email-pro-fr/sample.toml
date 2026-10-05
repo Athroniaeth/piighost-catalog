@@ -2,7 +2,7 @@ schema_version = 1
 
 [sample]
 name = "email-pro-fr"
-title = { en = "Business email (France)" }
+title = { en = "Business email (France)", fr = "E-mail professionnel (France)" }
 tags = ["fr", "lang-en", "customer-support", "chat"]
 text = """
 Subject: follow-up on file 732 829 320 00074 - direct debit rejected

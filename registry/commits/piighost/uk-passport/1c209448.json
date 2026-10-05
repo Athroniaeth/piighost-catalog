@@ -1,0 +1,50 @@
+{
+  "digest": "1c20944833f0ff182e70c8060f82b28ca5ce82fcf573ccf9b130979ad9b51d24",
+  "recorded_at": "2026-10-05T10:40:10+00:00",
+  "content": {
+    "kind": "pattern",
+    "namespace": "piighost",
+    "name": "uk-passport",
+    "schema_version": 1,
+    "label": "UK_PASSPORT",
+    "regex": "(?<!\\w)\\d{9}(?!\\w)",
+    "description": {
+      "en": "British passport booklet number, nine digits. Purview folds the United States and the United Kingdom into one entity of one letter or digit followed by eight digits; the catalog already holds US_PASSPORT for the letter led form, so this covers the nine digit British form only. This is the weakest shape in the batch and it is honest to say so. Reproduced collision: nine bare digits is matched whole by US_BANK_ROUTING, by NL_BSN and by PL_PHONE, so a hit here is a four way tie that only a nearby keyword can break.",
+      "fr": "Numéro du carnet de passeport britannique, neuf chiffres. Purview réunit les États-Unis et le Royaume-Uni dans une seule entité, un caractère alphanumérique suivi de huit chiffres ; le catalogue contient déjà US_PASSPORT pour la forme commençant par une lettre, donc seule la forme britannique à neuf chiffres est couverte ici. C'est la forme la plus faible du lot et il faut le dire. Collision reproduite : neuf chiffres nus sont reconnus en entier par US_BANK_ROUTING, par NL_BSN et par PL_PHONE, donc une détection ici est une égalité à quatre que seul un mot-clé voisin peut trancher."
+    },
+    "tags": [
+      "uk",
+      "government-id",
+      "identity"
+    ],
+    "resilience": true,
+    "examples": {
+      "match": [
+        {
+          "text": "The passport booklet number 123456789 is printed in the corner of the page.",
+          "value": "123456789"
+        },
+        {
+          "text": "Passport 987654321 expires next spring.",
+          "value": "987654321"
+        }
+      ],
+      "no_match": [
+        {
+          "text": "12345678"
+        },
+        {
+          "text": "1234567890"
+        },
+        {
+          "text": "12 345 6789"
+        }
+      ]
+    },
+    "redos": {
+      "prefix": "",
+      "filler": "1",
+      "suffix": "x"
+    }
+  }
+}
