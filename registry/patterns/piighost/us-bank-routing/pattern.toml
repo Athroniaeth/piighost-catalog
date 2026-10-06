@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "us-bank-routing"
+title = { en = "bank routing number (US)", fr = "numéro de routage bancaire (États-Unis)" }
 label = "US_BANK_ROUTING"
 tags = ["us", "finance", "banking"]
 regex = '\b\d{9}\b'

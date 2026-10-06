@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "es-dni-nie"
+title = { en = "DNI and NIE (Spain)", fr = "DNI et NIE (Espagne)" }
 label = "ES_DNI_NIE"
 tags = ["es", "government-id", "identity"]
 regex = '\b(?:\d{8}|[XYZ]\d{7})-?[A-HJ-NP-TV-Z]\b'

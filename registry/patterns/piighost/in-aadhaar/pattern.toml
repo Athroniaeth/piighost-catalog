@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "in-aadhaar"
+title = { en = "Aadhaar number (India)", fr = "numéro Aadhaar (Inde)" }
 label = "IN_AADHAAR"
 tags = ["in", "government-id", "identity"]
 regex = '(?<!\w)[2-9]\d{3}[\s-]\d{4}[\s-]\d{4}(?!\w)(?![\s.-]?\d)'

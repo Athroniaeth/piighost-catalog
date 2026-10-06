@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "kr-rrn"
+title = { en = "resident registration number (South Korea)", fr = "numéro d'enregistrement de résident (Corée du Sud)" }
 label = "KR_RRN"
 tags = ["kr", "government-id", "identity"]
 regex = '(?<!\w)\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])-[1-4]\d{6}(?!\w)'

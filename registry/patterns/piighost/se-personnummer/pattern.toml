@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "se-personnummer"
+title = { en = "personnummer (Sweden)", fr = "personnummer (Suède)" }
 label = "SE_PERSONNUMMER"
 tags = ["se", "government-id", "identity"]
 regex = '(?<!\w)(?:\d{2})?\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[-+]\d{4}(?!\w)'

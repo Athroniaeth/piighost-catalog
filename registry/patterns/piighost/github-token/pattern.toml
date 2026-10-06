@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "github-token"
+title = { en = "GitHub token", fr = "jeton GitHub" }
 label = "GITHUB_TOKEN"
 tags = ["international", "secrets", "software-dev"]
 regex = '\b(?:gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{82})\b'

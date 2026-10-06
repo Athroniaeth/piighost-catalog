@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "dk"
+title = { en = "personal data (Denmark)", fr = "données personnelles (Danemark)" }
 description = { en = "Denmark: phone and the CPR number, which doubles as the health identifier. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Danemark : téléphone et le numéro CPR, qui sert aussi d'identifiant de santé. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["contact", "dk", "government-id", "health", "identity"]
 

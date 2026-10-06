@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "br"
+title = { en = "personal data (Brazil)", fr = "données personnelles (Brésil)" }
 description = { en = "Brazil: phone, CEP postal code, the CPF for a person, the CNPJ for a company and the CNS health card number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Brésil : téléphone, code postal CEP, le CPF pour une personne, le CNPJ pour une entreprise et le numéro de carte de santé CNS. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["br", "business", "contact", "government-id", "identity", "location"]
 

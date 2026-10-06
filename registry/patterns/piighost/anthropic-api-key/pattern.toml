@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "anthropic-api-key"
+title = { en = "Anthropic API key", fr = "clé d'API Anthropic" }
 label = "ANTHROPIC_API_KEY"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bsk-ant-(?:api|admin)\d{2}-[A-Za-z0-9_-]{80,120}(?![A-Za-z0-9_-])'

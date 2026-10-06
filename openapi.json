@@ -589,6 +589,16 @@
               "type": "string"
             },
             "type": "array"
+          },
+          "title": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Localized"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -601,7 +611,8 @@
           "namespace",
           "pointers",
           "pulls",
-          "tags"
+          "tags",
+          "title"
         ],
         "title": "ObjectDetail",
         "type": "object"
@@ -657,6 +668,16 @@
               "type": "string"
             },
             "type": "array"
+          },
+          "title": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Localized"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -667,7 +688,8 @@
           "name",
           "namespace",
           "pointers",
-          "tags"
+          "tags",
+          "title"
         ],
         "title": "ObjectSummary",
         "type": "object"

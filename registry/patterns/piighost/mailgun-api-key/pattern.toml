@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "mailgun-api-key"
+title = { en = "Mailgun API key", fr = "clé d'API Mailgun" }
 label = "MAILGUN_API_KEY"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bkey-[0-9a-f]{32}\b'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "de-health-insurance"
+title = { en = "health insurance number (Germany)", fr = "numéro d'assurance maladie (Allemagne)" }
 label = "DE_HEALTH_INSURANCE"
 tags = ["de", "health", "government-id"]
 regex = '(?<!\w)[A-Z]\d{9}(?!\w)'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "us-npi"
+title = { en = "NPI (US)", fr = "NPI (États-Unis)" }
 label = "US_NPI"
 tags = ["us", "health", "identity"]
 regex = '\b[12]\d{9}\b'

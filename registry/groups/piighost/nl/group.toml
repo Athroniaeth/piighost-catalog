@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "nl"
+title = { en = "personal data (Netherlands)", fr = "données personnelles (Pays-Bas)" }
 description = { en = "the Netherlands: phone, postal code and the citizen service number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Pays-Bas : téléphone, code postal et le numéro de service au citoyen. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["contact", "government-id", "identity", "location", "nl"]
 

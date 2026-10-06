@@ -2,6 +2,7 @@ schema_version = 1
 
 [config]
 name = "ca-default"
+title = { en = "Canada, regex only", fr = "Canada, regex seules" }
 description = { en = "Canada without a model: postal code and social insurance number. The phone is the North American plan, already carried by us-phone, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.", fr = "Canada sans modèle : code postal et numéro d'assurance sociale. Le téléphone est le plan nord-américain, déjà porté par us-phone, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois." }
 tags = ["ca", "chat", "customer-support", "document"]
 piighost = ">=2.0,<3"

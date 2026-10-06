@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "es"
+title = { en = "personal data (Spain)", fr = "données personnelles (Espagne)" }
 description = { en = "Spain: phone, postal code, the DNI and NIE identity numbers and the CIF company tax number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Espagne : téléphone, code postal, les numéros d'identité DNI et NIE et le numéro fiscal d'entreprise CIF. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["business", "contact", "es", "government-id", "identity", "location"]
 

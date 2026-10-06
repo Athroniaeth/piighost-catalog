@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "us-itin"
+title = { en = "ITIN (US)", fr = "ITIN (États-Unis)" }
 label = "US_ITIN"
 tags = ["us", "government-id", "identity", "finance"]
 regex = '(?<!\w)9\d{2}-[7-8]\d-\d{4}(?!\w)'

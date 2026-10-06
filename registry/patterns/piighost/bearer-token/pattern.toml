@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "bearer-token"
+title = { en = "Bearer token", fr = "jeton Bearer" }
 label = "BEARER_TOKEN"
 tags = ["international", "secrets", "software-dev"]
 regex = '\b(?i:bearer) [A-Za-z0-9._~+/-]{15,}[A-Za-z0-9_~+/]={0,2}'

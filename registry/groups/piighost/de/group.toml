@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "de"
+title = { en = "personal data (Germany)", fr = "données personnelles (Allemagne)" }
 description = { en = "Germany: phone and postal code. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Allemagne : téléphone et code postal. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["contact", "de", "government-id", "identity", "location"]
 

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "uk-plate"
+title = { en = "number plate (UK)", fr = "plaque d'immatriculation (Royaume-Uni)" }
 label = "UK_VRM"
 tags = ["uk", "identity"]
 regex = '\b[A-HJ-PR-Y]{2}(?:0[1-9]|[1-7]\d)[ -]?[A-HJ-PR-Z]{3}\b'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "nl-bsn"
+title = { en = "BSN (Netherlands)", fr = "BSN (Pays-Bas)" }
 label = "NL_BSN"
 tags = ["nl", "government-id", "identity"]
 regex = '(?<!\d)\d{9}(?!\d)'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [config]
 name = "regex-default"
+title = { en = "regex only, no model", fr = "regex seules, sans modèle" }
 description = { en = "Regex only, no model, no network: the generic, French, European and secret groups, France first so a SIRET or a NIR is not taken for a card number. The default of piighost-api.", fr = "Regex seul, sans modèle ni réseau : les groupes générique, français, européen et secrets, la France d'abord pour qu'un SIRET ou un NIR ne soit pas pris pour une carte bancaire. Le défaut de piighost-api." }
 tags = ["international", "fr", "eu", "us", "chat", "tool-agent"]
 piighost = ">=2.0,<3"

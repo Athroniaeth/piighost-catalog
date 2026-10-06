@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "ssh-public-key"
+title = { en = "SSH public key", fr = "clé publique SSH" }
 label = "SSH_PUBLIC_KEY"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bssh-(?:rsa|ed25519|dss) [A-Za-z0-9+/]{40,}={0,3}'

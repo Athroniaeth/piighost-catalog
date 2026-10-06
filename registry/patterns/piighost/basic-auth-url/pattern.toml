@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "basic-auth-url"
+title = { en = "URL with basic auth credentials", fr = "URL avec identifiants basic auth" }
 label = "BASIC_AUTH_URL"
 tags = ["international", "secrets", "network", "software-dev"]
 regex = '\bhttps?://[^\s:/@]+:[^\s@/]+@[^\s/]*[^\s/.,;:!?)\]]'

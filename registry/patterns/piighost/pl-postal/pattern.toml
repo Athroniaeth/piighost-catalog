@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "pl-postal"
+title = { en = "postal code (Poland)", fr = "code postal (Pologne)" }
 label = "PL_POSTAL"
 tags = ["pl", "location", "contact"]
 regex = '(?<!\d)\d{2}-\d{3}(?!\d)'

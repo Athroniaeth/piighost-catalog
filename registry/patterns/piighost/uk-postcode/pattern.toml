@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "uk-postcode"
+title = { en = "postcode (UK)", fr = "code postal (Royaume-Uni)" }
 label = "UK_POSTCODE"
 tags = ["uk", "location", "contact"]
 regex = '\b[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}\b'

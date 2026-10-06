@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "ch"
+title = { en = "personal data (Switzerland)", fr = "données personnelles (Suisse)" }
 description = { en = "Switzerland: phone and the AHV social insurance number, which doubles as the health identifier. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Suisse : téléphone et le numéro AVS d'assurance sociale, qui sert aussi d'identifiant de santé. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["ch", "contact", "government-id", "health", "identity"]
 

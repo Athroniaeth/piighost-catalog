@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "iban"
+title = { en = "IBAN", fr = "IBAN" }
 label = "IBAN"
 tags = ["international", "finance", "banking"]
 regex = '\b[A-Z]{2}\d{2}(?:[\s-]?[A-Z0-9]){11,30}\b'

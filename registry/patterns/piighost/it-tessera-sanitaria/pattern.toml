@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "it-tessera-sanitaria"
+title = { en = "health card number (Italy)", fr = "numéro de carte sanitaire (Italie)" }
 label = "IT_HEALTH_CARD"
 tags = ["it", "health", "government-id"]
 regex = '(?<!\w)80380000\d{12}(?!\w)'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "ie-eircode"
+title = { en = "Eircode (Ireland)", fr = "Eircode (Irlande)" }
 label = "IE_EIRCODE"
 tags = ["ie", "location", "contact"]
 regex = '(?<!\w)[A-Z]\d[\dW][\s-]?[A-Z0-9]{4}(?!\w)'

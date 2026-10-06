@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "fr-cadastre"
+title = { en = "cadastral reference (France)", fr = "référence cadastrale (France)" }
 label = "FR_CADASTRE"
 tags = ["fr", "identity", "legal", "notarial", "location", "lang-fr"]
 regex = "(?:(?<=section )|(?<=section )|(?<=parcelle )|(?<=parcelle )|(?<=parcelles )|(?<=parcelles )|(?<=cadastrée )|(?<=cadastrée )|(?<=cadastré )|(?<=cadastré )|(?<=cadastrés )|(?<=cadastrés )|(?<=cadastrées )|(?<=cadastrées ))[A-Z]{1,2}[  ]*(?:n(?:°|o|uméro)[  ]*)?\\d{1,4}(?!\\w)"

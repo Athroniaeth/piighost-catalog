@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "pl-pesel"
+title = { en = "PESEL (Poland)", fr = "PESEL (Pologne)" }
 label = "PL_PESEL"
 tags = ["pl", "government-id", "identity"]
 regex = '(?<!\d)\d{11}(?!\d)'

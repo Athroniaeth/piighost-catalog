@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "contact"
+title = { en = "contact details", fr = "coordonnées" }
 description = { en = "How to reach a person, without knowing where they live: email, international phone, URL. The three shapes a message carries whatever the country, and the ones a support or sales corpus is made of.", fr = "Comment joindre une personne, sans savoir où elle vit : e-mail, téléphone international, URL. Les trois formes qu'un message porte quel que soit le pays, et celles dont un corpus de support ou de vente est fait." }
 tags = ["international", "contact", "customer-support", "chat"]
 

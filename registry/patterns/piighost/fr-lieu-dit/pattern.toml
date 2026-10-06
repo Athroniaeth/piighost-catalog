@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "fr-lieu-dit"
+title = { en = "lieu-dit (France)", fr = "lieu-dit (France)" }
 label = "FR_LIEU_DIT"
 tags = ["fr", "location", "lang-fr", "legal", "notarial"]
 regex = "(?<![\\w])lieu-?dit[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+(?:[ \\u00a0'’\\-]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+)*"

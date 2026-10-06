@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "eu-extended"
+title = { en = "European documents", fr = "documents européens" }
 description = { en = "What a European document carries regardless of its country: the IBAN, the BIC, and the intra-community VAT number. An invoice between two member states shows all three together, which is why they travel as one group rather than sitting in each country's set. The `eu` group next to it keeps the IBAN alone.", fr = "Ce qu'un document européen porte quel que soit son pays : l'IBAN, le BIC et le numéro de TVA intracommunautaire. Une facture entre deux États membres montre les trois ensemble, d'où leur voyage en un seul groupe plutôt que dans l'ensemble de chaque pays. Le groupe `eu` à côté garde l'IBAN seul." }
 tags = ["eu", "international", "finance", "banking", "business", "accounting"]
 

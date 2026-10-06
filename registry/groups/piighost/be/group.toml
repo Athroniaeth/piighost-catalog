@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "be"
+title = { en = "personal data (Belgium)", fr = "données personnelles (Belgique)" }
 description = { en = "Belgium: phone and the national register number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Belgique : téléphone et le numéro de registre national. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["be", "contact", "government-id", "identity"]
 

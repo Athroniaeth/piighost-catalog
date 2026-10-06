@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "certificate-block"
+title = { en = "PEM certificate", fr = "certificat PEM" }
 label = "CERTIFICATE_BLOCK"
 tags = ["international", "secrets", "network"]
 regex = '-----BEGIN [A-Z ]*CERTIFICATE-----[\s\S]*?-----END [A-Z ]*CERTIFICATE-----'

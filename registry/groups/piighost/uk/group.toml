@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "uk"
+title = { en = "personal data (UK)", fr = "données personnelles (Royaume-Uni)" }
 description = { en = "the United Kingdom: phone, postcode, the National Insurance number, the NHS number and the VAT registration number. The VAT number keeps its GB prefix after the country's departure from the European system, so it is a pattern of its own rather than a case of eu-vat. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Royaume-Uni : téléphone, code postal, le numéro d'assurance nationale, le numéro NHS et le numéro de TVA. Le numéro de TVA conserve son préfixe GB après la sortie du pays du système européen, donc c'est un motif à part et non un cas de eu-vat. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["contact", "government-id", "health", "identity", "location", "uk"]
 

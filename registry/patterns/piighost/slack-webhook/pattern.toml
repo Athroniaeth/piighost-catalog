@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "slack-webhook"
+title = { en = "Slack webhook URL", fr = "URL de webhook Slack" }
 label = "SLACK_WEBHOOK"
 tags = ["international", "secrets", "software-dev", "logs"]
 regex = '\bhttps://hooks\.slack\.com/services/T[A-Z0-9]{8,12}/B[A-Z0-9]{8,12}/[A-Za-z0-9]{24}\b'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "aws-access-key"
+title = { en = "AWS access key ID", fr = "identifiant de clé d'accès AWS" }
 label = "AWS_ACCESS_KEY"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bAKIA[0-9A-Z]{16}\b'

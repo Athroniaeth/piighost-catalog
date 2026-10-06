@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "nl-postal"
+title = { en = "postal code (Netherlands)", fr = "code postal (Pays-Bas)" }
 label = "NL_POSTAL"
 tags = ["nl", "location", "contact"]
 regex = '(?<!\w)\d{4}\s?[A-Z]{2}(?!\w)'

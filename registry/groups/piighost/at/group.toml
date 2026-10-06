@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "at"
+title = { en = "personal data (Austria)", fr = "données personnelles (Autriche)" }
 description = { en = "Austria: phone and the social insurance number. No postal code: four bare digits would shred the phone numbers and the card numbers beside them. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Autriche : téléphone et le numéro d'assurance sociale. Pas de code postal : quatre chiffres nus découperaient les téléphones et les numéros de carte à côté d'eux. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["at", "contact", "government-id", "health", "identity"]
 

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "fr-residence"
+title = { en = "address in a deed (France)", fr = "adresse dans un acte (France)" }
 label = "FR_RESIDENCE"
 tags = ["fr", "identity", "legal", "notarial", "location", "lang-fr"]
 regex = "(?:(?<=demeurant )|(?<=demeurant )|(?<=ensemble )|(?<=ensemble )|(?<=résidant )|(?<=résidant )|(?<=domicilié )|(?<=domicilié )|(?<=domiciliée )|(?<=domiciliée )|(?<=domiciliés )|(?<=domiciliés )|(?<=situé )|(?<=situé )|(?<=située )|(?<=située )|(?<=sis )|(?<=sis )|(?<=sise )|(?<=sise )|(?<=siège\\ est )|(?<=siège\\ est )|(?<=siège\\ social\\ est )|(?<=siège\\ social\\ est ))(?=\\d|lieu-?dit|résidence|hameau|(?:rue|avenue|boulevard|place|impasse|quai|allée|chemin|route|cours|square|villa|passage|faubourg|venelle|sentier|ruelle|mail|esplanade|promenade|rond-point|voie)[  ])(?:(?![  ]à[  ][A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ])[^,.;\\n()–—])+(?<![  ])(?:,[  ]*(?=bâtiment|appartement|escalier|étage|résidence|lieu-?dit|[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿ]|\\d{5}(?!\\d))(?:(?![  ]à[  ][A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ])[^,.;\\n()–—])+(?<![  ]))*"

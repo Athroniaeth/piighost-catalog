@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "url"
+title = { en = "URL", fr = "URL" }
 label = "URL"
 tags = ["international", "network"]
 regex = "https?://[^\\s<>\"']*[^\\s<>\"'.,;:!?)\\]]"

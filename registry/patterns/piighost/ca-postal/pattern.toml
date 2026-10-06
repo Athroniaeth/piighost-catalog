@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "ca-postal"
+title = { en = "postal code (Canada)", fr = "code postal (Canada)" }
 label = "CA_POSTAL"
 tags = ["ca", "location", "contact"]
 regex = '(?<!\w)[A-CEGHJ-NPR-TVXY]\d[A-CEGHJ-NPR-TV-Z]\s?\d[A-CEGHJ-NPR-TV-Z]\d(?!\w)'

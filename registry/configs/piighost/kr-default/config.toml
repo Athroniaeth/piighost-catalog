@@ -2,6 +2,7 @@ schema_version = 1
 
 [config]
 name = "kr-default"
+title = { en = "South Korea, regex only", fr = "Corée du Sud, regex seules" }
 description = { en = "South Korea without a model: mobile phone and the resident registration number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.", fr = "Corée du Sud sans modèle : téléphone mobile et le numéro d'enregistrement de résident, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois." }
 tags = ["chat", "customer-support", "document", "kr"]
 piighost = ">=2.0,<3"

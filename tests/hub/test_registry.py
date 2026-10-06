@@ -248,3 +248,28 @@ class TestMissingRegistry:
             Registry.load(tmp_path / "absent")
         assert "HUB_REGISTRY_DIR" in str(info.value)
         assert "/app/registry" in str(info.value)
+
+
+class TestTitle:
+    def test_a_title_names_the_object_without_changing_its_commit(
+        self, root: Path, registry: Registry
+    ) -> None:
+        """Renaming a page must not move `latest` or a digest someone pinned."""
+        before = registry.heads["piighost/email"].digest
+        assert registry.title_of("piighost/email") is None
+        write_pattern(
+            root,
+            "email",
+            "EMAIL",
+            EMAIL,
+            tags='["international", "contact"]',
+            extra='title = { en = "email address", fr = "adresse e-mail" }',
+            matches=[("write to john.doe@example.com now", "john.doe@example.com")],
+            no_matches=["john@doe", "not an email"],
+        )
+        renamed = Registry.load(root)
+        assert renamed.heads["piighost/email"].digest == before
+        title = renamed.title_of("piighost/email")
+        assert title is not None
+        assert (title.en, title.fr) == ("email address", "adresse e-mail")
+        assert "title" not in renamed.heads["piighost/email"].content

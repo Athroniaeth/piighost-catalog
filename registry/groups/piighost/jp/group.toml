@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "jp"
+title = { en = "personal data (Japan)", fr = "données personnelles (Japon)" }
 description = { en = "Japan: phone, postal code and the My Number individual identifier. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Japon : téléphone, code postal et l'identifiant individuel My Number. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["contact", "government-id", "identity", "jp", "location"]
 

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "db-connection-string"
+title = { en = "database connection string", fr = "chaîne de connexion à une base de données" }
 label = "DB_CONNECTION_STRING"
 tags = ["international", "secrets", "network", "software-dev"]
 regex = '\b(?:postgres(?:ql)?|mysql|mongodb(?:\+srv)?|redis|amqp)://[^\s:/@]+:[^\s@/]+@[^\s/]*[^\s/.,;:!?)\]]'

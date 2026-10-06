@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "ie-ppsn"
+title = { en = "PPS number (Ireland)", fr = "numéro PPS (Irlande)" }
 label = "IE_PPSN"
 tags = ["ie", "government-id", "identity", "hr"]
 regex = '(?<!\w)\d{7}[A-Z][A-IW]?(?!\w)'

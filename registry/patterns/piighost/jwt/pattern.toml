@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "jwt"
+title = { en = "JWT", fr = "JWT" }
 label = "JWT"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bey[A-Za-z0-9_-]{10,}\.ey[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_=-]{10,}(?![\w=-])'

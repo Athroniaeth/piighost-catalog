@@ -29,6 +29,14 @@ Règles communes :
 - Les tags sont une liste à plat, mais chaque tag doit exister dans
   `vocabulary.toml`.
 - Les descriptions sont bilingues, `{ en = "...", fr = "..." }`.
+- `title` est facultatif et bilingue lui aussi, `{ en = "SIRET (France)", fr = "SIRET (France)" }`.
+  C'est le nom qu'un lecteur donne à l'objet, et la page commence par lui,
+  parce que personne ne cherche `fr-siret`. Écrivez-le comme au milieu d'une
+  phrase, `numéro de téléphone (France)`. Le titre de la page met une
+  majuscule à sa première lettre, et le titre de l'onglet le place après
+  « Regex ». Il se met dans la table du corps, `[pattern]`, `[group]` ou
+  `[config]`. Il ne fait pas partie du contenu figé, donc le changer ne crée
+  aucun commit.
 
 ## `vocabulary.toml`
 

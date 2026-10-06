@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "network"
+title = { en = "network identifiers", fr = "identifiants réseau" }
 description = { en = "Machine and network identifiers: IPv4, IPv6 and MAC addresses. A MAC address identifies a device rather than a person, which is exactly why it follows one across networks.", fr = "Identifiants de machine et de réseau : IPv4, IPv6 et adresses MAC. Une adresse MAC identifie un appareil plutôt qu'une personne, ce qui est précisément pourquoi elle la suit d'un réseau à l'autre." }
 tags = ["international", "network", "software-dev", "logs"]
 

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "au-postal"
+title = { en = "postcode (Australia)", fr = "code postal (Australie)" }
 label = "AU_POSTAL"
 tags = ["au", "location", "contact"]
 regex = '(?<!\w)(?:NSW|VIC|QLD|WA|SA|TAS|ACT|NT)[\s.]?\d{4}(?!\d)'

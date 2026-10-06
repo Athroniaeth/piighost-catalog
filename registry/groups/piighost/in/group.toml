@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "in"
+title = { en = "personal data (India)", fr = "données personnelles (Inde)" }
 description = { en = "India: phone, PIN code, the PAN tax number, the Aadhaar number and the GST number. Aadhaar is only matched in its grouped form, since twelve bare digits are also the head of a card number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Inde : téléphone, code PIN, le numéro fiscal PAN, le numéro Aadhaar et le numéro GST. L'Aadhaar n'est reconnu que sous sa forme groupée, car douze chiffres nus sont aussi le début d'un numéro de carte. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["contact", "government-id", "identity", "in", "location"]
 

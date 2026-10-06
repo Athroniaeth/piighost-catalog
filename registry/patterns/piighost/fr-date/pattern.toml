@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "fr-date"
+title = { en = "date in words (France)", fr = "date en lettres (France)" }
 label = "FR_DATE"
 tags = ["fr", "identity", "legal", "notarial", "lang-fr"]
 regex = "(?<!\\w)(?<!\\d du )(?<!\\d du )(?i:1er|[12]\\d|3[01]|0?[1-9])[   ]+(?i:janvier|f[eéÉ]vrier|mars|avril|mai|juin|juillet|ao[uûÛ]t|septembre|octobre|novembre|d[eéÉ]cembre)[   ]+(?:1[89]|20)\\d{2}(?!\\w)"

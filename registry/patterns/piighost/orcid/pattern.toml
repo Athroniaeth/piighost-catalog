@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "orcid"
+title = { en = "ORCID iD", fr = "identifiant ORCID" }
 label = "ORCID"
 tags = ["international", "identity"]
 regex = '(?<!\w)0000-000[1-3]-\d{4}-\d{3}[0-9X](?!\w)'

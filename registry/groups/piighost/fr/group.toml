@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "fr"
+title = { en = "personal data (France)", fr = "données personnelles (France)" }
 description = { en = "France: phone, IBAN, social security number and company registration number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "France : téléphone, IBAN, numéro de sécurité sociale et numéro d'entreprise. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["contact", "fr", "government-id", "identity"]
 

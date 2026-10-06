@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "au-abn"
+title = { en = "ABN business number (Australia)", fr = "numéro d'entreprise ABN (Australie)" }
 label = "AU_ABN"
 tags = ["au", "business", "accounting"]
 regex = '(?<!\d)\d{2}\s\d{3}\s\d{3}\s\d{3}(?!\d)'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "cl-rut"
+title = { en = "RUT or RUN (Chile)", fr = "RUT ou RUN (Chili)" }
 label = "CL_RUT"
 tags = ["cl", "government-id", "identity"]
 regex = '(?<!\w)\d{1,2}\.?\d{3}\.?\d{3}-[0-9kK](?!\w)'

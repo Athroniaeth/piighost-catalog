@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "at-svnr"
+title = { en = "social security number (Austria)", fr = "numéro de sécurité sociale (Autriche)" }
 label = "AT_SVNR"
 tags = ["at", "government-id", "identity", "hr"]
 regex = '(?<!\w)\d{4} ?(?:0[1-9]|[12]\d|3[01])(?:0[1-9]|1[0-2])\d{2}(?!\w)'

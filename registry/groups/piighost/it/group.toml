@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "it"
+title = { en = "personal data (Italy)", fr = "données personnelles (Italie)" }
 description = { en = "Italy: phone, postal code, the codice fiscale, the VAT number and the health card number. The health card is twenty digits opening on a fixed issuer prefix, which is what makes a run that long safe to detect. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Italie : téléphone, code postal, le codice fiscale, le numéro de TVA et le numéro de carte sanitaire. La carte sanitaire fait vingt chiffres commençant par un préfixe émetteur fixe, ce qui rend une suite aussi longue détectable sans danger. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["business", "contact", "government-id", "identity", "it", "location"]
 

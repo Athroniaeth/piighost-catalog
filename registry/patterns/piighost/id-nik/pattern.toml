@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "id-nik"
+title = { en = "NIK (Indonesia)", fr = "NIK (Indonésie)" }
 label = "ID_NIK"
 tags = ["id", "government-id", "identity"]
 regex = '(?<!\w)\d{6}(?:0[1-9]|[12]\d|3[01]|4[1-9]|[56]\d|7[01])(?:0[1-9]|1[0-2])\d{6}(?!\w)'

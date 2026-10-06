@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "btc-address"
+title = { en = "Bitcoin address", fr = "adresse Bitcoin" }
 label = "BTC_ADDRESS"
 tags = ["international", "identity", "finance"]
 regex = '\b(?:[13][1-9A-HJ-NP-Za-km-z]{25,34}|bc1[02-9ac-hj-np-z]{11,71})\b'

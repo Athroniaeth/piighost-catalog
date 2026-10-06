@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "ipv4"
+title = { en = "IPv4 address", fr = "adresse IPv4" }
 label = "IPV4"
 tags = ["international", "network"]
 regex = '(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)'

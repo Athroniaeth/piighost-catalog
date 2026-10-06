@@ -70,6 +70,8 @@ class ObjectSummary(msgspec.Struct):
     kind: Literal["pattern", "group", "config"]
     namespace: str
     name: str
+    title: Localized | None
+    """What a reader calls the object. Not part of its commit, see `title_of`."""
     description: Localized
     tags: list[str]
     latest: str
@@ -91,6 +93,7 @@ class ObjectDetail(msgspec.Struct):
     kind: Literal["pattern", "group", "config"]
     namespace: str
     name: str
+    title: Localized | None
     description: Localized
     tags: list[str]
     latest: str
@@ -741,11 +744,13 @@ def _cache_headers(selector: str, snapshot: Snapshot) -> dict[str, str]:
 
 def _summary(registry: Registry, head: Snapshot) -> ObjectSummary:
     description = head.content["description"]
+    title = registry.title_of(head.key)
     return ObjectSummary(
         key=head.key,
         kind=head.kind,
         namespace=head.namespace,
         name=head.name,
+        title=Localized(en=title.en, fr=title.fr) if title else None,
         description=Localized(en=description["en"], fr=description["fr"]),
         tags=list(head.content.get("tags", [])),
         latest=head.short,

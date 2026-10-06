@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "be-nrn"
+title = { en = "national register number (Belgium)", fr = "numéro de registre national (Belgique)" }
 label = "BE_NRN"
 tags = ["be", "government-id", "identity"]
 regex = '(?<!\w)\d{2}\.(?:0[1-9]|1[0-2])\.(?:0[1-9]|[12]\d|3[01])-\d{3}\.\d{2}(?!\w)'

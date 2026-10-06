@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "azure-storage-key"
+title = { en = "Azure Storage account key", fr = "clé de compte Azure Storage" }
 label = "AZURE_STORAGE_KEY"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bAccountKey=[A-Za-z0-9+/]{86}=='

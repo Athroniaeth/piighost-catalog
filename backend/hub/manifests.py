@@ -70,6 +70,8 @@ class PatternBody(msgspec.Struct, forbid_unknown_fields=True):
     description: LocalizedText
     tags: list[str] = msgspec.field(default_factory=list)
     resilience: bool = True
+    title: LocalizedText | None = None
+    """What a reader calls the object, `SIRET (France)`. See `title_of`."""
 
 
 class PatternManifest(msgspec.Struct, forbid_unknown_fields=True):
@@ -95,6 +97,7 @@ class GroupBody(msgspec.Struct, forbid_unknown_fields=True):
     name: str
     description: LocalizedText
     tags: list[str] = msgspec.field(default_factory=list)
+    title: LocalizedText | None = None
 
 
 class GroupManifest(msgspec.Struct, forbid_unknown_fields=True):
@@ -123,6 +126,7 @@ class ConfigBody(msgspec.Struct, forbid_unknown_fields=True):
     description: LocalizedText
     tags: list[str] = msgspec.field(default_factory=list)
     piighost: str = ""
+    title: LocalizedText | None = None
 
 
 class ConfigManifest(msgspec.Struct, forbid_unknown_fields=True):

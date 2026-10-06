@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "jp-my-number"
+title = { en = "My Number (Japan)", fr = "My Number (Japon)" }
 label = "JP_MY_NUMBER"
 tags = ["jp", "government-id", "identity"]
 regex = '(?<!\w)\d{4}[\s-]\d{4}[\s-]\d{4}(?!\w)(?![\s.-]?\d)'

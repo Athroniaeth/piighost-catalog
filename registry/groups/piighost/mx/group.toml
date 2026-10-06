@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "mx"
+title = { en = "personal data (Mexico)", fr = "données personnelles (Mexique)" }
 description = { en = "Mexico: phone, the CURP population identifier and the RFC tax number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Mexique : téléphone, l'identifiant de population CURP et le numéro fiscal RFC. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["business", "contact", "government-id", "identity", "mx"]
 

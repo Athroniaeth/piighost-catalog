@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "cl"
+title = { en = "personal data (Chile)", fr = "données personnelles (Chili)" }
 description = { en = "Chile: phone and the RUT, which serves as both the personal and the company identifier. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Chili : téléphone et le RUT, qui sert d'identifiant à la fois personnel et d'entreprise. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["business", "cl", "contact", "government-id", "identity"]
 

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "sendgrid-api-key"
+title = { en = "SendGrid API key", fr = "clé d'API SendGrid" }
 label = "SENDGRID_API_KEY"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bSG\.[A-Za-z0-9_-]{22}\.[A-Za-z0-9_-]{43}(?![A-Za-z0-9_-])'

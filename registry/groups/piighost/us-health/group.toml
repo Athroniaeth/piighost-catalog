@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "us-health"
+title = { en = "health identifiers (US)", fr = "identifiants de santé (États-Unis)" }
 description = { en = "United States health identifiers: the NPI of a provider and the DEA number that lets them prescribe. The NPI is ten bare digits and therefore competes with any other ten-digit shape, the NHS number in particular: do not put this group and the UK one in the same detector.", fr = "Identifiants de santé américains : le NPI d'un praticien et le numéro DEA qui l'autorise à prescrire. Le NPI est dix chiffres nus et entre donc en concurrence avec toute autre forme de dix chiffres, le numéro NHS en particulier : ne mettez pas ce groupe et le groupe britannique dans le même détecteur." }
 tags = ["us", "health", "healthcare", "government-id"]
 

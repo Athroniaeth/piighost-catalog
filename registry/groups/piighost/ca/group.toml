@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "ca"
+title = { en = "personal data (Canada)", fr = "données personnelles (Canada)" }
 description = { en = "Canada: postal code and social insurance number. The phone is the North American plan, already carried by us-phone. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Canada : code postal et numéro d'assurance sociale. Le téléphone est le plan nord-américain, déjà porté par us-phone. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["ca", "contact", "government-id", "identity", "location"]
 

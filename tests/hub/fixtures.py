@@ -146,6 +146,7 @@ def make_registry(root: Path) -> Path:
         "FR_SIRET",
         SIRET,
         tags='["fr", "finance"]',
+        extra='title = { en = "SIRET (France)", fr = "SIRET (France)" }',
         matches=[("SIRET 73282932000074 ok", "73282932000074")],
         no_matches=["7328293200007"],
     )

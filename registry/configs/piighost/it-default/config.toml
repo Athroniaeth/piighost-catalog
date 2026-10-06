@@ -2,6 +2,7 @@ schema_version = 1
 
 [config]
 name = "it-default"
+title = { en = "Italy, regex only", fr = "Italie, regex seules" }
 description = { en = "Italy without a model: phone, postal code, the codice fiscale, the VAT number and the health card number, plus the European IBAN and VAT number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.", fr = "Italie sans modèle : téléphone, code postal, le codice fiscale, le numéro de TVA et le numéro de carte sanitaire, plus l'IBAN et le numéro de TVA européens, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois." }
 tags = ["chat", "customer-support", "document", "eu", "it"]
 piighost = ">=2.0,<3"

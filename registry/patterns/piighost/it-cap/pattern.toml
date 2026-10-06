@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "it-cap"
+title = { en = "CAP postal code (Italy)", fr = "code postal CAP (Italie)" }
 label = "IT_CAP"
 tags = ["it", "location", "contact"]
 regex = '(?<!\d)\d{5}(?!\d)'

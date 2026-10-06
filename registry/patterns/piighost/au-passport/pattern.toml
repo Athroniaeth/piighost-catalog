@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "au-passport"
+title = { en = "passport number (Australia)", fr = "numéro de passeport (Australie)" }
 label = "AU_PASSPORT"
 tags = ["au", "government-id", "identity"]
 regex = '(?<!\w)(?:[ACDEFNUX]\d{7}|P[A-FUWXZ]\d{7})(?!\w)'

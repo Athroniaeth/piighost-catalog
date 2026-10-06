@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "us-zip"
+title = { en = "ZIP code (US)", fr = "code ZIP (États-Unis)" }
 label = "US_ZIP"
 tags = ["us", "location", "contact"]
 regex = '\b\d{5}(?:-\d{4})?\b'

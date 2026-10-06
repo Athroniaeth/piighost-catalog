@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "vehicles"
+title = { en = "licence plates", fr = "plaques d'immatriculation" }
 description = { en = "Vehicle registration plates, France and the United Kingdom. A plate is not a name, but it is registered to one and reappears in insurance, fleet and incident records.", fr = "Plaques d'immatriculation, France et Royaume-Uni. Une plaque n'est pas un nom, mais elle est immatriculée à un nom et réapparaît dans les dossiers d'assurance, de flotte et de sinistre." }
 tags = ["fr", "uk", "identity", "legal"]
 

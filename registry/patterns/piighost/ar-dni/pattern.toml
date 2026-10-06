@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "ar-dni"
+title = { en = "DNI (Argentina)", fr = "DNI (Argentine)" }
 label = "AR_DNI"
 tags = ["ar", "government-id", "identity"]
 regex = '(?<!\w)\d{2}\.?\d{3}\.?\d{3}(?!\w)'

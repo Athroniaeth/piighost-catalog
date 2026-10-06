@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "uk-nhs"
+title = { en = "NHS number (UK)", fr = "numéro NHS (Royaume-Uni)" }
 label = "UK_NHS"
 tags = ["uk", "government-id", "health", "healthcare"]
 regex = '\b\d{3}[\s-]?\d{3}[\s-]?\d{4}\b'

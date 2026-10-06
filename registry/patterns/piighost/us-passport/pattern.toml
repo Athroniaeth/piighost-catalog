@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "us-passport"
+title = { en = "passport number (US)", fr = "numéro de passeport (États-Unis)" }
 label = "US_PASSPORT"
 tags = ["us", "government-id", "identity"]
 regex = '\b[A-Z]\d{8}\b'

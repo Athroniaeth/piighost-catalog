@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "fr-maiden-name"
+title = { en = "maiden name (France)", fr = "nom de naissance (France)" }
 label = "FR_MAIDEN_NAME"
 tags = ["fr", "identity", "legal", "notarial", "lang-fr"]
 regex = "(?:(?<=née )|(?<=née )|(?<=né )|(?<=né ))[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+(?:(?:[  ]+(?:de|du|des|la|le|van|von|den|der|di|da|ben|el|al))*[  ]+(?:d['’])?[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+|,[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿ][a-zà-öø-ÿ'’\\-]*(?=[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+))*"

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "fr-iban"
+title = { en = "IBAN (France)", fr = "IBAN (France)" }
 label = "FR_IBAN"
 tags = ["fr", "finance", "banking"]
 regex = '\bFR\d{2}(?:[\s-]?[A-Z0-9]){23}\b'

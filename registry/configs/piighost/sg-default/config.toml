@@ -2,6 +2,7 @@ schema_version = 1
 
 [config]
 name = "sg-default"
+title = { en = "Singapore, regex only", fr = "Singapour, regex seules" }
 description = { en = "Singapore without a model: phone and the NRIC or FIN identity number. No postal code: six bare digits are not safe beside a phone number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.", fr = "Singapour sans modèle : téléphone et le numéro d'identité NRIC ou FIN. Pas de code postal : six chiffres nus ne sont pas sûrs à côté d'un téléphone, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois." }
 tags = ["chat", "customer-support", "document", "sg"]
 piighost = ">=2.0,<3"

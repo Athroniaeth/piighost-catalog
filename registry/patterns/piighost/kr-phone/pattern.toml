@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "kr-phone"
+title = { en = "mobile number (South Korea)", fr = "numéro de mobile (Corée du Sud)" }
 label = "KR_PHONE"
 tags = ["kr", "contact"]
 regex = '(?<![\w+])(?:\+82|0)[\s.-]?1[0-9](?:[\s.-]?\d){7,8}(?!\w)'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "in-gstin"
+title = { en = "GSTIN (India)", fr = "GSTIN (Inde)" }
 label = "IN_GSTIN"
 tags = ["in", "government-id", "business", "finance"]
 regex = '(?<!\w)[0-3]\d[A-Z]{5}\d{4}[A-Z][A-Z0-9]Z[A-Z0-9](?!\w)'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "de-driving-licence"
+title = { en = "driving licence number (Germany)", fr = "numéro de permis de conduire (Allemagne)" }
 label = "DE_DRIVING_LICENCE"
 tags = ["de", "government-id", "identity"]
 regex = '(?<!\w)(?:[A-Z]{2}\d{8}[A-Z0-9]|[A-Z0-9]\d{2}[A-Z0-9]{6}\d[A-Z0-9])(?!\w)'

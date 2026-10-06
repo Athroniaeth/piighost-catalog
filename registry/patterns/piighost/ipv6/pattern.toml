@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "ipv6"
+title = { en = "IPv6 address", fr = "adresse IPv6" }
 label = "IPV6"
 tags = ["international", "network"]
 regex = '(?<![:\w])(?:(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}|(?:[0-9A-Fa-f]{1,4}:){1,7}:(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4}){0,6})?|::[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4}){0,6})(?![:\w])'

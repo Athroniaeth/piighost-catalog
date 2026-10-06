@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "sg"
+title = { en = "personal data (Singapore)", fr = "données personnelles (Singapour)" }
 description = { en = "Singapore: phone and the NRIC or FIN identity number. No postal code: six bare digits are not safe beside a phone number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Singapour : téléphone et le numéro d'identité NRIC ou FIN. Pas de code postal : six chiffres nus ne sont pas sûrs à côté d'un téléphone. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["contact", "government-id", "identity", "sg"]
 

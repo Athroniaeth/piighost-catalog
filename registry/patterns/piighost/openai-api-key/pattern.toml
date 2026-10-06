@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "openai-api-key"
+title = { en = "OpenAI API key", fr = "clé d'API OpenAI" }
 label = "OPENAI_API_KEY"
 tags = ["international", "secrets", "software-dev"]
 regex = '(?<![A-Za-z0-9])sk-(?!ant-)(?:proj-)?[A-Za-z0-9_-]{20,}'

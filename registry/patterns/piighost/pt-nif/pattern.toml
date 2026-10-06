@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "pt-nif"
+title = { en = "NIF tax number (Portugal)", fr = "numéro fiscal NIF (Portugal)" }
 label = "PT_NIF"
 tags = ["pt", "government-id", "accounting"]
 regex = '(?<!\w)\d{3} ?\d{3} ?\d{3}(?!\w)'

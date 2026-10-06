@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "google-oauth-client-id"
+title = { en = "Google OAuth client ID", fr = "identifiant client OAuth Google" }
 label = "GOOGLE_OAUTH_CLIENT_ID"
 tags = ["international", "secrets", "software-dev"]
 regex = '\b\d{6,}-[a-z0-9]{10,}\.apps\.googleusercontent\.com\b'

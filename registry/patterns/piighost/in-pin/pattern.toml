@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "in-pin"
+title = { en = "PIN code (India)", fr = "code PIN (Inde)" }
 label = "IN_PIN"
 tags = ["in", "location", "contact"]
 regex = '(?<!\d)[1-9]\d{5}(?!\d)'

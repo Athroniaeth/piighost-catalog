@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "ch-ahv"
+title = { en = "AHV number (Switzerland)", fr = "numéro AVS (Suisse)" }
 label = "CH_AHV"
 tags = ["ch", "government-id", "identity", "health"]
 regex = '(?<!\w)756\.\d{4}\.\d{4}\.\d{2}(?!\w)'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "private-key-block"
+title = { en = "PEM private key", fr = "clé privée PEM" }
 label = "PRIVATE_KEY_BLOCK"
 tags = ["international", "secrets", "software-dev"]
 regex = '-----BEGIN [A-Z0-9 ]{0,40}PRIVATE KEY(?: BLOCK)?-----[\s\S]{0,20000}?-----END [A-Z0-9 ]{0,40}PRIVATE KEY(?: BLOCK)?-----'

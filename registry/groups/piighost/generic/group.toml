@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "generic"
+title = { en = "common personal data, any country", fr = "données personnelles courantes, tout pays" }
 description = { en = "Country-agnostic shapes: email, URL, IPv4, card number. The group the piighost command line runs by default, since the library ships no pattern of its own.", fr = "Formes indépendantes du pays : e-mail, URL, IPv4, numéro de carte. Le groupe que la ligne de commande piighost lance par défaut, puisque la bibliothèque n'embarque aucun motif." }
 tags = ["international", "contact", "finance", "network"]
 

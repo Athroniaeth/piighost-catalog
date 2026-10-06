@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "aws-secret-access-key"
+title = { en = "AWS secret access key", fr = "clé secrète d'accès AWS" }
 label = "AWS_SECRET_ACCESS_KEY"
 tags = ["international", "secrets", "software-dev"]
 regex = '(?i:aws)[_-]?(?i:secret)[_-]?(?:(?i:access)[_-]?)?(?i:key)[A-Za-z0-9_]{0,8}["\x27\]\[ ]{0,4}[:=][ "\x27]{0,4}[A-Za-z0-9/+]{40}(?![A-Za-z0-9/+])'

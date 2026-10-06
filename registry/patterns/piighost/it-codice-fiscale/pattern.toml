@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "it-codice-fiscale"
+title = { en = "codice fiscale (Italy)", fr = "codice fiscale (Italie)" }
 label = "IT_CODICE_FISCALE"
 tags = ["it", "government-id", "identity"]
 regex = '\b[A-Z]{6}[0-9LMNP-V]{2}[A-EHLMPRST][0-9LMNP-V]{2}[A-Z][0-9LMNP-V]{3}[A-Z]\b'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "gitlab-token"
+title = { en = "GitLab token", fr = "jeton GitLab" }
 label = "GITLAB_TOKEN"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bglpat-[A-Za-z0-9_-]{20,}(?![A-Za-z0-9_-])'

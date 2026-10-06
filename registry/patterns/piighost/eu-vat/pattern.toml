@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "eu-vat"
+title = { en = "VAT number (EU)", fr = "numéro de TVA (UE)" }
 label = "EU_VAT"
 tags = ["eu", "business", "finance", "accounting"]
 regex = '\b[A-Z]{2}\d{8,12}\b'

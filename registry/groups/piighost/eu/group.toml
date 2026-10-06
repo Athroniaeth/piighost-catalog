@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "eu"
+title = { en = "personal data (EU)", fr = "données personnelles (UE)" }
 description = { en = "Pan-European: IBAN alone, the smallest European set.", fr = "Paneuropéen : l'IBAN seul, le plus petit ensemble européen." }
 tags = ["eu", "finance"]
 

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "twilio-sid"
+title = { en = "Twilio SID", fr = "SID Twilio" }
 label = "TWILIO_SID"
 tags = ["international", "secrets", "software-dev"]
 regex = '\b(?:AC|SK)[0-9a-fA-F]{32}\b'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "slack-token"
+title = { en = "Slack token", fr = "jeton Slack" }
 label = "SLACK_TOKEN"
 tags = ["international", "secrets", "software-dev"]
 regex = '\b(?:xox[abeoprs]-[A-Za-z0-9-]{10,256}|xapp-\d-[A-Za-z0-9]{5,20}-\d{8,20}-[a-f0-9]{32,80})(?![A-Za-z0-9-])'

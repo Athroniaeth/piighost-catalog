@@ -26,6 +26,13 @@ Rules that apply everywhere:
 - An unknown key is an error, not a warning.
 - Tags are a flat list, but every tag must exist in `vocabulary.toml`.
 - Descriptions are bilingual, `{ en = "...", fr = "..." }`.
+- `title` is optional and bilingual too, `{ en = "SIRET (France)", fr = "SIRET (France)" }`.
+  It is what a reader calls the object, and the page leads with it, because
+  nobody searches for `fr-siret`. Write it as it reads mid-sentence, `phone
+  number (France)`. The heading capitalises its first letter, and the page
+  title puts it after "Regex". It sits in the body table, `[pattern]`,
+  `[group]` or `[config]`. It is not part of the frozen content, so changing
+  it moves no commit.
 
 ## `vocabulary.toml`
 

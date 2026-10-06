@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "fr-extended"
+title = { en = "personal data and postal codes (France)", fr = "données personnelles et codes postaux (France)" }
 description = { en = "The `fr` group plus postal codes. Do not combine with a US or German ZIP pattern: five digits collide on the same span.", fr = "Le groupe `fr` plus les codes postaux. À ne pas combiner avec un code postal américain ou allemand : cinq chiffres entrent en collision sur le même span." }
 tags = ["fr", "contact", "finance", "government-id", "business", "location"]
 

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "npm-token"
+title = { en = "access token (npm)", fr = "jeton d'accès (npm)" }
 label = "NPM_TOKEN"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bnpm_[A-Za-z0-9]{36}\b'

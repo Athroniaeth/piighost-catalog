@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "fr-siren"
+title = { en = "SIREN (France)", fr = "SIREN (France)" }
 label = "FR_SIREN"
 tags = ["fr", "business", "accounting", "finance"]
 regex = '\b\d{3}[\s-]?\d{3}[\s-]?\d{3}\b(?![\s-]?\d)'

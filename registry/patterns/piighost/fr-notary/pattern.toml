@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "fr-notary"
+title = { en = "notary or lawyer name (France)", fr = "nom de notaire ou d'avocat (France)" }
 label = "FR_NOTARY"
 tags = ["fr", "identity", "legal", "notarial", "lang-fr"]
 regex = "(?:(?<=Maître )|(?<=Maître )|(?<=Maitre )|(?<=Maitre )|(?<=Me )|(?<=Me ))[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+(?:(?:[  ]+(?:de|du|des|la|le|van|von|den|der|di|da|ben|el|al))*[  ]+(?:d['’])?[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+|,[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿ][a-zà-öø-ÿ'’\\-]*(?=[  ]+[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ][a-zà-öø-ÿA-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸŒÆ'’\\-]+))*"

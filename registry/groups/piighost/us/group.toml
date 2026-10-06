@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "us"
+title = { en = "personal data (US)", fr = "données personnelles (États-Unis)" }
 description = { en = "the United States: phone, ZIP code, the individual taxpayer number and the social security number. The taxpayer number comes first because it has the shape of a social security number and the social security number never opens on a 9, so on a value that matches both, the taxpayer number is the right answer. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "États-Unis : téléphone, code ZIP, le numéro fiscal individuel et le numéro de sécurité sociale. Le numéro fiscal est déclaré en premier parce qu'il a la forme d'un numéro de sécurité sociale et qu'un numéro de sécurité sociale ne commence jamais par 9 : sur une valeur qui correspond aux deux, le numéro fiscal est la bonne réponse. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["contact", "government-id", "identity", "location", "us"]
 

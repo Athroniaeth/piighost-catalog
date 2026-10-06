@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "google-api-key"
+title = { en = "Google API key", fr = "clé d'API Google" }
 label = "GOOGLE_API_KEY"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bAIza[A-Za-z0-9_-]{35}(?![A-Za-z0-9_-])'

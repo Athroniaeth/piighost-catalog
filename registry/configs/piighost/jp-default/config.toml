@@ -2,6 +2,7 @@ schema_version = 1
 
 [config]
 name = "jp-default"
+title = { en = "Japan, regex only", fr = "Japon, regex seules" }
 description = { en = "Japan without a model: phone, postal code and the My Number individual identifier, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.", fr = "Japon sans modèle : téléphone, code postal et l'identifiant individuel My Number, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois." }
 tags = ["chat", "customer-support", "document", "jp"]
 piighost = ">=2.0,<3"

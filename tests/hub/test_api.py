@@ -57,6 +57,15 @@ class TestListing:
         assert [c["commit"] for c in body["commits"]] == [body["latest"]]
         assert body["commits"][0]["recorded_at"] is None
 
+    async def test_object_detail_carries_its_title(
+        self, client: AsyncTestClient[Litestar]
+    ) -> None:
+        """What the page heading reads, and None where a manifest has none."""
+        siret = (await client.get("/api/v1/refs/piighost/fr-siret")).json()
+        assert siret["title"] == {"en": "SIRET (France)", "fr": "SIRET (France)"}
+        group = (await client.get("/api/v1/refs/piighost/all")).json()
+        assert group["title"] is None
+
     async def test_unknown_object_is_404(
         self, client: AsyncTestClient[Litestar]
     ) -> None:

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "digitalocean-token"
+title = { en = "DigitalOcean token", fr = "jeton DigitalOcean" }
 label = "DIGITALOCEAN_TOKEN"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bdop_v1_[a-f0-9]{64}\b'

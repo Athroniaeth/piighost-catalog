@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "us-ssn"
+title = { en = "SSN (US)", fr = "SSN (États-Unis)" }
 label = "US_SSN"
 tags = ["us", "government-id", "identity", "hr"]
 regex = '\b\d{3}-\d{2}-\d{4}\b'

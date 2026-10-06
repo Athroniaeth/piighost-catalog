@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "br-cep"
+title = { en = "CEP postal code (Brazil)", fr = "code postal CEP (Brésil)" }
 label = "BR_CEP"
 tags = ["br", "location", "contact"]
 regex = '(?<!\d)\d{5}-\d{3}(?!\d)'

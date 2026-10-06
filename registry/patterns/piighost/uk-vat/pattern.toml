@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "uk-vat"
+title = { en = "VAT number (UK)", fr = "numéro de TVA (Royaume-Uni)" }
 label = "UK_VAT"
 tags = ["uk", "government-id", "business", "finance"]
 regex = '(?<!\w)GB\s?\d{3}\s?\d{4}\s?\d{2}(?!\w)'

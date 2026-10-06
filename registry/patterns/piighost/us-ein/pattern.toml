@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "us-ein"
+title = { en = "EIN (US)", fr = "EIN (États-Unis)" }
 label = "US_EIN"
 tags = ["us", "business", "finance", "accounting"]
 regex = '\b\d{2}-\d{7}\b'

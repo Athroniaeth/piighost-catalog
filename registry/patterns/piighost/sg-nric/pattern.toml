@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "sg-nric"
+title = { en = "NRIC or FIN (Singapore)", fr = "NRIC ou FIN (Singapour)" }
 label = "SG_NRIC"
 tags = ["sg", "government-id", "identity"]
 regex = '(?<!\w)[STFGM]\d{7}[A-Z](?!\w)'

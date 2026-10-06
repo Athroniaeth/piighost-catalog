@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "au-medicare"
+title = { en = "Medicare number (Australia)", fr = "numéro Medicare (Australie)" }
 label = "AU_MEDICARE"
 tags = ["au", "health", "government-id"]
 regex = '(?<!\w)[2-6]\d{3}[\s-]\d{5}[\s-]\d(?:[\s-]\d)?(?!\w)'

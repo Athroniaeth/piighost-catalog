@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "email"
+title = { en = "email address", fr = "adresse e-mail" }
 label = "EMAIL"
 tags = ["international", "contact"]
 regex = '(?<![A-Za-z0-9À-ɏ._%+-])[A-Za-z0-9À-ɏ._%+-]+@(?:[A-Za-z0-9À-ɏ-]+\.)+[A-Za-z]{2,}'

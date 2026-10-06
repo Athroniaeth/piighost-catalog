@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "de-zip"
+title = { en = "postal code (Germany)", fr = "code postal (Allemagne)" }
 label = "DE_ZIP"
 tags = ["de", "location", "contact"]
 regex = '\b(?:0[1-9]|[1-9]\d)\d{3}\b'

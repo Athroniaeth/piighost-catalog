@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "ch-phone"
+title = { en = "phone number (Switzerland)", fr = "numéro de téléphone (Suisse)" }
 label = "CH_PHONE"
 tags = ["ch", "contact"]
 regex = '(?<![\w+])(?:\+41|0)(?:[\s./-]?\d){9}(?!\w)'

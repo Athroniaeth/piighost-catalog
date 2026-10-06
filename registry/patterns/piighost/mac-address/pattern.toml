@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "mac-address"
+title = { en = "MAC address", fr = "adresse MAC" }
 label = "MAC_ADDRESS"
 tags = ["international", "identity", "network"]
 regex = '\b(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}\b|\b[0-9A-Fa-f]{4}(?:\.[0-9A-Fa-f]{4}){2}\b'

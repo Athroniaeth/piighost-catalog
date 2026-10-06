@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "pypi-token"
+title = { en = "PyPI token", fr = "jeton PyPI" }
 label = "PYPI_TOKEN"
 tags = ["international", "secrets", "software-dev"]
 regex = '\bpypi-AgE(?:IcHlwaS5vcmc|NdGVzdC5weXBpLm9yZw)[A-Za-z0-9_-]{50,}(?![A-Za-z0-9_-])'

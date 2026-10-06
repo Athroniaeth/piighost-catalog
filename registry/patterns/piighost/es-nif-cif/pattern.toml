@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "es-nif-cif"
+title = { en = "CIF tax number (Spain)", fr = "numéro fiscal CIF (Espagne)" }
 label = "ES_NIF_CIF"
 tags = ["es", "business", "accounting", "government-id"]
 regex = '(?<!\w)[ABCDEFGHJNPQRSUVW]\d{7}[0-9A-J](?!\w)'

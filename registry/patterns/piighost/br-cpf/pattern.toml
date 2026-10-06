@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "br-cpf"
+title = { en = "CPF taxpayer number (Brazil)", fr = "numéro fiscal CPF (Brésil)" }
 label = "BR_CPF"
 tags = ["br", "government-id", "identity"]
 regex = '\b\d{3}\.\d{3}\.\d{3}-\d{2}\b'

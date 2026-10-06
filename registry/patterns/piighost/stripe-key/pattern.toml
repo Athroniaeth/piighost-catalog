@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "stripe-key"
+title = { en = "Stripe API key", fr = "clé d'API Stripe" }
 label = "STRIPE_KEY"
 tags = ["international", "secrets", "software-dev", "ecommerce"]
 regex = '\b[sr]k_(?:live|test)_[A-Za-z0-9]{24,}\b'

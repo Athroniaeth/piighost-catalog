@@ -2,6 +2,7 @@ schema_version = 1
 
 [config]
 name = "id-default"
+title = { en = "Indonesia, regex only", fr = "Indonésie, regex seules" }
 description = { en = "Indonesia without a model: phone and the NIK population number, plus the email, URL, IPv4 and card number that belong to no country. Word-boundary expansion catches a value detected once everywhere else in the message.", fr = "Indonésie sans modèle : téléphone et le numéro de population NIK, plus l'e-mail, l'URL, l'IPv4 et le numéro de carte qui n'appartiennent à aucun pays. L'expansion par mot entier reprend partout dans le message une valeur détectée une fois." }
 tags = ["chat", "customer-support", "document", "id"]
 piighost = ">=2.0,<3"

@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "credit-card"
+title = { en = "credit card number", fr = "numéro de carte bancaire" }
 label = "CREDIT_CARD"
 tags = ["international", "finance", "banking", "ecommerce"]
 regex = '\b(?:\d[ -]?){12,18}\d\b'

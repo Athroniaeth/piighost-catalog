@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "identity-documents"
+title = { en = "identity documents", fr = "pièces d'identité" }
 description = { en = "The documents a person is asked to produce: passports, driving licences, vehicle plates. What an onboarding file, a rental contract or a claim is made of.", fr = "Les documents qu'on demande à une personne de produire : passeports, permis de conduire, plaques d'immatriculation. Ce dont un dossier d'entrée, un contrat de location ou une déclaration de sinistre est fait." }
 tags = ["international", "government-id", "identity", "legal", "document"]
 

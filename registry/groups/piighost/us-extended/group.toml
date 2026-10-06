@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "us-extended"
+title = { en = "personal data, passport and EIN (US)", fr = "données personnelles, passeport et EIN (États-Unis)" }
 description = { en = "The `us` group plus passport, EIN and bank routing numbers. The routing pattern is noisy: any nine-digit run.", fr = "Le groupe `us` plus passeport, EIN et numéro de routage bancaire. Le motif de routage est bruyant : toute suite de neuf chiffres." }
 tags = ["us", "government-id", "finance", "business"]
 

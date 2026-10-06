@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "us-dea"
+title = { en = "DEA number (US)", fr = "numéro DEA (États-Unis)" }
 label = "US_DEA"
 tags = ["us", "health", "identity"]
 regex = '\b[ABCDEFGHJKLMPRSTUX][A-Z9]\d{7}\b'

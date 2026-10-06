@@ -21,6 +21,7 @@ from backend.hub.manifests import (
     STAGE_SECTIONS,
     ConfigManifest,
     GroupManifest,
+    LocalizedText,
     PatternManifest,
     TagDefinition,
     TagPointers,
@@ -437,6 +438,24 @@ class Registry:
         if head is not None and not any(s.short == head.short for s in recorded):
             return [head, *recorded]
         return recorded
+
+    def title_of(self, key: str) -> LocalizedText | None:
+        """What a reader calls an object, `SIRET (France)` for `piighost/fr-siret`.
+
+        The page headings and titles lead with it, because nobody searches for
+        `fr-siret`. It is written mid-sentence, `phone number (France)`: a
+        heading capitalises its first letter, a title puts it after "Regex".
+
+        Read from the working tree and left out of the frozen content, like a
+        tag's label in vocabulary.toml. It names the object without changing
+        what it detects, so renaming a page must not mint a commit, move
+        `latest` or change a digest someone pinned. An object deleted from the
+        working tree, or written without one, has none.
+        """
+        obj = self.objects.get(key)
+        if obj is None:
+            return None
+        return getattr(obj.manifest, obj.kind).title
 
     def tags_of(self, key: str) -> dict[str, str]:
         """Tag pointers of an object, ``latest`` included."""

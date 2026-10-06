@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "it-partita-iva"
+title = { en = "partita IVA (Italy)", fr = "partita IVA (Italie)" }
 label = "IT_PARTITA_IVA"
 tags = ["it", "business", "accounting"]
 regex = '(?<!\w)(?:IT)?\d{11}(?!\w)'

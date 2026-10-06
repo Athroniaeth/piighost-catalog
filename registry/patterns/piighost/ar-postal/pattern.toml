@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "ar-postal"
+title = { en = "CPA postal code (Argentina)", fr = "code postal CPA (Argentine)" }
 label = "AR_POSTAL"
 tags = ["ar", "location", "contact"]
 regex = '(?<!\w)[A-Z]\d{4}[A-Z]{3}(?!\w)'

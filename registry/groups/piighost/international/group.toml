@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "international"
+title = { en = "common personal data, international formats", fr = "données personnelles courantes, formats internationaux" }
 description = { en = "The `generic` group plus IPv6, international phone numbers and the ORCID researcher identifier. ORCID is declared first: sixteen digits in dashed groups is also a card number, and a value opening on 0000-0001 through 0000-0003 is an ORCID rather than a card. Do not combine with a country phone pattern: a +33 or +1 number collides on the same span.", fr = "Le groupe `generic` plus IPv6, les téléphones internationaux et l'identifiant de chercheur ORCID. ORCID est déclaré en premier : seize chiffres en groupes séparés par des tirets, c'est aussi un numéro de carte, et une valeur commençant par 0000-0001 à 0000-0003 est un ORCID et non une carte. À ne pas combiner avec un motif de téléphone national : un numéro en +33 ou +1 entre en collision sur le même span." }
 tags = ["international", "contact", "network"]
 

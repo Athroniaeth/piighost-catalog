@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "au"
+title = { en = "personal data (Australia)", fr = "données personnelles (Australie)" }
 description = { en = "Australia: phone, postal code, the business number and the Medicare number. Medicare is only matched in its grouped form, since ten bare digits sit inside every card number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Australie : téléphone, code postal, le numéro d'entreprise et le numéro Medicare. Le numéro Medicare n'est reconnu que sous sa forme groupée, car dix chiffres nus se trouvent dans tout numéro de carte. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["au", "business", "contact", "government-id", "identity", "location"]
 

@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "fi"
+title = { en = "personal data (Finland)", fr = "données personnelles (Finlande)" }
 description = { en = "Finland: phone and the personal identity code. No postal code: five bare digits are not safe beside a phone number. Country groups are meant to be used one at a time: a postal code is five digits in several of them, so two in one detector fight for the same span.", fr = "Finlande : téléphone et le code d'identité personnel. Pas de code postal : cinq chiffres nus ne sont pas sûrs à côté d'un téléphone. Les groupes nationaux sont faits pour être utilisés un à la fois : un code postal fait cinq chiffres dans plusieurs d'entre eux, donc deux dans un même détecteur se disputent le même span." }
 tags = ["contact", "fi", "government-id", "identity"]
 

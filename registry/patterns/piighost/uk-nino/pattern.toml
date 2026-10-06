@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "uk-nino"
+title = { en = "National Insurance number (UK)", fr = "numéro National Insurance (Royaume-Uni)" }
 label = "UK_NINO"
 tags = ["uk", "government-id", "identity", "hr"]
 regex = '\b[A-CEGHJ-PR-TW-Z]{2}\d{6}[A-D]\b'

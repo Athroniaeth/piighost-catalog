@@ -2,6 +2,7 @@ schema_version = 1
 
 [pattern]
 name = "fr-plate"
+title = { en = "licence plate (France)", fr = "plaque d'immatriculation (France)" }
 label = "FR_PLATE"
 tags = ["fr", "identity"]
 regex = '(?<![\w-])[A-HJ-NP-TV-Z]{2}-\d{3}-[A-HJ-NP-TV-Z]{2}(?![\w-])'

@@ -2,6 +2,7 @@ schema_version = 1
 
 [group]
 name = "payment"
+title = { en = "payment data", fr = "données de paiement" }
 description = { en = "What moves money: the payment card, the IBAN, the BIC. Three shapes with nothing national about them, so this group sits beside any country without competing with it.", fr = "Ce qui fait circuler l'argent : la carte de paiement, l'IBAN, le BIC. Trois formes sans rien de national, donc ce groupe se place à côté de n'importe quel pays sans lui faire concurrence." }
 tags = ["international", "finance", "banking", "ecommerce"]
 
