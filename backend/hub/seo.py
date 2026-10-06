@@ -19,7 +19,6 @@ paths through.
 
 from __future__ import annotations
 
-from datetime import UTC, datetime
 from xml.sax.saxutils import escape
 
 from litestar import Request, Response, get
@@ -96,12 +95,10 @@ async def sitemap(request: Request, state: State) -> Response[str]:
     """
     registry: Registry = getattr(state, STATE_KEY)
     origin = origin_of(request)
-    today = datetime.now(UTC).date().isoformat()
 
     pages: list[tuple[str, str | None]] = [(path, None) for path in STATIC_PATHS]
-    for key, head in sorted(registry.heads.items()):
-        recorded = head.recorded_at[:10] if head.recorded_at else today
-        pages.append((f"/r/{escape(key)}", recorded))
+    for key in sorted(registry.heads):
+        pages.append((f"/r/{escape(key)}", last_modified(registry, key)))
 
     entries = [
         _entry(origin, lang, path, lastmod)
@@ -164,6 +161,20 @@ async def llms(request: Request, state: State) -> Response[str]:
             "to still hold once its patterns are composed."
         ),
         "",
+        # One plain sentence with the words people search for. An assistant
+        # asked for "a regex for IBAN" finds this line where it would not find
+        # `piighost/iban` in the list below.
+        (
+            "Regex for French SIRET, SIREN, NIR (social security number), licence "
+            "plates, postal codes and phone numbers; IBAN, SWIFT/BIC, credit card "
+            "and VAT numbers; email addresses and phone numbers in 26 countries; "
+            "passports, driving licences and national ID numbers (US SSN, UK NINO, "
+            "Spanish DNI/NIE, Italian codice fiscale, Brazilian CPF and CNPJ, "
+            "Indian Aadhaar and PAN); health card numbers; IP and MAC addresses, "
+            "URLs and JWTs; API keys and secrets (OpenAI, Anthropic, AWS, GitHub, "
+            "Stripe, Slack and more), private keys and crypto wallet addresses."
+        ),
+        "",
         (
             "An object is addressed by `namespace/name` and pinned by commit "
             "(`piighost/fr-default:7cc7cb30`) or by a movable tag. The identifier is "
@@ -222,6 +233,26 @@ async def llms(request: Request, state: State) -> Response[str]:
         media_type=TEXT_MEDIA_TYPE,
         headers={"Cache-Control": CACHE},
     )
+
+
+def last_modified(registry: Registry, key: str) -> str | None:
+    """The day an object's page last changed, or None when nobody knows.
+
+    That day is when its current content was recorded as a commit, the
+    `recorded_at` of `registry/commits/<namespace>/<name>/<commit>.json`. The
+    head in memory carries no date, and the sitemap used to fall back on
+    today's: every object then claimed to change every day, and a search
+    engine that sees that learns to ignore `lastmod` for the whole site. An
+    unrecorded head has no date yet, so it gets no `lastmod` rather than a
+    wrong one.
+    """
+    head = registry.heads.get(key)
+    if head is None:
+        return None
+    recorded = registry.store.get(key, head.short)
+    if recorded is None or not recorded.recorded_at:
+        return None
+    return recorded.recorded_at[:10]
 
 
 def _entry(origin: str, lang: str, path: str, lastmod: str | None) -> str:
