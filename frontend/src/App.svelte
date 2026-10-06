@@ -38,13 +38,14 @@
 
   // One title per route. Without this every tab, every bookmark and every
   // shared link read "piighost catalog", which is useless once you have three of
-  // them open. The reference is the title on a detail page, since that is what
-  // someone is actually pointing at.
+  // them open.
+  // The reference is no longer the title on a detail page: Detail.svelte
+  // writes the object's readable name once it has loaded it, the same words
+  // the prerendered page carries.
   const title = $derived.by(() => {
     const suffix = t("home.title");
     if (route.name === "home") return suffix;
-    if (route.name === "detail")
-      return `${route.params.namespace}/${route.params.name} · ${suffix}`;
+    if (route.name === "detail") return null;
     const heading: Record<string, Key> = {
       labels: "labels.title",
       stats: "stats.title",
@@ -65,7 +66,7 @@
   });
 
   $effect(() => {
-    document.title = title;
+    if (title) document.title = title;
   });
 </script>
 

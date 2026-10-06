@@ -23,6 +23,7 @@
   import { i18n, plural, t } from "../lib/i18n.svelte";
   import { assignLabelColors, labelStyle } from "../lib/labels";
   import { localize, refPath, router } from "../lib/router.svelte";
+  import { headingOf, pageTitleOf, titleOf } from "../lib/object-title.js";
   import { relativeTime } from "../lib/time";
   import { FIELD } from "../lib/ui";
   import NotFound from "./NotFound.svelte";
@@ -47,6 +48,27 @@
       return { object, commit, resolved };
     })(),
   );
+
+  // The tab title waits for the object, which carries its readable name. The
+  // prerendered page already wrote the same words, so a visitor who lands
+  // here sees no change; App.svelte leaves this route's title to this page.
+  $effect(() => {
+    const lang = i18n.locale;
+    let live = true;
+    bundle.then(
+      ({ object }) => {
+        if (live)
+          document.title = pageTitleOf(object, lang, kindName(object.kind));
+      },
+      () => {
+        if (live)
+          document.title = `${t("common.notFound")} · ${t("home.title")}`;
+      },
+    );
+    return () => {
+      live = false;
+    };
+  });
 
   // A secondary load: a failure must not blank the page.
   const snippets = $derived(api.snippets(ref).catch(() => null));
@@ -151,20 +173,40 @@
         ) ??
         [],
     )}
+    {@const title = titleOf(object, i18n.locale)}
     <div class="border-b">
       <div
         class="mx-auto flex max-w-7xl flex-wrap items-center gap-x-3 gap-y-2 px-4 py-4"
       >
-        <KindIcon kind={object.kind} class="size-5 text-muted-foreground" />
-        <h1 class="font-mono text-xl font-bold tracking-tight">
-          <!-- The namespace links to its objects, as the header's trail did
-               before the shared header replaced it. -->
+        <!-- The namespace links to its objects, as the header's trail did
+             before the shared header replaced it. -->
+        {#snippet identifier()}
           <a
             href={localize(`/?q=${encodeURIComponent(object.namespace)}`)}
             class="text-muted-foreground hover:text-foreground hover:underline"
             >{object.namespace}</a
           ><span class="text-muted-foreground">/</span>{object.name}
-        </h1>
+        {/snippet}
+        <KindIcon kind={object.kind} class="size-5 text-muted-foreground" />
+        {#if title}
+          <!-- The readable name leads, since it is what people search for;
+               the identifier, which is what the code takes, sits above it. -->
+          <div class="min-w-0">
+            <p class="font-mono text-sm text-muted-foreground">
+              {@render identifier()}
+            </p>
+            <h1
+              class="text-xl font-bold tracking-tight"
+              lang={title.lang === i18n.locale ? undefined : title.lang}
+            >
+              {headingOf(object, i18n.locale)}
+            </h1>
+          </div>
+        {:else}
+          <h1 class="font-mono text-xl font-bold tracking-tight">
+            {@render identifier()}
+          </h1>
+        {/if}
         <Badge variant="outline">{kindName(object.kind)}</Badge>
         {#each object.tags as tag (tag)}
           <Badge

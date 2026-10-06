@@ -16,11 +16,25 @@ test.describe("the catalog", () => {
     await expect(page.locator("main ul > li").first()).toContainText("labels");
   });
 
-  test("names the page after the reference, so a tab is readable", async ({
+  test("names the page after what it detects, as a search would", async ({
     page,
   }) => {
-    await page.goto("/r/piighost/fr-default");
-    await expect(page).toHaveTitle("piighost/fr-default · piighost catalog");
+    await page.goto("/en/r/piighost/fr-siret");
+    await expect(page).toHaveTitle(
+      "Regex SIRET (France): tested pattern · piighost catalog",
+    );
+    await expect(
+      page.getByRole("heading", { level: 1, name: "SIRET (France)" }),
+    ).toBeVisible();
+    // The identifier the code takes stays on the page, above the heading.
+    await expect(
+      page.locator("main").getByText("fr-siret").first(),
+    ).toBeVisible();
+
+    await page.goto("/fr/r/piighost/fr-default");
+    await expect(page).toHaveTitle(
+      "France, regex seules\u00a0: config piighost · catalogue piighost",
+    );
   });
 
   test("caps a long facet, and keeps it open across a filter", async ({

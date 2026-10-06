@@ -46,6 +46,12 @@ import {
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parse } from "smol-toml";
+import {
+  headingOf,
+  pageTitleOf,
+  searchNameOf,
+  titleOf,
+} from "../src/lib/object-title.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..", "..");
@@ -55,6 +61,13 @@ const ORIGIN =
   process.env.SITE_URL?.replace(/\/$/, "") || "https://catalog.piighost.dev";
 
 const LOCALES = ["en", "fr"];
+
+/** Who makes the catalog, for schema.org. */
+const PIIGHOST = {
+  "@type": "Organization",
+  name: "piighost",
+  url: "https://piighost.dev",
+};
 
 /** The words of the prerendered pages, in both languages. */
 const COPY = {
@@ -91,6 +104,18 @@ const COPY = {
       '<a href="/en/stats">What the catalog is asked for</a>: pulls, searches ' +
       "and the objects behind them.",
     fallback: (key) => `The ${key} de-identification pattern.`,
+    tagline: "Tested, versioned de-identification regexes for piighost.",
+    links: "Links",
+    docs: "Documentation",
+    chat: "Ask the documentation",
+    labels: "Labels",
+    configsLink: "piighost configs",
+    usage: "Usage",
+    contribute: "Contribute",
+    mit: "MIT license.",
+    notFound: "Nothing here",
+    notFoundLede: "That page does not exist.",
+    back: "Back to the catalog",
   },
   fr: {
     nav: "Catalogue",
@@ -125,6 +150,19 @@ const COPY = {
       '<a href="/fr/stats">Ce qu\'on demande au catalogue</a>\u00a0: ' +
       "récupérations, recherches et les objets derrière elles.",
     fallback: (key) => `Le motif de dé-identification ${key}.`,
+    tagline:
+      "Des regex de dé-identification testés et versionnés pour piighost.",
+    links: "Liens",
+    docs: "Documentation",
+    chat: "Interroger la documentation",
+    labels: "Labels",
+    configsLink: "Configs piighost",
+    usage: "Usage",
+    contribute: "Contribuer",
+    mit: "Licence MIT.",
+    notFound: "Rien ici",
+    notFoundLede: "Cette page n'existe pas.",
+    back: "Retour au catalogue",
   },
 };
 
@@ -191,6 +229,29 @@ function esc(value) {
     .replaceAll("'", "&#39;");
 }
 
+/**
+ * When an object's newest commit was recorded, from
+ * `registry/commits/<namespace>/<name>/*.json`, or null when it has none.
+ *
+ * The newest commit rather than the head's own: the head's commit is the
+ * sha256 of its frozen content, which this script cannot compute without the
+ * backend. The registry's CI refuses an unrecorded head, so on a published
+ * build the newest commit is the head.
+ */
+function lastRecorded(namespace, name) {
+  const directory = join(REGISTRY, "commits", namespace, name);
+  if (!existsSync(directory)) return null;
+  const dates = readdirSync(directory)
+    .filter((file) => file.endsWith(".json"))
+    .map(
+      (file) =>
+        JSON.parse(readFileSync(join(directory, file), "utf8")).recorded_at,
+    )
+    .filter(Boolean)
+    .sort();
+  return dates.at(-1) ?? null;
+}
+
 /** Every object in the registry, as {key, kind, name, description, content}. */
 function readRegistry() {
   const objects = [];
@@ -207,6 +268,8 @@ function readRegistry() {
           key: `${namespace}/${name}`,
           kind: spec.kind,
           name,
+          title: body.title ?? null,
+          recordedAt: lastRecorded(namespace, name),
           tags: body.tags ?? [],
           label: body.label ?? null,
           regex: body.regex ?? null,
@@ -265,11 +328,27 @@ function objectList(objects, lang) {
 /** The first sentence, which is where a description says what it is. */
 function summary(text, limit = 155) {
   const first = String(text).trim().split(". ")[0].trim();
+  // limit - 1 leaves room for the full stop added below.
   const clipped =
-    first.length > limit
+    first.length > limit - 1
       ? `${first.slice(0, limit - 1).replace(/\s+\S*$/, "")}…`
       : first;
   return clipped + (clipped.endsWith("…") || clipped.endsWith(".") ? "" : ".");
+}
+
+/**
+ * The heading of an object page: its readable name, with the identifier on the
+ * line above, or the identifier alone when the manifest has no title. The
+ * same words as the application's, from lib/object-title.js.
+ */
+function heading(object, lang) {
+  const title = titleOf(object, lang);
+  if (!title) return [`<h1>${esc(object.key)}</h1>`];
+  const attr = title.lang === lang ? "" : ` lang="${title.lang}"`;
+  return [
+    `<p><code>${esc(object.key)}</code> · ${esc(COPY[lang].kind[object.kind])}</p>`,
+    `<h1${attr}>${esc(headingOf(object, lang))}</h1>`,
+  ];
 }
 
 /**
@@ -285,11 +364,8 @@ function objectBody(object, neighbours, lang) {
   const copy = COPY[lang];
   const colon = lang === "fr" ? "\u00a0:" : ":";
   const text = paragraph(object, lang);
-  const parts = [
-    nav(null, lang, `/r/${object.key}`),
-    `<h1>${esc(object.key)}</h1>`,
-    `<p${text.attr}>${text.html}</p>`,
-  ];
+  const parts = [nav(null, lang, `/r/${object.key}`), ...heading(object, lang)];
+  parts.push(`<p${text.attr}>${text.html}</p>`);
   if (object.label)
     parts.push(
       `<p>${copy.label}${colon} <code>${esc(object.label)}</code></p>`,
@@ -404,7 +480,7 @@ function objectJsonLd(object, lang) {
   return {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    name: object.key,
+    name: searchNameOf(object, lang),
     inLanguage: shown.lang,
     description:
       plain(shown.text, shown.lang) || COPY[lang].fallback(object.key),
@@ -418,6 +494,11 @@ function objectJsonLd(object, lang) {
       "pseudonymization",
     ],
     license: "https://opensource.org/licenses/MIT",
+    // Google Dataset Search asks for a creator, and reads the date to tell a
+    // maintained dataset from an abandoned one.
+    creator: PIIGHOST,
+    publisher: PIIGHOST,
+    ...(object.recordedAt ? { dateModified: object.recordedAt } : {}),
     isPartOf: {
       "@type": "DataCatalog",
       name: "piighost catalog",
@@ -431,9 +512,48 @@ function objectJsonLd(object, lang) {
   };
 }
 
-/** Replace the head metadata of the built document and fill `#app`. */
+/**
+ * The site footer, as components/SiteFooter.svelte draws it.
+ *
+ * It is where the catalog links to piighost.dev, the documentation and
+ * GitHub. Drawn by the bundle alone, those links did not exist for a crawler
+ * that runs no JavaScript, and 488 pages passed nothing on to the site and the
+ * docs.
+ */
+function footer(lang) {
+  const copy = COPY[lang];
+  const away = (href, text) =>
+    `<li><a href="${esc(href)}" rel="noreferrer">${esc(text)}</a></li>`;
+  const here = (route, text) =>
+    `<li><a href="${esc(under(lang, route))}">${esc(text)}</a></li>`;
+  return [
+    "<footer>",
+    `<p>piighost catalog. ${esc(copy.tagline)}</p>`,
+    "<p>piighost</p><ul>",
+    `<li><a href="https://piighost.dev/${lang}">piighost.dev</a></li>`,
+    away("https://github.com/Athroniaeth/piighost", "GitHub"),
+    away("https://pypi.org/project/piighost/", "PyPI"),
+    away(`https://docs.piighost.dev/${lang}/`, copy.docs),
+    away("https://docs-chat.piighost.dev", copy.chat),
+    `</ul><p>${esc(copy.links)}</p><ul>`,
+    here("/labels", copy.labels),
+    here("/configs", copy.configsLink),
+    here("/stats", copy.usage),
+    here("/contribute", copy.contribute),
+    away("https://discord.gg/vFg9GHQR2s", "Discord"),
+    `</ul><p>${esc(copy.mit)}</p>`,
+    "</footer>",
+  ].join("\n      ");
+}
+
+/**
+ * Replace the head metadata of the built document and fill `#app`.
+ *
+ * `route` is null for the not-found page: it is served at whatever URL was
+ * asked for, so it has no canonical address and no alternates to name.
+ */
 function render(template, { lang, route, title, description, jsonLd, body }) {
-  const canonical = `${ORIGIN}${under(lang, route)}`;
+  const canonical = route === null ? null : `${ORIGIN}${under(lang, route)}`;
   let html = template;
   html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`);
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`);
@@ -459,23 +579,34 @@ function render(template, { lang, route, title, description, jsonLd, body }) {
   // One alternate per language, and x-default for a visitor whose language is
   // neither: English, as the redirect of an unprefixed URL gives a browser
   // that asks for no French.
-  const alternates = [...LOCALES, "x-default"].map(
-    (code) =>
-      `<link rel="alternate" hreflang="${code}" href="${esc(
-        `${ORIGIN}${under(code === "x-default" ? "en" : code, route)}`,
-      )}" />`,
-  );
+  const alternates =
+    route === null
+      ? []
+      : [...LOCALES, "x-default"].map(
+          (code) =>
+            `<link rel="alternate" hreflang="${code}" href="${esc(
+              `${ORIGIN}${under(code === "x-default" ? "en" : code, route)}`,
+            )}" />`,
+        );
   const head = [
-    `<link rel="canonical" href="${esc(canonical)}" />`,
-    ...alternates,
-    `<meta property="og:url" content="${esc(canonical)}" />`,
+    ...(canonical
+      ? [
+          `<link rel="canonical" href="${esc(canonical)}" />`,
+          ...alternates,
+          `<meta property="og:url" content="${esc(canonical)}" />`,
+        ]
+      : []),
     `<meta property="og:locale" content="${lang === "fr" ? "fr_FR" : "en_US"}" />`,
-    `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`,
+    ...(jsonLd
+      ? [
+          `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`,
+        ]
+      : []),
   ].join("\n    ");
   html = html.replace("</head>", `  ${head}\n  </head>`);
   return html.replace(
     '<div id="app"></div>',
-    `<div id="app">\n      ${body}\n    </div>`,
+    `<div id="app">\n      ${body}\n      ${footer(lang)}\n    </div>`,
   );
 }
 
@@ -500,7 +631,7 @@ for (const lang of LOCALES) {
       render(template, {
         lang,
         route,
-        title: `${object.key} · ${COPY[lang].kind[object.kind]} · piighost catalog`,
+        title: pageTitleOf(object, lang, COPY[lang].kind[object.kind]),
         description: plain(summary(shown.text), shown.lang),
         jsonLd: objectJsonLd(object, lang),
         body: objectBody(object, neighboursOf(object, objects, index), lang),
@@ -572,7 +703,7 @@ const STATIC = {
       title: "piighost catalog · tested de-identification regexes",
       description:
         `A catalog of ${counts.pattern} tested de-identification regex patterns and ` +
-        `${counts.group} groups for piighost, each carrying the cases it must catch and ` +
+        `${counts.group} groups for piighost, each with the cases it must catch and ` +
         `the cases it must leave alone.`,
       heading: "piighost catalog",
     },
@@ -629,9 +760,9 @@ const STATIC = {
       route: "/",
       title: "piighost catalog · des regex de dé-identification testés",
       description:
-        `Un catalogue de ${counts.pattern} motifs regex de dé-identification testés et ` +
+        `${counts.pattern} motifs regex de dé-identification testés et ` +
         `${counts.group} groupes pour piighost, chacun avec les cas qu'il doit reconnaître ` +
-        `et ceux qu'il doit laisser tranquilles.`,
+        `et ceux qu'il doit ignorer.`,
       heading: "piighost catalog",
     },
     {
@@ -738,8 +869,39 @@ for (const lang of LOCALES) {
   }
 }
 
+/**
+ * The not-found page, one per language, which nginx answers with a 404 status
+ * for any path under /en/ or /fr/ that is not a page.
+ *
+ * An unknown URL used to get the application shell with a 200, so a search
+ * engine saw a page there: a soft 404. The bundle still mounts on this page
+ * and draws its own not-found screen, the same words. At the root rather than
+ * under /en/, so that it is not itself a page of the site: nginx serves it
+ * only as an error page.
+ */
+for (const lang of LOCALES) {
+  const copy = COPY[lang];
+  writeFileSync(
+    join(DIST, `404.${lang}.html`),
+    render(template, {
+      lang,
+      route: null,
+      title: `${copy.notFound} · piighost catalog`,
+      description: copy.notFoundLede,
+      jsonLd: null,
+      body: [
+        nav(null, lang, "/"),
+        "<p>404</p>",
+        `<h1>${esc(copy.notFound)}</h1>`,
+        `<p>${esc(copy.notFoundLede)}</p>`,
+        `<p><a href="${under(lang, "/")}">${esc(copy.back)}</a></p>`,
+      ].join("\n      "),
+    }),
+  );
+}
+
 const digest = createHash("sha256").update(template).digest("hex").slice(0, 8);
 console.log(
   `prerendered ${objects.length} objects and ${STATIC.en.length} pages ` +
-    `in ${LOCALES.length} languages from dist/index.html (${digest}) for ${ORIGIN}`,
+    `in ${LOCALES.length} languages, and a not-found page, from dist/index.html (${digest}) for ${ORIGIN}`,
 );

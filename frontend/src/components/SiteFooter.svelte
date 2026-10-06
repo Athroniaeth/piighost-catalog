@@ -18,7 +18,7 @@
         <li>
           <a
             class="hover:text-foreground"
-            href="https://piighost.dev/{i18n.locale}/">piighost.dev</a
+            href="https://piighost.dev/{i18n.locale}">piighost.dev</a
           >
         </li>
         <li>
