@@ -64,6 +64,34 @@ test.describe("the catalog", () => {
   });
 });
 
+test.describe("an object's page", () => {
+  test("wraps a long secret inside its card", async ({ page }) => {
+    await page.goto("/en/r/piighost/jwt");
+    await expect(page.getByText("Must match")).toBeVisible();
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - window.innerWidth,
+    );
+    expect(overflow).toBeLessThanOrEqual(0);
+  });
+
+  test("draws the not-found page for an object the catalog lacks", async ({
+    page,
+  }) => {
+    await page.goto("/en/r/piighost/no-such-object");
+    await expect(
+      page.getByRole("heading", { name: "Nothing here" }),
+    ).toBeVisible();
+    await expect(page.getByRole("alert")).toHaveCount(0);
+  });
+
+  test("draws it for a commit the object lacks", async ({ page }) => {
+    await page.goto("/en/r/piighost/generic/deadbeef");
+    await expect(
+      page.getByRole("heading", { name: "Nothing here" }),
+    ).toBeVisible();
+  });
+});
+
 test.describe("the two languages", () => {
   test("moves a URL that predates them under the browser's", async ({
     page,

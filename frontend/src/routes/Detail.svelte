@@ -25,6 +25,7 @@
   import { localize, refPath, router } from "../lib/router.svelte";
   import { relativeTime } from "../lib/time";
   import { FIELD } from "../lib/ui";
+  import NotFound from "./NotFound.svelte";
 
   let {
     namespace,
@@ -131,6 +132,9 @@
 </script>
 
 <Async promise={bundle} onretry={() => router.go(router.path)}>
+  {#snippet notfound()}
+    <NotFound />
+  {/snippet}
   {#snippet children({
     object,
     commit,
@@ -311,11 +315,14 @@
                   <Card title={t("detail.matches")}>
                     <ul class="space-y-1.5">
                       {#each examples.match as example, index (index)}
+                        <!-- A secret is one unbroken token, a JWT runs past a
+                             hundred characters: it wraps anywhere rather than
+                             widening the card past the window. -->
                         <li
-                          class="rounded-md bg-muted/40 p-2 font-mono text-sm leading-relaxed"
+                          class="rounded-md bg-muted/40 p-2 font-mono text-sm leading-relaxed [overflow-wrap:anywhere]"
                         >
                           {#each exampleParts(example.text, example.value, String(commit.content.label)) as part, i (i)}{#if part.hit}<span
-                                class="rounded px-1 {labelStyle(
+                                class="rounded px-1 [box-decoration-break:clone] {labelStyle(
                                   part.hit.label,
                                   colors,
                                 )}">{part.text}</span
@@ -328,7 +335,7 @@
                     <ul class="space-y-1.5">
                       {#each examples.no_match as example, index (index)}
                         <li
-                          class="rounded-md bg-muted/40 p-2 font-mono text-sm text-muted-foreground"
+                          class="rounded-md bg-muted/40 p-2 font-mono text-sm text-muted-foreground [overflow-wrap:anywhere]"
                         >
                           {example.text}
                         </li>
