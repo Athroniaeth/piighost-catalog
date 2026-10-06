@@ -2,8 +2,10 @@
  * A history router in one file.
  *
  * The site has eight routes and no nested layouts, so a router dependency would
- * cost more in indirection than it saves. nginx already falls back to
- * index.html for unknown paths, which is all a history router needs.
+ * cost more in indirection than it saves. nginx serves each route's
+ * prerendered page, the application shell for an object's commits, and a 404
+ * with the not-found page for anything else, so ROUTES and
+ * deploy/default.conf.template must name the same pages.
  *
  * Every page lives under its language, /en/... and /fr/..., the scheme every
  * piighost site links to. The routes below are written without the prefix:

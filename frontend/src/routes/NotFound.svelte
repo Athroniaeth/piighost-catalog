@@ -4,6 +4,13 @@
   import { localize } from "../lib/router.svelte";
 </script>
 
+<!-- nginx answers an unknown path with a real 404, but not a commit an object
+     lacks: it cannot tell one commit from another, so that page arrives with a
+     200. This keeps it out of an index all the same. -->
+<svelte:head>
+  <meta name="robots" content="noindex" />
+</svelte:head>
+
 <div class="mx-auto max-w-3xl px-4 py-24 text-center">
   <p class="font-mono text-sm text-muted-foreground">404</p>
   <h1 class="mt-2 text-2xl font-bold tracking-tight">{t("common.notFound")}</h1>

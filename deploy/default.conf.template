@@ -203,23 +203,65 @@ server {
         access_log off;
     }
 
-    # Every page lives under its language, the scheme the other piighost sites
-    # link to. `no-cache` on this HTML, else a browser would keep the old hashed
-    # asset names and never see a deployment.
-    location ~ ^/(en|fr)(/|$) {
+    # The not-found page, one per language, written by scripts/prerender.mjs.
+    # Served only as the error page of the two locations below: asked for by
+    # name, it is itself not found.
+    location ~ ^/404\.(en|fr)\.html$ {
+        internal;
         include /etc/nginx/security-headers.conf;
 
-        # $uri/index.html is the prerendered page for this route, written at
-        # build time; /index.html is the application shell for everything else,
-        # routed client-side.
-        try_files $uri $uri/index.html /index.html;
         add_header Cache-Control "no-cache" always;
     }
 
-    # The files beside the bundle (favicon.svg, theme.js, og.png, pyodide/...)
-    # are served as they are. Any other path predates the languages, a link or
-    # a bookmark to /r/piighost/generic: it moves under the browser's language,
-    # path and query kept. A 302, since the answer depends on who asks.
+    # A commit or a tag of an object, /en/r/piighost/generic/fd79aec6. These
+    # pages are not prerendered, so the application shell draws them. The
+    # object has to exist, which its prerendered page proves: any other path
+    # here is a 404. A commit the object lacks still gets the shell, since
+    # nginx cannot tell one commit from another, and the application draws its
+    # not-found page there, marked noindex.
+    location ~ ^/(?<page_lang>en|fr)/r/(?<object>[^/]+/[^/]+)/[^/]+/?$ {
+        include /etc/nginx/security-headers.conf;
+
+        error_page 404 /404.$page_lang.html;
+        if (!-f $document_root/$page_lang/r/$object/index.html) {
+            return 404;
+        }
+        try_files /index.html =404;
+        add_header Cache-Control "no-cache" always;
+    }
+
+    # Every page lives under its language, the scheme the other piighost sites
+    # link to. `no-cache` on this HTML, else a browser would keep the old hashed
+    # asset names and never see a deployment.
+    location ~ ^/(?<page_lang>en|fr)(/|$) {
+        include /etc/nginx/security-headers.conf;
+
+        # $uri/index.html is the prerendered page for this route, written at
+        # build time, one per object and one per page of the router. Anything
+        # else is a 404 with the not-found page. It used to be the application
+        # shell with a 200, so a search engine saw a page at every mistyped
+        # URL: a soft 404, as Google calls it.
+        try_files $uri $uri/index.html =404;
+        error_page 404 /404.$page_lang.html;
+        add_header Cache-Control "no-cache" always;
+    }
+
+    # A file at the root that does not exist, /llms-full.txt, is not found. It
+    # used to fall through to the redirect below and land on the application
+    # shell under /en/, HTML with a 200 where an agent expected text. The files
+    # that do exist here, BingSiteAuth.xml and the IndexNow key among them, are
+    # served as they are.
+    location ~ ^/[^/]+\.[A-Za-z0-9]+$ {
+        include /etc/nginx/security-headers.conf;
+
+        try_files $uri =404;
+        add_header Cache-Control "no-cache" always;
+    }
+
+    # The files beside the bundle (theme.js, og.png, pyodide/...) are served as
+    # they are. Any other path predates the languages, a link or a bookmark to
+    # /r/piighost/generic: it moves under the browser's language, path and
+    # query kept. A 302, since the answer depends on who asks.
     location / {
         include /etc/nginx/security-headers.conf;
 
