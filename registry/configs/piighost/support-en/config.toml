@@ -30,6 +30,12 @@ name = "regex-generic"
 type = "regex"
 groups = ["piighost/generic"]
 
+# The model finds a whole address and the ZIP regex finds the five digits
+# inside it. Keeping the surer span kept the ZIP and sent the street in clear,
+# so the union of overlapping spans is kept.
+[stages.overlap_resolver]
+type = "merge"
+
 [stages.linker]
 type = "exact"
 
