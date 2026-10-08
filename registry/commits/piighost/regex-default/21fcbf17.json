@@ -1,0 +1,76 @@
+{
+  "digest": "21fcbf175d0b2d26d6ff927b23a0a501bfd18af340f984829d403943257402ff",
+  "recorded_at": "2026-10-08T06:12:25+00:00",
+  "content": {
+    "kind": "config",
+    "namespace": "piighost",
+    "name": "regex-default",
+    "schema_version": 1,
+    "description": {
+      "en": "Regex only, no model, no network: the French, European, US and generic groups, in that order. France comes before the generic group, so a SIRET or a NIR is not taken for a card number. It holds no secret pattern. For API keys and tokens, use dev-secrets.",
+      "fr": "Regex seules, sans modèle ni réseau : les groupes français, européen, américain et générique, dans cet ordre. La France passe avant le groupe générique, pour qu'un SIRET ou un NIR ne soit pas pris pour une carte bancaire. Elle ne contient aucun motif de secret. Pour les clés d'API et les jetons, utilisez dev-secrets."
+    },
+    "tags": [
+      "international",
+      "fr",
+      "eu",
+      "us",
+      "chat",
+      "tool-agent"
+    ],
+    "piighost": ">=2.0,<3",
+    "extends": [],
+    "detectors": [
+      {
+        "name": "regex-fr",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/fr",
+            "commit": "c41d5b34"
+          }
+        ]
+      },
+      {
+        "name": "regex-eu",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/eu",
+            "commit": "a539b5e7"
+          }
+        ]
+      },
+      {
+        "name": "regex-us",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/us",
+            "commit": "29d5c0a5"
+          }
+        ]
+      },
+      {
+        "name": "regex-generic",
+        "type": "regex",
+        "groups": [
+          {
+            "ref": "piighost/generic",
+            "commit": "19392cae"
+          }
+        ]
+      }
+    ],
+    "stages": {
+      "linker": {
+        "type": "exact"
+      },
+      "anonymizer": {
+        "placeholder": {
+          "type": "label_counter"
+        }
+      }
+    }
+  }
+}
